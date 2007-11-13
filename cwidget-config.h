@@ -6,11 +6,11 @@
 
 /* If a hash header is available, define to the namespace in which the hash
    class resides */
-#define CWIDGET_HASH_NAMESPACE __gnu_cxx
+/* #undef CWIDGET_HASH_NAMESPACE */
 
 
 /* Define if the g++ extension ext/hash_map is available */
-#define CWIDGET_HAVE_EXT_HASH_MAP 
+/* #undef CWIDGET_HAVE_EXT_HASH_MAP */
 
 
 /* Define if the g++ extension hash_map is available */
@@ -18,4 +18,4 @@
 
 
 /* The name of the class used by the STL to define character traits */
-#define TRAITS_CLASS char_traits
+/* #undef TRAITS_CLASS */

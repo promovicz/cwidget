@@ -15,4 +15,4 @@ Version: @VERSION@
 URL: http://cwidget.alioth.debian.org
 Requires: sigc++-2.0
 Libs: -L${libdir} -lcwidget -lncursesw
-Cflags: -I${pkgincludedir} -I${pkglibdir}
+Cflags: -I${includedir} -I${pkglibdir}

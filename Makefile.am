@@ -11,7 +11,11 @@ else
 DOXYGENCMD=
 endif
 
+if BUILD_LIBRARY
 SUBDIRS=src doc
+else
+SUBDIRS=doc
+endif
 
 pkgconfigdir = $(libdir)/pkgconfig
 

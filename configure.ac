@@ -1,11 +1,44 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT(cwidget, 0.5.3)
+AC_INIT(cwidget, 0.5.4)
 AC_CONFIG_SRCDIR([src/cwidget/toplevel.cc])
 AM_INIT_AUTOMAKE
 AC_CONFIG_HEADERS([config.h cwidget-config.h])
 
 dnl Use C++
 AC_LANG([C++])
+
+BUILD_LIBRARY=yes
+AC_ARG_ENABLE(library, AS_HELP_STRING([--disable-library], [Disable building the library itself; only build documentation.]),
+	      [if test x$enableval = xno; then BUILD_LIBRARY=no; fi],
+	      )
+
+AM_CONDITIONAL(BUILD_LIBRARY, [test x$BUILD_LIBRARY = xyes])
+
+
+dnl AM_GNU_GETTEXT needs to be called unconditionally, or the
+dnl configure script freaks out.  Otherwise this would be inside the
+dnl stuff that gets disabled by --disable-library.
+ALL_LINGUAS=""
+AM_GNU_GETTEXT([external])
+
+dnl Try to find doxygen in the path.
+AC_MSG_CHECKING([for the Doxygen documentation generator (http://www.doxygen.org)])
+DOXYGEN=`which doxygen`
+AC_SUBST(DOXYGEN)
+
+if test x$DOXYGEN = x
+then
+  AC_MSG_RESULT([not found])
+else
+  AC_MSG_RESULT([found at $DOXYGEN])
+fi
+
+AM_CONDITIONAL(DOXYGEN, [test x$DOXYGEN != x])
+
+
+
+if test x$BUILD_LIBRARY = xyes
+then
 
 dnl Find the key tools.
 AC_PROG_CXX
@@ -31,9 +64,6 @@ then
 	[AC_MSG_ERROR([POSIX thread header not installed])])
 fi
 
-
-ALL_LINGUAS=""
-AM_GNU_GETTEXT([external])
 
 dnl Find sigc++
 PKG_CHECK_MODULES(SIGC, sigc++-2.0)
@@ -131,20 +161,6 @@ else
 fi
 
 
-dnl Try to find doxygen in the path.
-AC_MSG_CHECKING([for the Doxygen documentation generator (http://www.doxygen.org)])
-DOXYGEN=`which doxygen`
-AC_SUBST(DOXYGEN)
-
-if test x$DOXYGEN = x
-then
-  AC_MSG_RESULT([not found])
-else
-  AC_MSG_RESULT([found at $DOXYGEN])
-fi
-
-AM_CONDITIONAL(DOXYGEN, [test x$DOXYGEN != x])
-
 
 dnl Default to -Werror, but add an easy flag to disable it.
 WERROR="-Werror"
@@ -165,6 +181,9 @@ AC_ARG_ENABLE(werror,
 	fi
 	)
 AC_SUBST(WERROR)
+
+# END LIBRARY CONFIGURATION
+fi
 
 
 
