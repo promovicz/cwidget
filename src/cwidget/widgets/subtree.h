@@ -26,6 +26,8 @@
 #include "treeitem.h"
 #include "tree.h"
 
+#include <cwidget/config/keybindings.h>
+
 namespace cwidget
 {
   namespace widgets

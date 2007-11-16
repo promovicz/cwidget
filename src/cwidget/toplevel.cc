@@ -46,17 +46,17 @@
 
 #include <config/keybindings.h>
 
-#include <generic/threads/event_queue.h>
-#include <generic/threads/threads.h>
+#include <cwidget/generic/threads/event_queue.h>
+#include <cwidget/generic/threads/threads.h>
 
-#include <generic/util/ssprintf.h>
+#include <cwidget/generic/util/ssprintf.h>
 
 #include <cwidget/generic/util/i18n.h>
 
 #include <limits.h>
 #include <signal.h>
 
-#include <generic/util/eassert.h>
+#include <cwidget/generic/util/eassert.h>
 #include <sys/time.h>
 
 #include <map>

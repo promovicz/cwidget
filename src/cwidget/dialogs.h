@@ -26,7 +26,7 @@
 
 #include <cwidget/widgets/editline.h> // for editline::history_list
 
-#include <generic/util/slotarg.h>
+#include <cwidget/generic/util/slotarg.h>
 
 #include <string>
 
