@@ -54,7 +54,7 @@ binary-arch: install
 	dh_installexamples -plibcwidget-dev src/cwidget/testcwidget.cc
 	dh_installchangelogs -a
 
-	dh_strip -a --dbg-package=libcwidget-dbg
+	dh_strip -a --dbg-package=libcwidget0-dbg
 	dh_compress -a
 	dh_fixperms -a
 	dh_makeshlibs -a

@@ -1,3 +1,13 @@
+cwidget (0.5.5-2) unstable; urgency=low
+
+  * Do a quick fix for a Makefile bug (a better fix is already present in
+    the upstream repository). (Closes: #451400)
+  
+  * Rename the debug package from libcwidget-dbg to libcwidget0-dbg, since
+    obviously once the soname changes we'll need a separate debug package.
+
+ -- Daniel Burrows <dburrows@debian.org>  Mon, 19 Nov 2007 21:08:10 -0800
+
 cwidget (0.5.5-1) unstable; urgency=low
 
   * New upstream release.
