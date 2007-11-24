@@ -1,3 +1,11 @@
+cwidget (0.5.5-3) unstable; urgency=low
+
+  * Actually fix Makefile.in. (Closes: #451400)
+  
+  * Add Homepage and VCS-* fields to the control file.
+
+ -- Daniel Burrows <dburrows@debian.org>  Sat, 24 Nov 2007 08:21:57 -0800
+
 cwidget (0.5.5-2) unstable; urgency=low
 
   * Do a quick fix for a Makefile bug (a better fix is already present in
