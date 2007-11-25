@@ -7,4 +7,4 @@ clean-local:
 	rm -f doxygen*.tmp
 
 doc:
-	[ -z "$(DOXYGEN)" ] || (cd .. && $(DOXYGEN))
+	[ -z "$(DOXYGEN)" ] || (cd .. && "$(DOXYGEN)")

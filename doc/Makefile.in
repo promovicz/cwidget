@@ -342,7 +342,7 @@ clean-local:
 	rm -f doxygen*.tmp
 
 doc:
-	[ -z "$(DOXYGEN)" ] || (cd .. && $(DOXYGEN))
+	[ -z "$(DOXYGEN)" ] || (cd .. && "$(DOXYGEN)")
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

@@ -1,3 +1,9 @@
+cwidget (0.5.5-4) unstable; urgency=low
+
+  * Fix a related but different bug in Makefile.am. (Closes: #451400)
+
+ -- Daniel Burrows <dburrows@debian.org>  Sat, 24 Nov 2007 21:35:51 -0800
+
 cwidget (0.5.5-3) unstable; urgency=low
 
   * Actually fix Makefile.in. (Closes: #451400)
