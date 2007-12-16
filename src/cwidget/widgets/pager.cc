@@ -1,6 +1,6 @@
 // pager.cc
 //
-//  Copyright 2000 Daniel Burrows
+//  Copyright 2000, 2007 Daniel Burrows
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -310,6 +310,24 @@ namespace cwidget
 	return widget::handle_key(k);
 
       return true;
+    }
+
+    void pager::dispatch_mouse(short id, int x, int y, int z, mmask_t bstate)
+    {
+      // Only do something if this system's ncurses has both button 4
+      // and button 5 (older ones didn't).
+#if defined(BUTTON4_PRESSED) && defined(BUTTON5_PRESSED)
+      const int mouse_wheel_scroll_lines =
+	std::max(1, std::min(getmaxy() - 1, 3));
+
+      if((bstate & BUTTON4_PRESSED) != 0)
+	{
+	  if((bstate & BUTTON5_PRESSED) == 0)
+	    scroll_up(mouse_wheel_scroll_lines);
+	}
+      else if((bstate & BUTTON5_PRESSED) != 0)
+	scroll_down(mouse_wheel_scroll_lines);
+#endif
     }
 
     // Could find out what dimensions changed and only update along those?

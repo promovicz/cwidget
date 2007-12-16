@@ -187,6 +187,7 @@ namespace cwidget
       void do_column_signal();
 
       virtual bool handle_key(const config::key &k);
+      virtual void dispatch_mouse(short id, int x, int y, int z, mmask_t bstate);
       virtual bool focus_me() {return true;}
       virtual void paint(const style &st);
 

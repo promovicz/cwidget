@@ -3,6 +3,23 @@
 #include "eassert.h"
 
 #include <errno.h>
+#include <stdarg.h>
+
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+#ifndef HAVE_STRERROR_R
+#error "strerror_r is required."
+#endif
+
+#ifndef HAVE_DECL_STRERROR_R
+#ifdef STRERROR_R_CHAR_P
+char *strerror_r(int errnum, char *buf, size_t buflen);
+#else
+int strerror_r(int errnum, char *buf, size_t buflen);
+#endif
+#endif
 
 using namespace std;
 
@@ -85,7 +102,13 @@ namespace cwidget
 	}
     }
 
-
+    // There are two variants of strerror_r to watch out for.  The GNU
+    // version, used on e.g. Linux, returns a char* that may or may
+    // not point to the buffer that was passed in as an argument, or
+    // NULL if the function failed.  The XSI version returns 0 for
+    // success and a non-zero value for failure.  The main difference
+    // is that for the GNU version we return the return value of
+    // strerror_r, while for XSI we return the temporary buffer.
     string sstrerror(int errnum)
     {
       size_t bufsize = 512;
@@ -94,9 +117,15 @@ namespace cwidget
 	{
 	  char *buf = new char[bufsize];
 
+#ifdef STRERROR_R_CHAR_P
 	  char *result = strerror_r(errnum, buf, bufsize);
+	  bool failed = (result == NULL);
+#else
+	  int result = strerror_r(errnum, buf, bufsize);
+	  bool failed = (result != 0);
+#endif
 
-	  if(result == NULL)
+	  if(failed)
 	    {
 	      delete[] buf;
 
@@ -109,7 +138,11 @@ namespace cwidget
 	    }
 	  else
 	    {
+#ifdef STRERROR_R_CHAR_P
+	      string rval(result);
+#else
 	      string rval(buf);
+#endif
 	      delete[] buf;
 	      return rval;
 	    }

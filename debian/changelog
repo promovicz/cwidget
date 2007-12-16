@@ -1,3 +1,38 @@
+cwidget (0.5.6.1-1) unstable; urgency=low
+
+  * New upstream version.
+  
+  * Rename libcwidget0 and libcwidget0-dbg to libcwidget1 and
+    libcwidget1-dbg.
+  
+  * Declare libcwidget-doc to be in section doc, to make lintian happy.
+  
+  * No longer conflict/provide/replace libcwidget-dbg; those relationships
+    were added because libcwidget0-dbg fully replaced libcwidget-dbg, but
+    libcwidget1-dbg is not related to libcwidget-dbg.
+
+ -- Daniel Burrows <dburrows@debian.org>  Sat, 15 Dec 2007 18:46:50 -0800
+
+cwidget (0.5.6-1) unstable; urgency=low
+
+  * New upstream version.
+
+  * ABI change; the SONAME is now libcwidget.so.1.
+
+  * If stdin is closed, abort the main loop with an exception instead
+    of spinning forever. (Closes: #451770)
+
+  * Add a missing #include <stdarg.h>; fixes building on stable and on
+    some other platforms. (Closes: #452979)
+  
+  * Add a build dependency on cppunit so 'make check' does something
+    useful.
+  
+  * Add a build dependency on ikiwiki so we can build all the
+    documentation.
+
+ -- Daniel Burrows <dburrows@debian.org>  Sat, 15 Dec 2007 18:07:37 -0800
+
 cwidget (0.5.5-4) unstable; urgency=low
 
   * Fix a related but different bug in Makefile.am. (Closes: #451400)

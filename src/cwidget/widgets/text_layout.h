@@ -1,6 +1,6 @@
 // text_layout.h                     -*-c++-*-
 //
-//   Copyright (C) 2004-2005 Daniel Burrows
+//   Copyright (C) 2004-2005, 2007 Daniel Burrows
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -75,6 +75,8 @@ namespace cwidget
        *  was "consumed" by this widget.
        */
       bool handle_key(const config::key &k);
+
+      void dispatch_mouse(short id, int x, int y, int z, mmask_t bstate);
 
       /** Change the fragment being displayed in this layout widget. */
       void set_fragment(fragment *f);

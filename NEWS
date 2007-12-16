@@ -1,3 +1,24 @@
+[0.5.6.1]
+
+  * Actually distribute the ikiwiki input files in "make dist".
+
+[0.5.6]
+
+  * ABI change: the SONAME is now libcwidget.so.1.
+
+  * Add general documentation and information.  This is the cwidget
+    Web site, compiled as a local collection of HTML files by IkiWiki.
+
+  * If stdin is closed, throw a fatal exception from the main loop
+    instead of spinning forever. (Debian bug #451770)
+
+  * Import some cppunit tests that apply to cwidget.
+
+  * Add a missing #include <stdarg.h> in ssprintf.cc. (Debian bug #452979)
+
+  * Add untested support for the mouse wheel if ncurses is compiled
+    with support for mouse button 5.
+
 [0.5.5]
 
   * Fix several include paths that were relative to the source

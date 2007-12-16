@@ -11,11 +11,17 @@ else
 DOXYGENCMD=
 endif
 
+SUBDIRS=
+
 if BUILD_LIBRARY
-SUBDIRS=src doc
-else
-SUBDIRS=doc
+SUBDIRS += src
 endif
+
+if HAVE_CPPUNIT
+SUBDIRS += tests
+endif
+
+SUBDIRS += doc
 
 pkgconfigdir = $(libdir)/pkgconfig
 
@@ -23,7 +29,7 @@ pkgconfig_DATA = cwidget.pc
 
 pkglib_HEADERS = cwidget-config.h
 
-doc:
-	$(MAKE) -C doc doc
+doc ikiwiki doxygen:
+	$(MAKE) -C doc $@
 
-.PHONY: doc all-local
+.PHONY: doc ikiwiki doxygen all-local

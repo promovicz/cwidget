@@ -37,6 +37,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@BUILD_LIBRARY_TRUE@am__append_1 = src
+@HAVE_CPPUNIT_TRUE@am__append_2 = tests
 DIST_COMMON = README $(am__configure_deps) $(pkglib_HEADERS) \
 	$(srcdir)/Doxyfile.in $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(srcdir)/config.h.in \
@@ -75,7 +77,7 @@ pkglibHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(pkglib_HEADERS)
 ETAGS = etags
 CTAGS = ctags
-DIST_SUBDIRS = doc src
+DIST_SUBDIRS = src tests doc
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -103,6 +105,8 @@ CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
+CPPUNIT_CFLAGS = @CPPUNIT_CFLAGS@
+CPPUNIT_LIBS = @CPPUNIT_LIBS@
 CXX = @CXX@
 CXXCPP = @CXXCPP@
 CXXDEPMODE = @CXXDEPMODE@
@@ -121,9 +125,15 @@ EGREP = @EGREP@
 EXEEXT = @EXEEXT@
 F77 = @F77@
 FFLAGS = @FFLAGS@
+GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GMSGFMT = @GMSGFMT@
 GMSGFMT_015 = @GMSGFMT_015@
 GREP = @GREP@
+HAVE_CPPUNIT_FALSE = @HAVE_CPPUNIT_FALSE@
+HAVE_CPPUNIT_TRUE = @HAVE_CPPUNIT_TRUE@
+IKIWIKI = @IKIWIKI@
+IKIWIKI_FALSE = @IKIWIKI_FALSE@
+IKIWIKI_TRUE = @IKIWIKI_TRUE@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
@@ -166,6 +176,7 @@ VERSION = @VERSION@
 WERROR = @WERROR@
 XGETTEXT = @XGETTEXT@
 XGETTEXT_015 = @XGETTEXT_015@
+XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_CXX = @ac_ct_CXX@
 ac_ct_F77 = @ac_ct_F77@
@@ -223,8 +234,7 @@ MAINTAINERCLEANFILES = ChangeLog configure Makefile.in \
 
 @DOXYGEN_FALSE@DOXYGENCMD = 
 @DOXYGEN_TRUE@DOXYGENCMD = doxygen
-@BUILD_LIBRARY_FALSE@SUBDIRS = doc
-@BUILD_LIBRARY_TRUE@SUBDIRS = src doc
+SUBDIRS = $(am__append_1) $(am__append_2) doc
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = cwidget.pc
 pkglib_HEADERS = cwidget-config.h
@@ -719,10 +729,10 @@ uninstall-info: uninstall-info-recursive
 	uninstall-pkgconfigDATA uninstall-pkglibHEADERS
 
 
-doc:
-	$(MAKE) -C doc doc
+doc ikiwiki doxygen:
+	$(MAKE) -C doc $@
 
-.PHONY: doc all-local
+.PHONY: doc ikiwiki doxygen all-local
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

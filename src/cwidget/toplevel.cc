@@ -20,12 +20,6 @@
 //  Implementation of the core toplevel logic for cwidget (main loop,
 //  signal handling, etc).
 
-// We need this for recursive mutexes.  Should all files be compiled
-// with this defined??
-#ifndef _GNU_SOURCE
-#define _GNU_SOURCE
-#endif
-
 #include "toplevel.h"
 
 #include "curses++.h"
@@ -232,6 +226,36 @@ namespace cwidget
      */
     class input_thread
     {
+      class fatal_input_exception : public util::Exception
+      {
+	int err;
+      public:
+	fatal_input_exception(int _err)
+	  : err(_err)
+	{
+	}
+
+	std::string errmsg() const
+	{
+	  return "Unable to read from stdin: " + util::sstrerror(err);
+	}
+      };
+
+      class fatal_input_error : public event
+      {
+	int err;
+      public:
+	fatal_input_error(int _err)
+	  : err(_err)
+	{
+	}
+
+	void dispatch()
+	{
+	  throw fatal_input_exception(err);
+	}
+      };
+
       class get_input_event : public event
       {
 	// A reference to the parent's condition mutex;
@@ -260,16 +284,42 @@ namespace cwidget
 
 	  bool done = false;
 
+	  // We need to make sure that we shut down cwidget on EOF
+	  // instead of spinning forever (Debian bug #451770).  This
+	  // is currently done by calling exitmain; another option to
+	  // consider is throwing an exception.
+	  //
+	  // We claim to have reached EOF when we get ERR on the very
+	  // first call to get_wch. (i.e., we don't read any actual
+	  // characters) This is tracked by read_anything.  To ensure
+	  // that we don't abort spuriously, it's necessary to make
+	  // sure that resize keypresses (which are silently thrown
+	  // away) are accounted for, and that interrupted system
+	  // calls count as events.
+	  bool read_anything = false;
+	  // Tracks the error corresponding to the last read; used to
+	  // report errors to the user if we're unable to read a
+	  // keystroke.
+	  int last_read_error = 0;
 	  while(!done)
 	    {
 	      // I assume here that init() set nodelay.
 	      do
 		{
+		  errno = 0;
 		  status = get_wch(&wch);
+		  last_read_error = errno;
+
+		  if(status == KEY_CODE_YES && wch == KEY_RESIZE)
+		    // Don't confuse resize events with EOF.
+		    read_anything = true;
 		} while(status == KEY_CODE_YES && wch == KEY_RESIZE);
 
 	      if(status == ERR) // No more to read.
 		{
+		  if(last_read_error == EINTR)
+		    read_anything = true;
+
 		  threads::mutex::lock l(m);
 		  b = true;
 		  c.wake_all();
@@ -277,6 +327,8 @@ namespace cwidget
 		}
 	      else
 		{
+		  read_anything = true;
+
 		  key k(wch, status == KEY_CODE_YES);
 
 		  if(wch == KEY_MOUSE)
@@ -298,36 +350,12 @@ namespace cwidget
 		    }
 		}
 	    }
-	}
-      };
 
-      class fatal_input_exception : public util::Exception
-      {
-	int err;
-      public:
-	fatal_input_exception(int _err)
-	  : err(_err)
-	{
-	}
-
-	std::string errmsg() const
-	{
-	  return "Unable to read from stdin: " + util::sstrerror(err);
-	}
-      };
-
-      class fatal_input_error : public event
-      {
-	int err;
-      public:
-	fatal_input_error(int _err)
-	  : err(_err)
-	{
-	}
-
-	void dispatch()
-	{
-	  throw new fatal_input_exception(err);
+	  // If nothing was read (where "stuff being read" includes
+	  // resize keystrokes and interrupted system calls), kill the
+	  // main loop off.
+	  if(!read_anything)
+	    throw fatal_input_exception(last_read_error);
 	}
       };
 

@@ -1047,6 +1047,34 @@ namespace cwidget
 
     void tree::dispatch_mouse(short id, int x, int y, int z, mmask_t bstate)
     {
+      // Only do something if this system's ncurses has both button 4
+      // and button 5 (older ones didn't).
+      //
+      // TODO: this moves the selection; it should really move 'top'.
+#if defined(BUTTON4_PRESSED) && defined(BUTTON5_PRESSED)
+      const int mouse_wheel_scroll_lines =
+	std::max(1, std::min(getmaxy() - 1, 3));
+
+      if((bstate & BUTTON4_PRESSED) != 0)
+	{
+	  if((bstate & BUTTON5_PRESSED) == 0)
+	    {
+	      for(int i = 0; i < mouse_wheel_scroll_lines; ++i)
+		line_up();
+	    }
+
+	  return;
+	}
+      else if((bstate & BUTTON5_PRESSED) != 0)
+	{
+	  for(int i = 0; i < mouse_wheel_scroll_lines; ++i)
+	    line_down();
+
+	  return;
+	}
+#endif
+
+
       if(root == NULL)
 	return;
 
