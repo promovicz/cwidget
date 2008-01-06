@@ -6,21 +6,25 @@ else
   export CXXFLAGS=-g -O2
 endif
 
+configure: configure-stamp
+configure-stamp:
+	./configure --prefix=/usr
+
+	touch configure-stamp
+
 build-arch: build-stamp-arch
-build-stamp-arch:
+build-stamp-arch: configure-stamp
 	dh_testdir
 
-	./configure --prefix=/usr
 	$(MAKE)
 	$(MAKE) check
 
 	touch build-stamp-arch
 
 build-indep: build-stamp-indep
-build-stamp-indep:
+build-stamp-indep: configure-stamp
 	dh_testdir
 
-	./configure --prefix=/usr
 	$(MAKE) doc
 
 	touch build-stamp-indep
@@ -31,7 +35,7 @@ build: build-arch build-indep
 clean:
 	dh_testdir
 	dh_testroot
-	rm -f build-stamp-indep build-stamp-arch
+	rm -f build-stamp-indep build-stamp-arch configure-stamp
 
 	[ ! -f Makefile ] || $(MAKE) distclean
 

@@ -1,3 +1,16 @@
+cwidget (0.5.6.1-3) unstable; urgency=low
+
+  * Apply patch from Michael Daenzer to support building with
+    dpkg-buildpackage -j (Closes: #456678).
+  
+  * ikiwiki now depends only on what the core engine needs, and so some of
+    the plugins that cwidget users are no longer available in a build
+    environment without explicitly installing them.
+
+    Add libhtml-scrubber-perl to Build-Depends (Closes: #458654).
+
+ -- Daniel Burrows <dburrows@debian.org>  Sun, 06 Jan 2008 08:58:49 -0800
+
 cwidget (0.5.6.1-2) unstable; urgency=low
 
   * Rename debian/libcwidget0.install to debian/libcwidget1.install so the
