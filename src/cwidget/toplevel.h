@@ -1,6 +1,6 @@
 // toplevel.h                          -*-c++-*-
 //
-//  Copyright 2000, 2005, 2007 Daniel Burrows
+//  Copyright 2000, 2005, 2007-2008 Daniel Burrows
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -206,6 +206,18 @@ namespace cwidget
     //  this is highly discouraged (use the event posting system instead
     //  to run code in the main loop).
     threads::mutex &get_mutex();
+
+    /** \return the number of times that toplevel::suspend has been
+     *  invoked since toplevel::init was invoked.
+     *
+     *  This can be used to detect when a suspend has occurred between
+     *  when an event was posted and when it fired.  For instance, the
+     *  input thread generates events that actually read from stdin,
+     *  but if one of them fires after a suspend, the thread will get
+     *  confused about how many events are trying to read and end up
+     *  reading too many times and blowing up.
+     */
+    int get_suspend_count();
 
     extern sigc::signal0<void> main_hook;
     // Called right after we finish handling input in the mainloop.  Can

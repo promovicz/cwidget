@@ -1,3 +1,21 @@
+cwidget (0.5.7-1) experimental; urgency=low
+
+  * New Upstream Version.
+  
+  * ABI change again; create libcwidget2* packages.
+  
+  * Fix several threading errors in handling input, particularly when
+    cwidget was temporarily suspended and then resumed.
+  
+    (Closes: #461342) and possibly more, but I'll have to ask the
+    reporters.
+  
+  * If a byte sequence read from stdin can't be decoded in the current
+    locale, beep at the user instead of throwing a fatal
+    exception. (Closes: #460722)
+
+ -- Daniel Burrows <dburrows@debian.org>  Sat, 19 Jan 2008 10:26:00 -0800
+
 cwidget (0.5.6.1-3) unstable; urgency=low
 
   * Apply patch from Michael Daenzer to support building with

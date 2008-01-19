@@ -1,6 +1,6 @@
 // threads.h                                              -*-c++-*-
 //
-//   Copyright (C) 2005-2007 Daniel Burrows
+//   Copyright (C) 2005-2008 Daniel Burrows
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -481,6 +481,9 @@ namespace cwidget
 
       /** Wait with the given guard (should be a lock type that is a
        *  friend of this condition object).
+       *
+       *  This is a cancellation point.  If the thread is cancelled
+       *  while waiting on the condition, the mutex will be unlocked.
        */
       template<typename Lock>
       void wait(const Lock &l)
@@ -488,10 +491,19 @@ namespace cwidget
 	if(!l.get_locked())
 	  throw ConditionNotLockedException();
 
+	pthread_cleanup_push((void (*)(void*))pthread_mutex_unlock, &l.parent.m);
 	pthread_cond_wait(&cond, &l.parent.m);
+	pthread_cleanup_pop(0);
       }
 
-      /** Wait until the given predicate returns \b true. */
+      /** Wait until the given predicate returns \b true.
+       *
+       *  This is a cancellation point.  If the thread is cancelled
+       *  while waiting on the condition, the mutex will be unlocked.
+       *  This does not apply to the predicate; it is responsible for
+       *  cleaning up the mutex itself if the thread is cancelled
+       *  while it is running.
+       */
       template<typename Lock, typename Pred>
       void wait(const Lock &l, Pred p)
       {
@@ -504,6 +516,12 @@ namespace cwidget
 
       /** Wait until either the condition is signalled or until the
        *  given time.
+       *
+       *  This is a cancellation point.  If the thread is cancelled
+       *  while waiting on the condition, the mutex will be unlocked.
+       *  This does not apply to the predicate; it is responsible for
+       *  cleaning up the mutex itself if the thread is cancelled
+       *  while it is running.
        *
        *  \param l the guard of the condition
        *  \param until the time at which the wait should terminate
@@ -519,15 +537,23 @@ namespace cwidget
 
 	int rval;
 
-	// Ignore EINTR for the time being.
+	pthread_cleanup_push((void(*)(void *))&pthread_mutex_unlock, &l.parent.m);
 	while((rval = pthread_cond_timedwait(&cond, &l.parent.m, &until)) == EINTR)
 	  ;
+	pthread_cleanup_pop(0);
 
 	return rval != ETIMEDOUT;
       }
 
       /** Wait either until the condition is signalled while the given
        *  predicate is \b true or until the given time.
+       *
+       *  This is a cancellation point.  If the thread is cancelled
+       *  while waiting on the condition mutex will be unlocked.  If
+       *  the thread is cancelled while invoking the predicate, no
+       *  guarantees are made by this routine; if the predicate
+       *  invokes a cancellation point, it is responsible for pushing
+       *  a cleanup handler.
        */
       template<typename Lock, typename Pred>
       bool timed_wait(const Lock &l, const timespec &until, const Pred &p)
