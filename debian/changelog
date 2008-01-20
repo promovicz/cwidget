@@ -1,3 +1,12 @@
+cwidget (0.5.8-1) experimental; urgency=low
+
+  * New upstream version.
+    - ABI change due to the changes below.
+    - Remove all references to hash_map; use std::map instead.
+    - Fix all compilation errors with g++ 4.3. (Closes: #461682)
+
+ -- Daniel Burrows <dburrows@debian.org>  Sun, 20 Jan 2008 09:37:11 -0800
+
 cwidget (0.5.7-1) experimental; urgency=low
 
   * New Upstream Version.

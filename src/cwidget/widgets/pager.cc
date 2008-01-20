@@ -34,6 +34,8 @@
 
 #include <sigc++/functors/mem_fun.h>
 
+#include <wctype.h>
+
 using namespace std;
 
 namespace cwidget

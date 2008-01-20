@@ -10,7 +10,7 @@ Build-Depends: debhelper (>= 5.0.0), libsigc++-2.0-dev,
 Build-Depends-Indep: doxygen, ikiwiki, libhtml-scrubber-perl
 Standards-Version: 3.7.2.2
 
-Package: libcwidget2
+Package: libcwidget3
 Architecture: any
 Priority: important
 Depends: ${shlibs:Depends}
@@ -23,11 +23,11 @@ Description: high-level terminal interface library for C++ (runtime files)
  This package contains the files that are required to run programs
  compiled against libcwidget.
 
-Package: libcwidget2-dbg
+Package: libcwidget3-dbg
 Architecture: any
 Priority: extra
 Section: libdevel
-Depends: libcwidget2 (= ${binary:Version})
+Depends: libcwidget3 (= ${binary:Version})
 Suggests: libcwidget-dev
 Description: high-level terminal interface library for C++ (debugging files)
  libcwidget is a modern user interface library modeled on GTK+ and Qt,
@@ -42,7 +42,7 @@ Package: libcwidget-dev
 Architecture: any
 Priority: extra
 Section: libdevel
-Depends: libcwidget2 (= ${binary:Version}), libsigc++-2.0-dev, libncursesw5-dev, pkg-config
+Depends: libcwidget3 (= ${binary:Version}), libsigc++-2.0-dev, libncursesw5-dev, pkg-config
 Suggests: libcwidget-doc
 Description: high-level terminal interface library for C++ (development files)
  libcwidget is a modern user interface library modeled on GTK+ and Qt,

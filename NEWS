@@ -1,4 +1,22 @@
+[0.5.8]
+2008-01-20
+
+  * ABI change due to changing hash_map in some structures to
+    std::map.
+
+  * Fix compilation errors with g++ 4.3.  Mostly this just meant
+    adding more #includes in source files, but g++ 4.3 also removed
+    the nonstandard hash_map extension that cwidget was
+    using.
+
+    Technically it just generated a deprecation warning, but since
+    cwidget compiles with -Werror, this was elevated into a compile
+    error.  Since the ABI changed just yesterday for other reasons, I
+    decided to bite the bullet and yank the hash_map references
+    immediately rather than papering over the warning.
+
 [0.5.7]
+2008-01-19
 
   * ABI change due to changes in the code of some inline functions:
     the SONAME is now libcwidget.so.2.

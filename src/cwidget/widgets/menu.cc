@@ -28,6 +28,7 @@
 
 #include <algorithm>
 #include <ctype.h>
+#include <wctype.h>
 
 using namespace std;
 

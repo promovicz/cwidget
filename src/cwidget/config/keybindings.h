@@ -1,6 +1,6 @@
 // keybindings.h, -*-c++-*-
 //
-//  Copyright 1999-2001, 2003-2005 Daniel Burrows
+//  Copyright 1999-2001, 2003-2005, 2008 Daniel Burrows
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -20,24 +20,10 @@
 #ifndef KEYBINDINGS_H
 #define KEYBINDINGS_H
 
-#include <string>
 #include <list>
-
-#include <cwidget-config.h>
-
-#ifdef CWIDGET_HAVE_HASH_MAP
-#include <hash_map>
-#else
-#ifdef CWIDGET_HAVE_EXT_HASH_MAP
-#include <ext/hash_map>
-#else
-// Fallback to the non-hashing map class
 #include <map>
-#define hash_map map
-#endif
-#endif
+#include <string>
 
-#include <cwidget/generic/util/strhash.h>
 #include <cwidget/curses++.h>
 
 namespace cwidget
@@ -83,7 +69,7 @@ namespace cwidget
 
     class keybindings
     {
-      CWIDGET_HASH_NAMESPACE::hash_map<std::string, keybinding> keymap;
+      std::map<std::string, keybinding> keymap;
 
       keybindings *parent;
 
@@ -107,7 +93,7 @@ namespace cwidget
       keybinding get(std::string tag)
       // Returns the keybinding for the given string.  Almost never needed.
       {
-	CWIDGET_HASH_NAMESPACE::hash_map<std::string, keybinding>::iterator found=keymap.find(tag);
+	std::map<std::string, keybinding>::iterator found=keymap.find(tag);
 
 	if(found==keymap.end())
 	  return keybinding();

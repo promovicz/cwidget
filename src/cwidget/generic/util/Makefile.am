@@ -14,7 +14,6 @@ genericutilinclude_HEADERS = \
 	exception.h	\
 	ref_ptr.h	\
 	slotarg.h	\
-	strhash.h	\
 	ssprintf.h	\
 	transcode.h
 
