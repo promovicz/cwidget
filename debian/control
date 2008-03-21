@@ -7,7 +7,7 @@ Vcs-Browser: http://git.debian.org/?p=cwidget/debian/.git;a=summary
 Maintainer: Daniel Burrows <dburrows@debian.org>
 Build-Depends: debhelper (>= 5.0.0), libsigc++-2.0-dev,
  libncursesw5-dev, gettext, g++ (>= 4:3.2.2-0), libcppunit-dev
-Build-Depends-Indep: doxygen, ikiwiki, libhtml-scrubber-perl
+Build-Depends-Indep: doxygen, ikiwiki (>= 1.34), libhtml-scrubber-perl
 Standards-Version: 3.7.2.2
 
 Package: libcwidget3

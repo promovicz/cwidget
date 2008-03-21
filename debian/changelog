@@ -1,3 +1,20 @@
+cwidget (0.5.8-2) unstable; urgency=low
+
+  * Upload to unstable.
+
+  * Build-depend on ikiwiki (>= 1.34) for goodstuff. (Closes: #471997)
+
+  * Eliminate the last few missing #includes (in the test cases,
+    Closes: #461682)
+
+    Note that in order to build or use cwidget with g++-4.3, you will need a
+    version of libsigc++ that supports g++-4.3 (>= 2.0.18-1).
+
+  * Put the documentation in Programming/C++, not the nonexistant
+    section Apps/Programming.
+
+ -- Daniel Burrows <dburrows@debian.org>  Fri, 21 Mar 2008 14:51:07 -0700
+
 cwidget (0.5.8-1) experimental; urgency=low
 
   * New upstream version.
