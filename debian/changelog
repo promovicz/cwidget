@@ -1,3 +1,11 @@
+cwidget (0.5.9-1) unstable; urgency=low
+
+  * New upstream version.
+
+    - Compiles with libsigc++ version 2.2.
+
+ -- Daniel Burrows <dburrows@debian.org>  Fri, 21 Mar 2008 17:03:00 -0700
+
 cwidget (0.5.8-2) unstable; urgency=low
 
   * Upload to unstable.
