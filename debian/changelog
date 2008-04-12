@@ -1,3 +1,18 @@
+cwidget (0.5.11-1) unstable; urgency=low
+
+  * New upstream version; really fixes the backspacing problem.
+
+ -- Daniel Burrows <dburrows@debian.org>  Sat, 12 Apr 2008 08:03:45 -0700
+
+cwidget (0.5.10-1) unstable; urgency=low
+
+  * New upstream version.
+  
+    - Treat KEY_DC, KEY_BACKSPACE, and character 127 as equivalent in
+      key_matches().  (Closes: #452651)
+
+ -- Daniel Burrows <dburrows@debian.org>  Fri, 11 Apr 2008 22:13:27 -0700
+
 cwidget (0.5.9-1) unstable; urgency=low
 
   * New upstream version.
