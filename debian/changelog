@@ -1,3 +1,9 @@
+cwidget (0.5.12-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Daniel Burrows <dburrows@debian.org>  Sat, 28 Jun 2008 08:58:24 -0700
+
 cwidget (0.5.11-1) unstable; urgency=low
 
   * New upstream version; really fixes the backspacing problem.

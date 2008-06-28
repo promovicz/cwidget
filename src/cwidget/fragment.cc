@@ -1,7 +1,7 @@
 // fragment.cc
 //
 //
-//   Copyright (C) 2004-2005, 2007 Daniel Burrows
+//   Copyright (C) 2004-2005, 2007-2008 Daniel Burrows
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -122,19 +122,7 @@ namespace cwidget
   fragment *text_fragment(const string &s,
 			  const char *encoding)
   {
-    wstring decoded;
-
-    // The error code is not translated, because that would require an
-    // additional decoding step and could result in infinite loops and
-    // other bad stuff.  Besides, something is very wrong if it appears;
-    // better to just output a diagnostic message that can be cut+paste.
-    if(!util::transcode(s.c_str(), decoded, encoding))
-      return sequence_fragment(text_fragment(decoded),
-			       text_fragment(L"Error decoding multibyte string",
-					     get_style("Error")),
-			       NULL);
-    else
-      return text_fragment(decoded);
+    return text_fragment(util::transcode(s, encoding));
   }
 
   fragment *text_fragment(const string &s,
