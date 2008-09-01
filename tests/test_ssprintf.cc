@@ -1,6 +1,6 @@
 // Tests for generic/util/ssprintf.
 //
-//   Copyright (C) 2007 Daniel Burrows
+//   Copyright (C) 2007-2008 Daniel Burrows
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -19,12 +19,36 @@
 
 #include <cppunit/extensions/HelperMacros.h>
 
+#include <cppunit/TestAssert.h>
+
 #include <cwidget/generic/util/ssprintf.h>
+
+// For displaying assertion failures.
+#include <cwidget/generic/util/transcode.h>
 
 #include <errno.h>
 #include <string.h>
 
 using cwidget::util::ssprintf;
+using cwidget::util::swsprintf;
+
+CPPUNIT_NS_BEGIN
+
+template <>
+struct assertion_traits<std::wstring>
+{
+  static bool equal(const std::wstring &x, const std::wstring &y)
+  {
+    return x == y;
+  }
+
+  static std::string toString(const std::wstring &x)
+  {
+    return cwidget::util::transcode(x);
+  }
+};
+
+CPPUNIT_NS_END
 
 class SSPrintfTest : public CppUnit::TestFixture
 {
@@ -32,6 +56,7 @@ class SSPrintfTest : public CppUnit::TestFixture
 
   CPPUNIT_TEST(test_sstrerror);
   CPPUNIT_TEST(test_ssprintf);
+  CPPUNIT_TEST(test_swsprintf);
 
   CPPUNIT_TEST_SUITE_END();
 private:
@@ -61,6 +86,16 @@ private:
       horriblelongthing += horriblelongthing;
 
     CPPUNIT_ASSERT_EQUAL(horriblelongthing + " 20", ssprintf("%s %d", horriblelongthing.c_str(), 20));
+  }
+
+  void test_swsprintf()
+  {
+    // Test that inserting very long strings via ssprintf actually works.
+    std::wstring horriblelongthing = L"abcdefghijklmnopqrstuvwxyz";
+    while(horriblelongthing.size() < 4096)
+      horriblelongthing += horriblelongthing;
+
+    CPPUNIT_ASSERT_EQUAL(horriblelongthing + L" 20", swsprintf(L"%ls %d", horriblelongthing.c_str(), 20));
   }
 };
 

@@ -51,7 +51,10 @@ namespace cwidget
       const int amt = vsnprintf(buf, initbufsize, format, ap);
 
       if(amt < initbufsize)
-	return buf;
+	{
+	  va_end(ap2);
+	  return buf;
+	}
       else
 	{
 	  const int buf2size = amt + 1;
@@ -64,6 +67,7 @@ namespace cwidget
 	  string rval(buf2, amt2);
 
 	  delete[] buf2;
+	  va_end(ap2);
 
 	  return rval;
 	}
@@ -82,25 +86,38 @@ namespace cwidget
 
     wstring vswsprintf(const wchar_t *format, va_list ap)
     {
-      wchar_t buf[initbufsize];
-      int amt = vswprintf(buf, initbufsize, format, ap);
+      // Unlike sprintf, swsprintf just returns -1 when there's an
+      // overflow.  So we have to keep making bigger buffers until we
+      // have one that's big enough.
 
-      if(amt < initbufsize)
-	return buf;
-      else
+      bool ok = false;
+
+      wstring rval;
+      int bufsize = initbufsize;
+
+      while(!ok)
 	{
-	  wchar_t *buf2 = new wchar_t[amt+1];
+	  va_list ap2;
+	  va_copy(ap2, ap);
 
-	  int amt2 = vswprintf(buf2, initbufsize, format, ap);
+	  wchar_t *buf = new wchar_t[bufsize];
 
-	  eassert(amt2 < amt+1);
+	  int amt = vswprintf(buf, bufsize, format, ap2);
 
-	  wstring rval(buf2, amt2);
+	  if(amt > 0 && amt < bufsize)
+	    {
+	      rval = buf;
+	      ok = true;
+	    }
+	  else
+	    bufsize *= 2;
 
-	  delete[] buf2;
+	  delete[] buf;
 
-	  return rval;
+	  va_end(ap2);
 	}
+
+      return rval;
     }
 
     // There are two variants of strerror_r to watch out for.  The GNU

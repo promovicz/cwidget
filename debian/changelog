@@ -1,3 +1,11 @@
+cwidget (0.5.12-2) unstable; urgency=low
+
+  * Backport a fix for a string truncation bug from HEAD (Closes: #496119).
+
+  * Fix the URL to the packaging VCS (Closes: #492584).
+
+ -- Daniel Burrows <dburrows@debian.org>  Sun, 31 Aug 2008 22:01:53 -0700
+
 cwidget (0.5.12-1) unstable; urgency=low
 
   * New upstream version.

@@ -2,7 +2,7 @@ Source: cwidget
 Priority: extra
 Section: libs
 Homepage: http://cwidget.alioth.debian.org
-Vcs-Git: git://git.debian.org/cwidget/debian
+Vcs-Git: git://git.debian.org/git/cwidget/debian
 Vcs-Browser: http://git.debian.org/?p=cwidget/debian/.git;a=summary
 Maintainer: Daniel Burrows <dburrows@debian.org>
 Build-Depends: debhelper (>= 5.0.0), libsigc++-2.0-dev,
