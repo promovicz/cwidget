@@ -86,6 +86,9 @@ private:
       horriblelongthing += horriblelongthing;
 
     CPPUNIT_ASSERT_EQUAL(horriblelongthing + " 20", ssprintf("%s %d", horriblelongthing.c_str(), 20));
+
+    // Test that we can generate empty strings.
+    CPPUNIT_ASSERT_EQUAL(std::string(), ssprintf("%s", ""));
   }
 
   void test_swsprintf()
@@ -96,6 +99,9 @@ private:
       horriblelongthing += horriblelongthing;
 
     CPPUNIT_ASSERT_EQUAL(horriblelongthing + L" 20", swsprintf(L"%ls %d", horriblelongthing.c_str(), 20));
+
+    // Test that we can generate empty strings.
+    CPPUNIT_ASSERT_EQUAL(std::wstring(), swsprintf(L"%s", ""));
   }
 };
 

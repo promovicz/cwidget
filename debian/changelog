@@ -1,3 +1,11 @@
+cwidget (0.5.12-3) unstable; urgency=low
+
+  * Fix the string truncation fix so that it doesn't enter an infinite
+    loop and use up all the available memory when the output string is
+    empty.
+
+ -- Daniel Burrows <dburrows@debian.org>  Sat, 06 Sep 2008 16:22:07 -0700
+
 cwidget (0.5.12-2) unstable; urgency=low
 
   * Backport a fix for a string truncation bug from HEAD (Closes: #496119).

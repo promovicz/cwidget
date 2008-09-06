@@ -104,7 +104,7 @@ namespace cwidget
 
 	  int amt = vswprintf(buf, bufsize, format, ap2);
 
-	  if(amt > 0 && amt < bufsize)
+	  if(amt >= 0 && amt < bufsize)
 	    {
 	      rval = buf;
 	      ok = true;
