@@ -446,8 +446,13 @@ namespace cwidget
 
       void operator()()
       {
-	threads::mutex::lock l(input_event_mutex);
-	input_event_fired = false;
+	// Don't hold the lock for longer than we need to (we lock it
+	// here to be extra-paranoid about changing the value of
+	// input_event_fired).
+	{
+	  threads::mutex::lock l(input_event_mutex);
+	  input_event_fired = false;
+	}
 
 	// Important note: this routine only blocks indefinitely in
 	// select() and pthread_cond_wait(), assuming no bugs in
@@ -480,6 +485,12 @@ namespace cwidget
 	      }
 	    else
 	      {
+		// Lock the mutex and wait on the condition variable.
+		// We have to be careful to release the mutex when we
+		// leave this scope; otherwise we could end up being
+		// canceled while we hold the mutex, which leads to
+		// horrible stuff like bug #511708.
+		threads::mutex::lock l(input_event_mutex);
 		post_event(new get_input_event(input_event_mutex,
 					       input_event_fired,
 					       input_event_condition));

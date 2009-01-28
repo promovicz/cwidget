@@ -1,3 +1,10 @@
+cwidget (0.5.12-4) unstable; urgency=low
+
+  * Backport a fix for a nasty deadlock that was causing aptitude to
+    freeze up after running dpkg. (Closes: #511708)
+
+ -- Daniel Burrows <dburrows@debian.org>  Tue, 27 Jan 2009 23:18:01 -0800
+
 cwidget (0.5.12-3) unstable; urgency=low
 
   * Fix the string truncation fix so that it doesn't enter an infinite
