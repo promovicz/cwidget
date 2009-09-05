@@ -39,6 +39,7 @@ clean:
 
 	[ ! -f Makefile ] || $(MAKE) distclean
 
+	-rm -r doc/ikiwiki/.ikiwiki
 	dh_clean
 
 

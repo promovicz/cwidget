@@ -1,6 +1,6 @@
 // tree.cc
 //
-//  Copyright 1999-2002, 2004-2007 Daniel Burrows
+//  Copyright 1999-2002, 2004-2007, 2009 Daniel Burrows
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -167,6 +167,8 @@ namespace cwidget
 	}
       else
 	selection_changed(NULL);
+
+      toplevel::update();
     }
 
     void tree::sync_bounds()

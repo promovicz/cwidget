@@ -1,3 +1,16 @@
+cwidget (0.5.13-1) unstable; urgency=low
+
+  * New upstream version.
+
+  * Move libcwidget3-dbg into the "debug" section as per the new archive
+    layout.
+
+  * Remove doc/ikiwiki/.ikiwiki in "clean".
+
+  * Add perlmagick to Build-Depends-Indep. (Closes: #497877)
+
+ -- Daniel Burrows <dburrows@debian.org>  Sat, 05 Sep 2009 09:46:41 -0700
+
 cwidget (0.5.12-4) unstable; urgency=low
 
   * Backport a fix for a nasty deadlock that was causing aptitude to

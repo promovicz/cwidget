@@ -17,11 +17,15 @@
 //  the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 //  Boston, MA 02111-1307, USA.
 //
-//  This file declares general routines and interfaces for the cwidget
-//  code.
-//
-//  Basically, you can set the toplevel widget here and run a main loop.
-//  The toplevel widget is responsible for almost everything else.
+
+/** \file toplevel.h
+ *
+ *  \brief Routines to manage the global cwidget state.
+ *
+ *  This file contains routines that manage the global state of the
+ *  cwidget library: initializing and shutting it down, controlling
+ *  its main loop, changing the top-level widget, etc.
+ */
 
 #ifndef TOPLEVEL_H
 #define TOPLEVEL_H
@@ -46,6 +50,14 @@ namespace cwidget
     class widget;
   }
 
+  /** \brief The namespace containing functions to manage the global
+   *  state of cwidget.
+   *
+   *  Routines in this namespace handle initializing and shutting down
+   *  cwidget, running its main loop, setting the top-level widget,
+   *  and other functions related to the top-level control structures
+   *  of the library.
+   */
   namespace toplevel
   {
     /** An event in the global event queue.  Events are dispatched
@@ -79,13 +91,22 @@ namespace cwidget
       void dispatch();
     };
 
+    /** \brief Initializes curses and the global state of the cwidget
+     *  library.
+     */
     void init();
-    // Performs initialization tasks (including calling init_curses())
 
+    /** \brief Installs signal handlers to cleanly shut down cwidget.
+     *
+     *  This is always invoked by cwidget::toplevel::init().  However,
+     *  you might want to invoke it manually if you have removed the
+     *  cwidget signal handlers (for instance, in order to invoke an
+     *  external program).
+     *
+     *  Installs signal handlers for TERM, INT, QUIT, SEGV, and ABRT
+     *  which restore the terminal and exit the program.
+     */
     void install_sighandlers();
-    // Installs signal handlers for TERM, INT, QUIT, SEGV, and ABRT which
-    // cleanly shut the program down.  This can be called after the
-    // program starts to re-initialize the display code.
 
     /** Sets the top-level widget to the new value, returning the old
      *  top-level widget.  If the top-level widget is to be destroyed,
@@ -99,8 +120,8 @@ namespace cwidget
      */
     void queuelayout();
 
+    /** \brief Immediately recalculates the layout of all widgets. */
     void layoutnow();
-    // Lays out all widgets immediately.
 
     //   Main loop handlers:
 
@@ -122,10 +143,11 @@ namespace cwidget
      *  exceptions correctly is to redirect stdin from /dev/null; this
      *  will throw an exception stating that the program cannot read
      *  from stdin.
+     *
+     *  \param synch Ignored; it is present for historical reasons and
+     *  will be removed in a future release of cwidget.
      */
     void mainloop(int synch=0);
-    // Enters a loop, calling getch() over and over and over again..
-    // A valid cwidget must be currently displayed.
 
     /** Post the given event to the main event queue.  When the event
      *  comes off the queue, its dispatch method will be invoked and it

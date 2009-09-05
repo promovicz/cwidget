@@ -1,3 +1,18 @@
+[0.5.13]
+2009-09-05
+
+  * Fix some deadlocks in input handling related to suspending and
+    restarting cwidget.
+
+  * Trigger a screen update when the root node of a tree is changed.
+
+  * Fix some questionable uses of varargs functions.
+
+  * Handle very long output strings correctly in swsprintf.
+    (Closes: #496119)
+
+  * Minor documentation improvements.  Still lots of work to do here.
+
 [0.5.12]
 2008-06-28
 
