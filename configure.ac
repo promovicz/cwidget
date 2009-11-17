@@ -1,5 +1,6 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT(cwidget, 0.5.13)
+AC_INIT(cwidget, 0.5.14)
+AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_SRCDIR([src/cwidget/toplevel.cc])
 AM_INIT_AUTOMAKE
 AC_CONFIG_HEADERS([config.h cwidget-config.h])
@@ -167,6 +168,7 @@ fi
 AM_CONDITIONAL([HAVE_CPPUNIT], [test x$HAVE_CPPUNIT = x1])
 
 AC_CONFIG_FILES([
+	po/Makefile.in
 	Doxyfile
 	Makefile
 	cwidget.pc

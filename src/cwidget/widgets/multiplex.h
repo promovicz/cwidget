@@ -1,5 +1,5 @@
 // multiplex.h                       (This is -*-c++-*-)
-// Copyright 1999-2006 Daniel Burrows
+// Copyright 1999-2006, 2009 Daniel Burrows
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -132,8 +132,8 @@ namespace cwidget
       void add_widget_after(const widget_ref &widget,
 			    const widget_ref &after);
 
-      void add_widget_after_bare(widget &widget,
-				 widget &after)
+      void add_widget_after_bare(cwidget::widgets::widget &widget,
+				 cwidget::widgets::widget &after)
       {
 	add_widget_after(widget_ref(&widget), widget_ref(&after));
       }
@@ -144,8 +144,8 @@ namespace cwidget
 			    const std::wstring &title);
 
 
-      void add_widget_after_bare(widget &widget,
-				 widget &after,
+      void add_widget_after_bare(cwidget::widgets::widget &widget,
+				 cwidget::widgets::widget &after,
 				 const std::wstring &title)
       {
 	add_widget_after(widget_ref(&widget), widget_ref(&after), title);

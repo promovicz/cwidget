@@ -1,3 +1,11 @@
+cwidget (0.5.14-1) unstable; urgency=low
+
+  * New upstream version.
+
+    + Fix a divide-by-zero in the column fragment code. (Closes: #556185)
+
+ -- Daniel Burrows <dburrows@debian.org>  Tue, 17 Nov 2009 12:33:11 -0800
+
 cwidget (0.5.13-1) unstable; urgency=low
 
   * New upstream version.

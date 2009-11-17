@@ -1,3 +1,18 @@
+[0.5.14]
+2009-11-17
+
+  * Fix a crash caused by not guarding against divide-by-zero when
+    formatting fragments into columns. (Closes: #556185)
+
+  * Partially fix compilation with g++ 4.4.  It still dies with some
+    errors that I don't understand.
+
+  * Internationalize the source tree.
+
+  * Improve cwidget's signal hygeine by blocking all signals in its
+    background threads (except the one that handles WINCH) so that
+    they don't interfere with the program's signal handling.
+
 [0.5.13]
 2009-09-05
 
