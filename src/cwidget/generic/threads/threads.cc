@@ -1,6 +1,6 @@
 // threads.cc
 //
-//   Copyright (C) 2005 Daniel Burrows
+//   Copyright (C) 2005, 2009 Daniel Burrows
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -34,6 +34,7 @@ namespace cwidget
     }
 
     ThreadJoinException::ThreadJoinException(int error)
+      : errnum(error)
     {
       std::string msg;
 

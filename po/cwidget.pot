@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: cwidget 0.5.14\n"
+"Project-Id-Version: cwidget 0.5.16\n"
 "Report-Msgid-Bugs-To: dburrows@debian.org\n"
-"POT-Creation-Date: 2009-11-17 12:16-0800\n"
+"POT-Creation-Date: 2009-11-29 18:35-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,11 +61,11 @@ msgstr ""
 msgid "Ouch!  Got SIGQUIT, dying..\n"
 msgstr ""
 
-#: src/cwidget/toplevel.cc:947
+#: src/cwidget/toplevel.cc:954
 msgid "yes_key"
 msgstr ""
 
-#: src/cwidget/toplevel.cc:948
+#: src/cwidget/toplevel.cc:955
 msgid "no_key"
 msgstr ""
 

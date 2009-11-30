@@ -750,6 +750,13 @@ namespace cwidget
 	timeout_thread &instance = get_instance();
 
 	threads::thread *running = instance.running_thread.take();
+
+	if(running == NULL)
+	  {
+	    instance.running_thread.put(NULL);
+	    return;
+	  }
+
 	threads::mutex::lock l(instance.timeouts_mutex);
 
 	instance.cancelled = true;

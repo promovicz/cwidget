@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT(cwidget, 0.5.14)
+AC_INIT(cwidget, 0.5.16)
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_SRCDIR([src/cwidget/toplevel.cc])
 AM_INIT_AUTOMAKE
@@ -42,7 +42,7 @@ dnl Try to find doxygen in the path.
 AC_MSG_CHECKING([for the ikiwiki Web site compiler (http://ikiwiki.info)])
 IKIWIKI=`which ikiwiki 2>/dev/null`
 AC_SUBST(IKIWIKI)
- 
+
 if test x$IKIWIKI = x
 then
   AC_MSG_RESULT([not found])
