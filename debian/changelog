@@ -1,3 +1,10 @@
+cwidget (0.5.16-2) unstable; urgency=low
+
+  * Try a less subtle approach to fixing the threading test cases on hppa.
+    (Closes: #557982)
+
+ -- Daniel Burrows <dburrows@debian.org>  Mon, 30 Nov 2009 15:10:53 -0800
+
 cwidget (0.5.16-1) unstable; urgency=low
 
   * New upstream version.
