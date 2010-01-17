@@ -13,7 +13,7 @@ Standards-Version: 3.7.2.2
 Package: libcwidget3
 Architecture: any
 Priority: important
-Depends: ${shlibs:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Suggests: libcwidget-dev
 Description: high-level terminal interface library for C++ (runtime files)
  libcwidget is a modern user interface library modeled on GTK+ and Qt,
@@ -27,7 +27,7 @@ Package: libcwidget3-dbg
 Architecture: any
 Priority: extra
 Section: debug
-Depends: libcwidget3 (= ${binary:Version})
+Depends: libcwidget3 (= ${binary:Version}), ${misc:Depends}
 Suggests: libcwidget-dev
 Description: high-level terminal interface library for C++ (debugging files)
  libcwidget is a modern user interface library modeled on GTK+ and Qt,
@@ -42,7 +42,7 @@ Package: libcwidget-dev
 Architecture: any
 Priority: extra
 Section: libdevel
-Depends: libcwidget3 (= ${binary:Version}), libsigc++-2.0-dev, libncursesw5-dev, pkg-config
+Depends: libcwidget3 (= ${binary:Version}), libsigc++-2.0-dev, libncursesw5-dev, pkg-config, ${misc:Depends}
 Suggests: libcwidget-doc
 Description: high-level terminal interface library for C++ (development files)
  libcwidget is a modern user interface library modeled on GTK+ and Qt,
@@ -61,6 +61,7 @@ Package: libcwidget-doc
 Architecture: all
 Priority: extra
 Section: doc
+Depends: ${misc:Depends}
 Recommends: iceweasel | www-browser
 Suggests: libcwidget-dev
 Description: high-level terminal interface library for C++ (documentation)

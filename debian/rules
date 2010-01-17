@@ -1,9 +1,13 @@
 #!/usr/bin/make -f
 
+# We need fno-strict-aliasing because otherwise g++ throws an
+# inscrutable error; I'd rather fix the root cause, but I can't find
+# it.
+
 ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
-  export CXXFLAGS=-g -O0 -fno-inline
+  export CXXFLAGS=-g -O0 -fno-inline -fno-strict-aliasing
 else
-  export CXXFLAGS=-g -O2
+  export CXXFLAGS=-g -O2 -fno-strict-aliasing
 endif
 
 configure: configure-stamp

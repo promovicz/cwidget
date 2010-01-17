@@ -1,3 +1,15 @@
+cwidget (0.5.16-3) unstable; urgency=low
+
+  * Disable strict aliasing to prevent g++ from erroring out in the build.
+    "Fixing" it this way is a horrible hack, but the error message is
+    entirely incomprehensible, I can't figure out which code, if any, is
+    at fault here, and my attempts to fix it by phrasing the code
+    differently have failed. (Closes: #561157, #526674)
+
+  * Add misc:Depends entries on the Depends lines.
+
+ -- Daniel Burrows <dburrows@debian.org>  Sun, 17 Jan 2010 14:22:37 -0800
+
 cwidget (0.5.16-2) unstable; urgency=low
 
   * Try a less subtle approach to fixing the threading test cases on hppa.
