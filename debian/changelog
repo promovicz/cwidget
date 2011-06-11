@@ -1,3 +1,10 @@
+cwidget (0.5.16-3.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Don't ship .la files (Closes: #621184).
+
+ -- Luk Claes <luk@debian.org>  Sat, 11 Jun 2011 16:31:11 +0200
+
 cwidget (0.5.16-3) unstable; urgency=low
 
   * Disable strict aliasing to prevent g++ from erroring out in the build.
