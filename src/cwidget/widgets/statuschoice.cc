@@ -97,7 +97,7 @@ namespace cwidget
 
     point statuschoice::get_cursorloc()
     {
-      return point(prompt.size() + choices.size() + 4, 0);
+      return point(width_request()-1, 0);
     }
   }
 }

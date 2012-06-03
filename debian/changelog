@@ -1,3 +1,24 @@
+cwidget (0.5.16-3.3) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Actually display translated strings: cherry-pick c65cae upstream, and use
+    libcwidget3 as domain name in src/cwidget/generic/util/i18n.h and
+    po/Makevars; install usr/share/locale files. (Closes: #559738)
+  * Cursor displayed in proper place for wide-char prompt, thanks to Daniel
+    Hartwig. (Closes: #316939)
+  * Pressing 'delete' in search/tree limit dialog delete previous entry
+    thanks to Samuel Fogh. (Closes: #493320)
+
+  [ New translations ]
+  * German, thanks to Sven Joachim. (Closes: #561147)
+  * Spanish, thanks to Omar Campagne. (Closes: #655849)
+  * French, thanks to Julien Patriarca. (Closes: #655689)
+  * Polish, thanks to Michał Kułach. (Closes: #660944)
+  * Danish, thanks to Joe Hansen. (Closes: #671762)
+  * Czech, thanks to Michal Šimůnek. (Closes: #673141)
+
+ -- David Prévot <taffit@debian.org>  Sat, 02 Jun 2012 20:33:52 -0400
+
 cwidget (0.5.16-3.2) unstable; urgency=low
 
   * Non maintainer upload.
