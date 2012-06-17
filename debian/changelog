@@ -1,3 +1,18 @@
+cwidget (0.5.16-3.4) unstable; urgency=low
+
+  * Non-maintainer upload.
+
+  [ New translations ]
+  * Japanese, thanks to Kenshi Muto. (Closes: #675739)
+  * Chinese (China), thanks to Never Min.
+  * Russian, thanks to Yuri Kozlov. (Closes: #676247)
+  * Thai, thanks to Theppitak Karoonboonyanan. (Closes: 676905)
+  * Brazilian, thanks to Adriano Rafael Gomes. (Closes: 676989)
+  * Croatian, thanks to Tomislav Krznar.
+  * All remaining translations from aptitude.
+
+ -- David Prévot <taffit@debian.org>  Sun, 17 Jun 2012 15:26:05 -0400
+
 cwidget (0.5.16-3.3) unstable; urgency=low
 
   * Non-maintainer upload.
