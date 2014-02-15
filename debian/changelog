@@ -1,3 +1,12 @@
+cwidget (0.5.16-5) UNRELEASED; urgency=medium
+
+  * Use dh-autoreconf instead of autotools-dev for better new-port
+    coverage.  Thanks Colin Watson for the report and the patch (I applied
+    it by hand and slightly modifiedm since it didn't apply cleanly).
+    (Closes: #732539)
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sat, 15 Feb 2014 17:47:54 +0000
+
 cwidget (0.5.16-4) unstable; urgency=medium
 
   * New maintainer (Closes: #738893)

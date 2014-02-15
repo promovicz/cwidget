@@ -21,7 +21,7 @@ endif
 
 configure: configure-stamp
 configure-stamp:
-	dh_autotools-dev_updateconfig
+	dh_autoreconf
 	./configure --prefix=/usr $(shell dpkg-buildflags --export=configure) $(CROSS_CONFIGURE_OPTIONS)
 
 	touch configure-stamp
@@ -56,7 +56,7 @@ clean:
 	[ ! -f Makefile ] || $(MAKE) distclean
 
 	-rm -r doc/ikiwiki/.ikiwiki
-	dh_autotools-dev_restoreconfig
+	dh_autoreconf_clean
 	dh_clean
 
 
