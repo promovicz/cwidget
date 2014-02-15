@@ -59,8 +59,7 @@ Package: libcwidget-doc
 Architecture: all
 Section: doc
 Depends: ${misc:Depends}, libjs-jquery
-Recommends: iceweasel | www-browser
-Suggests: libcwidget-dev
+Suggests: iceweasel | www-browser, libcwidget-dev
 Description: high-level terminal interface library for C++ (documentation)
  libcwidget is a modern user interface library modeled on GTK+ and Qt,
  but using curses as its display layer and with widgets that are
