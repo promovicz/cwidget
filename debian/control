@@ -8,7 +8,7 @@ Maintainer: Manuel A. Fernandez Montecelo <mafm@debian.org>
 Build-Depends: debhelper (>= 5.0.0), libsigc++-2.0-dev,
  libncursesw5-dev, gettext, g++ (>= 4:3.2.2-0), libcppunit-dev, dh-autoreconf
 Build-Depends-Indep: doxygen, ikiwiki (>= 1.34), libhtml-scrubber-perl, perlmagick
-Standards-Version: 3.7.2.2
+Standards-Version: 3.9.5
 
 Package: libcwidget3
 Architecture: any

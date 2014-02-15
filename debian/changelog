@@ -1,5 +1,6 @@
 cwidget (0.5.16-5) UNRELEASED; urgency=medium
 
+  * Bump Standards-Version to 3.9.5 (no changes needed)
   * Use dh-autoreconf instead of autotools-dev for better new-port
     coverage.  Thanks Colin Watson for the report and the patch (I applied
     it by hand and slightly modified since it didn't apply cleanly).
