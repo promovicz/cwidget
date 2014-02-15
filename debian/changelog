@@ -12,6 +12,7 @@ cwidget (0.5.16-5) UNRELEASED; urgency=medium
       field from most of the binary packages
     - missing-debian-source-format: add "1.0" to "debian/source/format"
       for the time being
+    - vcs-field-not-canonical
 
  -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sat, 15 Feb 2014 17:47:54 +0000
 
