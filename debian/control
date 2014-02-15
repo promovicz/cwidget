@@ -61,7 +61,7 @@ Package: libcwidget-doc
 Architecture: all
 Priority: extra
 Section: doc
-Depends: ${misc:Depends}
+Depends: ${misc:Depends}, libjs-jquery
 Recommends: iceweasel | www-browser
 Suggests: libcwidget-dev
 Description: high-level terminal interface library for C++ (documentation)
