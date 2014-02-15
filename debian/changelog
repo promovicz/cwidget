@@ -13,6 +13,7 @@ cwidget (0.5.16-5) UNRELEASED; urgency=medium
     - missing-debian-source-format: add "1.0" to "debian/source/format"
       for the time being
     - vcs-field-not-canonical
+    - no-upstream-changelog: upstream's NEWS is the changelog
 
  -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sat, 15 Feb 2014 17:47:54 +0000
 
