@@ -10,9 +10,19 @@ else
   DEB_CXXFLAGS_MAINT_APPEND=-fno-strict-aliasing
 endif
 
+ifneq (,$(findstring nocheck,$(DEB_BUILD_OPTIONS)))
+  NOCHECK = yes
+endif
+
+ifneq ($(DEB_BUILD_GNU_TYPE),$(DEB_HOST_GNU_TYPE))
+  CROSS_CONFIGURE_OPTIONS = --build $(DEB_BUILD_GNU_TYPE) --host $(DEB_HOST_GNU_TYPE)
+  NOCHECK = yes
+endif
+
 configure: configure-stamp
 configure-stamp:
-	./configure --prefix=/usr $(shell dpkg-buildflags --export=configure)
+	dh_autotools-dev_updateconfig
+	./configure --prefix=/usr $(shell dpkg-buildflags --export=configure) $(CROSS_CONFIGURE_OPTIONS)
 
 	touch configure-stamp
 
@@ -21,7 +31,9 @@ build-stamp-arch: configure-stamp
 	dh_testdir
 
 	$(MAKE)
+ifneq (yes,$(NOCHECK))
 	$(MAKE) check
+endif
 
 	touch build-stamp-arch
 
@@ -44,6 +56,7 @@ clean:
 	[ ! -f Makefile ] || $(MAKE) distclean
 
 	-rm -r doc/ikiwiki/.ikiwiki
+	dh_autotools-dev_restoreconfig
 	dh_clean
 
 
