@@ -1,6 +1,6 @@
 // toplevel.cc
 //
-//  Copyright 1999-2005, 2007-2009 Daniel Burrows
+//  Copyright 1999-2005, 2007-2009, 2011 Daniel Burrows
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -854,6 +854,8 @@ namespace cwidget
     void init()
     {
       threads::mutex::lock l(get_mutex());
+
+      bindtextdomain(CWIDGET_DOMAIN, LOCALEDIR);
 
       keybinding upkey, downkey, leftkey, rightkey, quitkey, homekey, endkey;
       keybinding historynextkey, historyprevkey;
