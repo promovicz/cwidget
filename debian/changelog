@@ -1,4 +1,4 @@
-cwidget (0.5.16-5) UNRELEASED; urgency=medium
+cwidget (0.5.16-5) unstable; urgency=medium
 
   * Bump Standards-Version to 3.9.5 (no changes needed)
   * Use dh-autoreconf instead of autotools-dev for better new-port
@@ -17,7 +17,7 @@ cwidget (0.5.16-5) UNRELEASED; urgency=medium
     - no-upstream-changelog: upstream's NEWS is the changelog
   * In -doc package, downgrade browser from Recommends to Suggests
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sat, 15 Feb 2014 17:47:54 +0000
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Fri, 21 Feb 2014 18:02:04 +0000
 
 cwidget (0.5.16-4) unstable; urgency=medium
 
