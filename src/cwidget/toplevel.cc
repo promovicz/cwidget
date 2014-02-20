@@ -1,6 +1,6 @@
 // toplevel.cc
 //
-//  Copyright 1999-2005, 2007-2008 Daniel Burrows
+//  Copyright 1999-2005, 2007-2009 Daniel Burrows
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -446,17 +446,27 @@ namespace cwidget
 
       void operator()()
       {
-	threads::mutex::lock l(input_event_mutex);
-	input_event_fired = false;
+	// Don't hold the lock for longer than we need to (we lock it
+	// here to be extra-paranoid about changing the value of
+	// input_event_fired).
+	{
+	  threads::mutex::lock l(input_event_mutex);
+	  input_event_fired = false;
+	}
 
 	// Important note: this routine only blocks indefinitely in
-	// select() and pthread_cond_wait(), assuming no bugs in
-	// post_event().  pthread_cond_wait() is a cancellation
-	// point.  select() should be but isn't, but there is a
-	// workaround below.
+	// pthread_cond_wait(), assuming no bugs in post_event().
+	// pthread_cond_wait() is a cancellation point.  select()
+	// should be but isn't, but there is a workaround below.
 
 	while(1)
 	  {
+	    // Only sleep for a few seconds at a time, to be extra
+	    // careful not to block forever.
+	    struct timeval timeout;
+	    timeout.tv_sec = 3;
+	    timeout.tv_usec = 0;
+
 	    // Select on stdin; when we see that input is available, spawn
 	    // an input event.
 	    fd_set selectfds;
@@ -464,13 +474,13 @@ namespace cwidget
 	    FD_SET(0, &selectfds);
 
 	    pthread_testcancel();
-	    int result = select(1, &selectfds, NULL, NULL, NULL);
+	    int result = select(1, &selectfds, NULL, NULL, &timeout);
 	    pthread_testcancel();	// Workaround for Linux threads suckage.
 	    // See pthread_cancel(3).
 
 	    if(result != 1)
 	      {
-		if(errno != EINTR)
+		if(errno != EINTR && errno != 0)
 		  {
 		    // Probably means that there was an error reading
 		    // standard input.  (could also be ENOMEM)
@@ -480,6 +490,12 @@ namespace cwidget
 	      }
 	    else
 	      {
+		// Lock the mutex and wait on the condition variable.
+		// We have to be careful to release the mutex when we
+		// leave this scope; otherwise we could end up being
+		// canceled while we hold the mutex, which leads to
+		// horrible stuff like bug #511708.
+		threads::mutex::lock l(input_event_mutex);
 		post_event(new get_input_event(input_event_mutex,
 					       input_event_fired,
 					       input_event_condition));

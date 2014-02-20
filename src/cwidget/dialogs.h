@@ -1,6 +1,6 @@
 // dialogs.h      -*-c++-*-
 //
-//   Copyright (C) 2000, 2007 Daniel Burrows
+//   Copyright (C) 2000, 2007-2008 Daniel Burrows
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -17,9 +17,13 @@
 //   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 //   Boston, MA 02111-1307, USA.
 
-//
-//  Provides a bunch of utility functions to construct prefabricated
-// widget trees (for instance, handy message boxes)
+/** \file dialogs.h
+ *
+ *  \brief Utility functions to construct prefabricated widgets.
+ *
+ *  For instance, basic message boxes and yes/no queries can be
+ *  constructed here.
+ */
 
 #ifndef DIALOGS_H
 #define DIALOGS_H
@@ -41,6 +45,7 @@ namespace cwidget
     class widget;
   }
 
+  /** \brief Routines to construct simple dialog boxes. */
   namespace dialogs
   {
     // Canned dialog-boxes:

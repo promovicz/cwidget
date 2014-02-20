@@ -29,7 +29,7 @@ pkgconfig_DATA = cwidget.pc
 
 pkglib_HEADERS = cwidget-config.h
 
-doc ikiwiki doxygen:
+doc ikiwiki doxygen: Doxyfile
 	$(MAKE) -C doc $@
 
 .PHONY: doc ikiwiki doxygen all-local

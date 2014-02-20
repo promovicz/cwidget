@@ -26,6 +26,11 @@
 
 #include <cwidget/curses++.h>
 
+/** \file keybindings.h
+ *
+ *  \brief Support for defining and remapping keybindings.
+ */
+
 namespace cwidget
 {
   namespace config
@@ -65,8 +70,20 @@ namespace cwidget
       }
     };
 
+    /** \brief The type used to store the keybindings of a function. */
     typedef std::vector<key> keybinding;
 
+    /** \brief Stores the keys bound to various functions.
+     *
+     *  Functions are simply arbitrary strings chosen by the user of
+     *  this class.  For instance, "QuitProgram" might be the function
+     *  that quits the program.
+     *
+     *  Each keybindings object represents a scope in which bindings
+     *  can be defined.  Scopes are arranged hierarchically, and the
+     *  bindings defined in child scopes override the bindings defined
+     *  in parent scopes.
+     */
     class keybindings
     {
       std::map<std::string, keybinding> keymap;
@@ -77,21 +94,30 @@ namespace cwidget
       // constructor instead of the real one.
       keybindings(const keybindings &_parent);
     public:
+      /** \brief Create a new key-binding scope.
+       *
+       *  \param _parent   The parent of this scope, if any, or NULL for no parent.
+       */
       keybindings(keybindings *_parent=NULL):parent(_parent) {}
 
-      /** \return the first binding of the given key, in a form suitable
-       *   for inclusion in a config file.
+      /** \return the first binding of the given function, in a format
+       *  that can be passed to parse_key().
+       *
+       *  \param tag The function whose keystroke is to be returned.
        */
       std::wstring keyname(const std::string &tag);
 
 
-      /** \return a human-readable string identifying the given keystroke
-       *   (as opposed to 'keyname', which is a strict reverse mapping).
+      /** \return a human-readable string describing the keystroke
+       *  bound to the given function.
+       *
+       *  \param tag The name of the function whose keystroke is to be
+       *  returned.
        */
       std::wstring readable_keyname(const std::string &tag);
 
+      /** \brief Retrieve the binding of the given function. */
       keybinding get(std::string tag)
-      // Returns the keybinding for the given string.  Almost never needed.
       {
 	std::map<std::string, keybinding>::iterator found=keymap.find(tag);
 
@@ -101,10 +127,25 @@ namespace cwidget
 	  return found->second;
       }
 
+      /** \brief Modify a binding in this scope.
+       *
+       *  \param tag      The name of the function to be bound.
+       *  \param strokes  The keystrokes to bind to the function.
+       *
+       *  This routine throws away any previous bindings for the given
+       *  function and replaces them with the bindings stored in
+       *  strokes.
+       */
       void set(std::string tag, keybinding strokes);
-      // Adds a setting for the given binding, clobbering whatever was there
-      // previously.
 
+      /** \brief Modify a binding in this scope.
+       *
+       *  \param tag     The name of the function to be bound.
+       *  \param stroke  A keystroke to bind to the function.
+       *
+       *  This routine throws away any previous bindings for the
+       *  given function and replaces them with stroke.
+       */
       void set(std::string tag, const key &stroke)
       {
 	keybinding strokes;
@@ -112,25 +153,49 @@ namespace cwidget
 	set(tag, strokes);
       }
 
+      /** \brief Test whether a key is bound to a function.
+       *
+       *  \param k   The key to test.
+       *  \param tag The function to test against.
+       *
+       *  \return \b true if k is bound to tag in this scope.
+       */
       bool key_matches(const key &k, std::string tag);
-      // Tests whether the given keystroke matches the keybinding with the given
-      // name.  If no keybinding by that name exists, the match fails.
     };
 
+    /** \brief Parse a keystroke definition.
+     *
+     *  \param keystr  The definition to parse.
+     *
+     *  \return the corresponding key, or ERR if the parse fails.
+     */
     key parse_key(std::wstring keystr);
-    // Parses a string to a keycode.  Returns ERR if the parse fails.
 
+    /** \brief Convert a keystroke to its string definition.
+     *
+     *  \param k  The key that is to be converted to a string.
+     *
+     *  \return a string that, when passed to parse_key(), will return
+     *  #k.
+     *
+     *  \sa readable_keyname
+     */
     std::wstring keyname(const key &k);
-    // Returns a string identifying the given keystroke.
 
-    /** \return a human-readable string identifying the given keystroke
-     *   (as opposed to 'keyname', which is a strict reverse mapping).
+    /** \brief Convert a keystroke to a human-readable keyname.
+     *
+     *  \return a human-readable string identifying the given keystroke.
+     *
+     *  \sa keyname
      */
     std::wstring readable_keyname(const key &k);
 
+    /** \brief The global keybindings object.
+     *
+     *  This object is the root of the keybindings hierarchy; normally
+     *  all other keybindings objects should be descendents of it.
+     */
     extern keybindings global_bindings;
-    // For now, this is where the global bindings are stored (I might want to move
-    // it in the future, hmmm..)
   }
 }
 
@@ -140,6 +205,13 @@ namespace cwidget
 
 // Having read a bit more, it appears that the control modifier
 // clears bits 5 and 4.  I think KEY_ALT is utterly broken.
+
+/** \brief Attempt to compute the control character related to a
+ *  terminal key.
+ *
+ *  \param x The character to modify (for instance, 'A' to return
+ *  'Control-A').
+ */
 #define KEY_CTRL(x) key(((x)&~(64|32)), false)
 #define KEY_ALT(x) key((0x200 | (x)), false)
 

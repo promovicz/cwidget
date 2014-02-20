@@ -122,9 +122,7 @@ namespace cwidget
   fragment *text_fragment(const string &s,
 			  const char *encoding)
   {
-    wstring decoded;
-
-    return text_fragment(decoded);
+    return text_fragment(util::transcode(s, encoding));
   }
 
   fragment *text_fragment(const string &s,

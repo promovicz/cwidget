@@ -1,6 +1,6 @@
 // colors.h  -*-c++-*-
 //
-//  Copyright 1999-2001, 2004-2005 Daniel Burrows
+//  Copyright 1999-2001, 2004-2005, 2008 Daniel Burrows
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -29,12 +29,33 @@
 #ifndef COLORS_H
 #define COLORS_H
 
+/** \file colors.h
+ *
+ *  \brief Routines to support independently changing foreground and
+ *  background colors.
+ *
+ *  cwidget can only support colors on terminals that allow at least
+ *  64 color pairs to be defined.  However, on those terminals, it can
+ *  mix foreground and background colors independently of one another.
+ *  Normally colors are accessed through the style system (see
+ *  style.h).
+ */
+
 namespace cwidget
 {
+  /** \brief Routines that support parsing and interpreting user configuration.
+   *
+   *  For instance, routines to handle keybindings are placed in this
+   *  namespace.
+   */
   namespace config
   {
     /** Set up the colors as we expect them to be.  Call this once
      *  when the program starts.
+     *
+     *  This will normally be invoked during the library's
+     *  initialization and does not need to be called by clients of
+     *  the library.
      */
     void init_colors();
 
