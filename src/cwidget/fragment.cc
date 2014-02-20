@@ -1,7 +1,7 @@
 // fragment.cc
 //
 //
-//   Copyright (C) 2004-2005, 2007-2008 Daniel Burrows
+//   Copyright (C) 2004-2005, 2007-2009 Daniel Burrows
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -1050,6 +1050,7 @@ namespace cwidget
 	}
       else if(total > w && contains_resizable)
 	{
+	  // How much larger columns are than their minimum amounts.
 	  int avail_shrinkage = 0;
 	  size_t worst_case_shrinkage = 0;
 	  for(size_t i = 0; i < columns.size(); ++i)
@@ -1066,7 +1067,13 @@ namespace cwidget
 		{
 		  // Shrink proprtionally to how much this was expanded.
 		  const int expansion = widths[i] - columns[i].width;
-		  const int shrinkamt = (expansion * needed_shrinkage) / avail_shrinkage;
+
+		  int shrinkamt;
+		  if(avail_shrinkage > 0)
+		    shrinkamt = (expansion * needed_shrinkage) / avail_shrinkage;
+		  else
+		    shrinkamt = 0; // Give up if we ran out of space
+ 		                   // for some reason.
 
 		  avail_shrinkage  -= expansion;
 		  needed_shrinkage -= shrinkamt;
@@ -1082,9 +1089,19 @@ namespace cwidget
 						 total - w);
 	      for(size_t i = 0; i < columns.size(); ++i)
 		{
-		  // Shrink proprtionally to how much this was expanded.
 		  const int expansion = widths[i] - 1;
-		  const int shrinkamt = (expansion * needed_shrinkage) / avail_shrinkage;
+		  int shrinkamt;
+
+		  // We can end up with no shrinkage at all possible
+		  // if the minimum widths are too large to fit.  In
+		  // that case, just make everything 1 character wide
+		  // until we've shrunk enough.  Otherwise, shrink
+		  // proportionally to how much this was expanded.
+
+		  if(avail_shrinkage > 0)
+		    shrinkamt = (expansion * needed_shrinkage) / avail_shrinkage;
+		  else
+		    shrinkamt = std::min<std::size_t>(expansion, needed_shrinkage);
 
 		  avail_shrinkage  -= expansion;
 		  needed_shrinkage -= shrinkamt;
@@ -1345,7 +1362,7 @@ namespace cwidget
 
     const char *start=format;
     // find all the arguments.
-    char *nextpercent=strchr(start, '%');
+    const char *nextpercent=strchr(start, '%');
 
     // loop 1: count the arguments.
     while(nextpercent!=NULL)

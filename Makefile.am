@@ -11,7 +11,7 @@ else
 DOXYGENCMD=
 endif
 
-SUBDIRS=
+SUBDIRS= po
 
 if BUILD_LIBRARY
 SUBDIRS += src
@@ -33,3 +33,7 @@ doc ikiwiki doxygen: Doxyfile
 	$(MAKE) -C doc $@
 
 .PHONY: doc ikiwiki doxygen all-local
+
+ACLOCAL_AMFLAGS = -I m4
+
+EXTRA_DIST = config.rpath m4/ChangeLog

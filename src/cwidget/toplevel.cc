@@ -446,6 +446,12 @@ namespace cwidget
 
       void operator()()
       {
+	// Block all signals so we don't interfere with the main
+	// thread's signal handling.
+	sigset_t all_signals;
+	sigfillset(&all_signals);
+	sigprocmask(SIG_BLOCK, &all_signals, NULL);
+
 	// Don't hold the lock for longer than we need to (we lock it
 	// here to be extra-paranoid about changing the value of
 	// input_event_fired).
@@ -562,6 +568,13 @@ namespace cwidget
 
       void operator()() const
       {
+	// Block all signals so we don't interfere with the main
+	// thread's signal handling.
+	sigset_t all_signals;
+	sigfillset(&all_signals);
+	sigprocmask(SIG_BLOCK, &all_signals, NULL);
+
+
 	sigset_t s;
 
 	sigemptyset(&s);
@@ -751,6 +764,14 @@ namespace cwidget
 
       void operator()()
       {
+	// Block all signals so we don't interfere with the main
+	// thread's signal handling.
+	sigset_t all_signals;
+	sigfillset(&all_signals);
+	sigprocmask(SIG_BLOCK, &all_signals, NULL);
+
+
+
 	threads::mutex::lock l(timeouts_mutex);
 
 	while(!cancelled)
