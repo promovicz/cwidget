@@ -1,6 +1,6 @@
 // test_threads.cc
 //
-//   Copyright (C) 2005-2006 Daniel Burrows
+//   Copyright (C) 2005-2006, 2009 Daniel Burrows
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -24,11 +24,14 @@
 
 #include <cwidget/generic/threads/event_queue.h>
 #include <cwidget/generic/threads/threads.h>
+#include <cwidget/generic/util/ssprintf.h>
 
 #include <iostream>
 
 #include <sys/time.h>
 #include <time.h>
+
+#include <unistd.h>
 
 namespace cw = cwidget;
 
@@ -64,27 +67,45 @@ public:
 
   void do_testBox()
   {
-    const int thread_count = 50;
+    const int thread_count_max = 50;
     const int thread_limit = 1000;
+
+    long real_threads_max = sysconf(_SC_THREAD_THREADS_MAX);
+    int thread_count;
+    if(real_threads_max == -1)
+      thread_count = thread_count_max; // No definite limit.
+    else
+      thread_count = std::min<int>((int)thread_count_max, (int)real_threads_max);
 
     cw::threads::box<int> b(100);
 
     CPPUNIT_ASSERT_EQUAL(100, b.take());
 
-    std::auto_ptr<cw::threads::thread> writers[thread_count];
+    std::auto_ptr<cw::threads::thread> *writers =
+      new std::auto_ptr<cw::threads::thread>[thread_count];
 
-    for(int i = 0; i<thread_count; ++i)
-      writers[i] = std::auto_ptr<cw::threads::thread>(new cw::threads::thread(add_thread(thread_limit, b)));
+    try
+      {
+	for(int i = 0; i<thread_count; ++i)
+	  writers[i] = std::auto_ptr<cw::threads::thread>(new cw::threads::thread(add_thread(thread_limit, b)));
 
-    int foo;
-    CPPUNIT_ASSERT(!b.try_take(foo));
+	int foo;
+	CPPUNIT_ASSERT(!b.try_take(foo));
 
-    CPPUNIT_ASSERT(b.try_put(-1));
+	CPPUNIT_ASSERT(b.try_put(-1));
 
-    for(int i = 0; i<thread_count; ++i)
-      writers[i]->join();
+	for(int i = 0; i < thread_count; ++i)
+	  writers[i]->join();
 
-    CPPUNIT_ASSERT_EQUAL(thread_count*thread_limit-1, b.take());
+	CPPUNIT_ASSERT_EQUAL(thread_count*thread_limit-1, b.take());
+      }
+    catch(...)
+      {
+	delete[] writers;
+	throw;
+      }
+
+    delete[] writers;
   }
 
   void testBox()
@@ -157,32 +178,54 @@ public:
 
   void testEventQueue()
   {
-    const int thread_count = 100;
+    const int thread_count_max = 100;
     const int thread_limit = 1000;
+
+    long real_threads_max = sysconf(_SC_THREAD_THREADS_MAX);
+    int thread_count;
+    if(real_threads_max == -1)
+      thread_count = thread_count_max; // No definite limit.
+    else
+      thread_count = std::min<int>((int)thread_count_max, (int)real_threads_max);
 
     cw::threads::event_queue<std::pair<int, int> > eq;
 
-    std::auto_ptr<cw::threads::thread> writers[thread_count];
-    int last_thread_msg[thread_count];
+    std::auto_ptr<cw::threads::thread> *writers =
+      new std::auto_ptr<cw::threads::thread>[thread_count];
+    int *last_thread_msg =
+      new int[thread_count];
 
-    for(int i = 0; i < thread_count; ++i)
-      last_thread_msg[i] = -1;
-
-    for(int i = 0; i < thread_count; ++i)
-      writers[i] = std::auto_ptr<cw::threads::thread>(new cw::threads::thread(event_queue_write_thread(eq, i, thread_limit)));
-
-    for(int i = 0; i < thread_count * thread_limit; ++i)
+    try
       {
-	std::pair<int, int> next = eq.get();
+	for(int i = 0; i < thread_count; ++i)
+	  last_thread_msg[i] = -1;
 
-	CPPUNIT_ASSERT_EQUAL(next.second-1, last_thread_msg[next.first]);
-	last_thread_msg[next.first] = next.second;
+	for(int i = 0; i < thread_count; ++i)
+	  writers[i] = std::auto_ptr<cw::threads::thread>(new cw::threads::thread(event_queue_write_thread(eq, i, thread_limit)));
+
+	for(int i = 0; i < thread_count * thread_limit; ++i)
+	  {
+	    std::pair<int, int> next = eq.get();
+
+	    CPPUNIT_ASSERT_EQUAL(next.second-1, last_thread_msg[next.first]);
+	    last_thread_msg[next.first] = next.second;
+	  }
+
+	for(int i = 0; i < thread_count; ++i)
+	  writers[i]->join();
+
+	CPPUNIT_ASSERT(eq.empty());
+      }
+    catch(...)
+      {
+	delete[] writers;
+	delete[] last_thread_msg;
+
+	throw;
       }
 
-    for(int i = 0; i < thread_count; ++i)
-      writers[i]->join();
-
-    CPPUNIT_ASSERT(eq.empty());
+    delete[] writers;
+    delete[] last_thread_msg;
   }
 
   struct do_nothing

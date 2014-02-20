@@ -1,6 +1,6 @@
 // threads.h                                              -*-c++-*-
 //
-//   Copyright (C) 2005-2008 Daniel Burrows
+//   Copyright (C) 2005-2009 Daniel Burrows
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -48,7 +48,15 @@ namespace cwidget
      */
     class ThreadCreateException : public ThreadException
     {
+      int errnum;
     public:
+      ThreadCreateException(int error)
+	: errnum(error)
+      {
+      }
+
+      int get_errnum() const { return errnum; }
+
       std::string errmsg() const;
     };
 
@@ -56,9 +64,12 @@ namespace cwidget
     class ThreadJoinException : public ThreadException
     {
       std::string reason;
+
+      int errnum;
     public:
       ThreadJoinException(const int error);
 
+      int get_errnum() const { return errnum; }
       std::string errmsg() const;
     };
 
@@ -204,9 +215,11 @@ namespace cwidget
 
 	if(pthread_create(&tid, &a.attrs, &thread::bootstrap<F>, tmp) != 0)
 	  {
+	    int errnum = errno;
+
 	    delete tmp;
 
-	    throw ThreadCreateException();
+	    throw ThreadCreateException(errnum);
 	  }
       }
 

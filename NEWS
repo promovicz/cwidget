@@ -1,3 +1,38 @@
+[0.5.16]
+2009-11-29
+
+  * Revert the signal handling change.  That's the right thing to do,
+    but it's too disruptive without a lot more groundwork around how
+    widgets are destroyed.  It should be saved until the next ABI
+    break, at least.
+
+  * Revert the change that causes global thread synchronization
+    objects to not be destroyed, for now; it was mainly needed for the
+    signal changes.
+
+[0.5.15]
+2009-11-29
+
+  * Hopefully work around problems with the threading unit tests on
+    platforms with strict limits on thread resources such as
+    hppa. (Closes: #557982)
+
+  * cwidget thread exceptions now carry the errno code where
+    appropriate.
+
+  * When cwidget exits with an error, it invokes the former signal
+    handler rather than necessarily exiting immediately.  This can
+    cause different behavior for some signals, as libc appears to
+    invoke atexit() and global destructors when processing SIGINT or
+    SIGTERM.  However, it's the most sensible way to ensure that
+    signal chaining can be used with cwidget.
+
+  * cwidget no longer attempts to destroy its global thread
+    synchronization objects, to avoid races and deadlocks if global
+    destructors are invoked while a cwidget thread is still running.
+    Ideally, we would provide a library routine to destroy them at a
+    well-defined point in the program's execution.
+
 [0.5.14]
 2009-11-17
 
