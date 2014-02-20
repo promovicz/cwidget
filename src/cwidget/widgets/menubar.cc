@@ -28,6 +28,8 @@
 #include <sigc++/adaptors/bind.h>
 #include <sigc++/functors/mem_fun.h>
 
+#include <stdlib.h>
+
 using namespace std;
 
 namespace cwidget

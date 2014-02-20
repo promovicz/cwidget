@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT(cwidget, 0.5.7)
+AC_INIT(cwidget, 0.5.8)
 AC_CONFIG_SRCDIR([src/cwidget/toplevel.cc])
 AM_INIT_AUTOMAKE
 AC_CONFIG_HEADERS([config.h cwidget-config.h])
@@ -102,62 +102,6 @@ AC_DEFINE_UNQUOTED(SIGC_VERSION, ["$(pkg-config --modversion sigc++-2.0)"], [The
 AC_CHECK_HEADER(locale.h, [AC_DEFINE([HAVE_LOCALE_H], [], [Define if locale.h is available])])
 
 AC_CHECK_DECL(setlocale, [AC_DEFINE([HAVE_SETLOCALE], [], [Define if setlocale is available in locale.h])], , [#include <locale.h>])
-
-
-
-dnl Find hash tables in the STL.
-HASH_INC=""
-HASH_CLS=""
-
-AC_CHECK_HEADER(hash_map,
-		[HASH_INC="hash_map"
-		 HASH_CLS="hash_map"
-		 AC_DEFINE(CWIDGET_HAVE_HASH_MAP, ,
-			  [Define if the g++ extension hash_map is available])],
-	  	[AC_CHECK_HEADER(ext/hash_map,
-				 [HASH_INC="ext/hash_map"
-				  HASH_CLS="hash_map"
-				  AC_DEFINE(CWIDGET_HAVE_EXT_HASH_MAP, , [Define if the g++ extension ext/hash_map is available])])])
-
-AC_CHECK_HEADER(hash_set,
-		[HASH_INC="hash_set"
-		 HASH_CLS="hash_set"
-		 AC_DEFINE(CWIDGET_HAVE_HASH_SET,  , [Define if the g++ extension hash_set is available])],
-		[AC_CHECK_HEADER(ext/hash_set,
-				[HASH_INC="ext/hash_set"
-				 HASH_CLS="hash_set"
-				 AC_DEFINE(CWIDGET_HAVE_EXT_HASH_SET,  , [Define if the g++ extension ext/hash_set is available])])])
-
-
-
-# Try to guess what namespace the hash stuff is in (maybe I should just
-# use rbltrees instead in most places?)
-if test x$HASH_INC != x
-then
-    AC_MSG_CHECKING([which namespace contains the hash extensions])
-
-    CWIDGET_HASH_NAMESPACE=""
-
-    for NS in std __gnu_cxx
-    do
-      AC_COMPILE_IFELSE([AC_LANG_PROGRAM([#include <$HASH_INC>],
-	 			         [${NS}::${HASH_CLS} < int, int > foo;])],
-			[CWIDGET_HASH_NAMESPACE=$NS])
-    done
-
-    if test x$CWIDGET_HASH_NAMESPACE = x
-    then
-       AC_MSG_ERROR([found hash classes, but they aren't in the std or GNU namespace.])
-    fi
-
-    AC_MSG_RESULT($CWIDGET_HASH_NAMESPACE)
-else
-    # Use the std namespace if all else fails. (the code will fall back
-    # to using map instead of hash_map, set instead of hash_set)
-    CWIDGET_HASH_NAMESPACE=std
-fi
-
-AC_DEFINE_UNQUOTED(CWIDGET_HASH_NAMESPACE, $CWIDGET_HASH_NAMESPACE, [If a hash header is available, define to the namespace in which the hash class resides])
 
 
 

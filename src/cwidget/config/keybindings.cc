@@ -1,6 +1,6 @@
 // keybindings.h, -*-c++-*-
 //
-//  Copyright 1999-2001, 2004-2005, 2007 Daniel Burrows
+//  Copyright 1999-2001, 2004-2005, 2007-2008 Daniel Burrows
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -29,12 +29,12 @@
 #include <cwidget/generic/util/i18n.h>
 
 #include <ctype.h>
+#include <wctype.h>
 
 #include <algorithm>
 #include <map>
 
 using namespace std;
-using namespace __gnu_cxx;
 
 namespace cwidget
 {
@@ -282,7 +282,7 @@ namespace cwidget
       transform(tag.begin(), tag.end(),
 		tag.begin(), toupper_struct());
 
-      hash_map<string, keybinding>::iterator found=keymap.find(tag);
+      map<string, keybinding>::iterator found=keymap.find(tag);
       if(found==keymap.end())
 	return parent?parent->key_matches(k, tag):false;
       else
@@ -416,7 +416,7 @@ namespace cwidget
       transform(realtag.begin(), realtag.end(),
 		realtag.begin(), toupper_struct());
 
-      hash_map<string, keybinding>::iterator found=keymap.find(realtag);
+      map<string, keybinding>::iterator found=keymap.find(realtag);
 
       if(found!=keymap.end())
 	return config::keyname(found->second.front());
@@ -430,7 +430,7 @@ namespace cwidget
       transform(realtag.begin(), realtag.end(),
 		realtag.begin(), toupper_struct());
 
-      hash_map<string, keybinding>::iterator found=keymap.find(realtag);
+      map<string, keybinding>::iterator found=keymap.find(realtag);
 
       if(found != keymap.end())
 	return config::readable_keyname(found->second.front());
