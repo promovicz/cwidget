@@ -1,0 +1,39 @@
+[0.5.3]
+
+  * Generate a cwidget-config.h file that contains #defines needed for
+    the public interface of cwidget to make sense.
+
+  * Build a .pc file so that pkg-config can be used to set up
+    compile/link flags for cwidget-using packages.
+
+  * Add an entry point that returns the current library version.
+
+  * Remove more references to vscreen.
+
+  * Remove some references to libapt.
+
+[0.5.2]
+
+  * Fix documentation building again: we need the sub-makefile to get
+    cleaning to happen nicely, but the main makefile needs to know
+    about it, so don't build docs in doc/ on "make all".
+
+[0.5.1]
+
+  * Actually install headers in "make install".
+
+  * Fix documentation building to be more friendly to the Debian packaging.
+
+[0.5.0]
+
+  * Initial release.
+
+  * Changes from aptitude:
+
+    + Rename vscreen to cwidget. (the name "vscreen" had to do with a
+      very very old version of the library and is no longer relevant)
+
+    + Move everything into C++ namespaces under cwidget.
+
+    + Reorganize the code to move more generic code into the generic
+      directory.
