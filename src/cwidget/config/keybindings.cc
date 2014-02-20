@@ -51,6 +51,52 @@ namespace cwidget
     // FIXME: Translate keys such as "enter" in menu
     map<key, wstring> rev_keynames;
 
+
+    namespace
+    {
+      void make_equivalence_class(std::map<key, int> &equivalence_classes,
+				  const std::vector<key> &keys)
+      {
+	const std::map<key, int>::size_type eq_class_num =
+	  equivalence_classes.size();
+	for(std::vector<key>::const_iterator kIt = keys.begin();
+	    kIt != keys.end(); ++kIt)
+	  {
+	    eassert(equivalence_classes.find(*kIt) == equivalence_classes.end());
+	    equivalence_classes[*kIt] = eq_class_num;
+	  }
+      }
+
+      bool equivalence_classes_initialized = false;
+
+      // Keys that are to be treated as identical to one another.
+      std::map<key, int> key_equivalence_classes;
+      void init_equivalence_classes()
+      {
+	if(equivalence_classes_initialized)
+	  return;
+
+	std::vector<key> keys;
+
+	keys.push_back(key(KEY_ENTER, true));
+	keys.push_back(key(L'\r', false));
+	keys.push_back(key(L'\n', false));
+
+	make_equivalence_class(key_equivalence_classes, keys);
+
+	keys.clear();
+	keys.push_back(key(KEY_BACKSPACE, true));
+	keys.push_back(key(KEY_DC, true));
+	keys.push_back(key(KEY_SDC, true));
+	keys.push_back(key(127, false)); // Empirically determined to
+					 // be generated for backspace
+					 // in some terminals.
+
+	make_equivalence_class(key_equivalence_classes, keys);
+	equivalence_classes_initialized = true;
+      }
+    }
+
     bool key_tables_initialized=false;
 
     void init_key_tables()
@@ -279,23 +325,29 @@ namespace cwidget
 
     bool keybindings::key_matches(const key &k, string tag)
     {
+      init_equivalence_classes();
       transform(tag.begin(), tag.end(),
 		tag.begin(), toupper_struct());
 
       map<string, keybinding>::iterator found=keymap.find(tag);
+      std::map<key, int>::const_iterator k_eq_class = key_equivalence_classes.find(k);
       if(found==keymap.end())
 	return parent?parent->key_matches(k, tag):false;
       else
 	{
 	  for(keybinding::iterator i=found->second.begin(); i!=found->second.end(); i++)
 	    {
-	      if(*i==key(KEY_ENTER, true))
+	      if(k_eq_class != key_equivalence_classes.end())
 		{
-		  if(k==key(KEY_ENTER, true) ||
-		     k==key(L'\r', false) || k==key(L'\n', false))
-		    return true;
+		  std::map<key, int>::const_iterator i_eq_class(key_equivalence_classes.find(*i));
+		  if(i_eq_class != key_equivalence_classes.end() &&
+		     k_eq_class->second == i_eq_class->second)
+		    {
+		      return true;
+		    }
 		}
-	      else if(k==*i)
+
+	      if(k==*i)
 		return true;
 	    }
 	  return false;
