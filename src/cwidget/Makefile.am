@@ -33,6 +33,7 @@ libcwidget_la_SOURCES=	\
 	style.cc	\
 	toplevel.cc
 
+libcwidget_la_LDFLAGS = -version-info 1:0:0
 libcwidget_la_LIBADD = config/libconf.la \
 		       generic/threads/libgeneric-threads.la \
 		       generic/util/libgeneric-util.la \

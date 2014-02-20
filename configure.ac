@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT(cwidget, 0.5.5)
+AC_INIT(cwidget, 0.5.6.1)
 AC_CONFIG_SRCDIR([src/cwidget/toplevel.cc])
 AM_INIT_AUTOMAKE
 AC_CONFIG_HEADERS([config.h cwidget-config.h])
@@ -23,7 +23,7 @@ AM_GNU_GETTEXT([external])
 
 dnl Try to find doxygen in the path.
 AC_MSG_CHECKING([for the Doxygen documentation generator (http://www.doxygen.org)])
-DOXYGEN=`which doxygen`
+DOXYGEN=`which doxygen 2> /dev/null`
 AC_SUBST(DOXYGEN)
 
 if test x$DOXYGEN = x
@@ -36,6 +36,22 @@ fi
 AM_CONDITIONAL(DOXYGEN, [test x$DOXYGEN != x])
 
 
+
+dnl Try to find doxygen in the path.
+AC_MSG_CHECKING([for the ikiwiki Web site compiler (http://ikiwiki.info)])
+IKIWIKI=`which ikiwiki 2>/dev/null`
+AC_SUBST(IKIWIKI)
+ 
+if test x$IKIWIKI = x
+then
+  AC_MSG_RESULT([not found])
+else
+  AC_MSG_RESULT([found at $IKIWIKI])
+fi
+
+AM_CONDITIONAL(IKIWIKI, [test x$IKIWIKI != x])
+
+RUN_TESTS=0
 
 if test x$BUILD_LIBRARY = xyes
 then
@@ -64,6 +80,18 @@ then
 	[AC_MSG_ERROR([POSIX thread header not installed])])
 fi
 
+
+dnl We need strerror_r, but strerror_r has different signatures on GNU
+dnl and in other places.
+dnl
+dnl We could try to hack around a missing strerror_r (e.g. by using
+dnl strerror and locking around it) if someone wants to compile this
+dnl on a horrid system without safe error string functions.
+AC_FUNC_STRERROR_R
+if test x$ac_cv_have_strerror_r = xno
+then
+  AC_MSG_ERROR([cwidget requires an implementation of strerror_r()])
+fi
 
 dnl Find sigc++
 PKG_CHECK_MODULES(SIGC, sigc++-2.0)
@@ -182,10 +210,17 @@ AC_ARG_ENABLE(werror,
 	)
 AC_SUBST(WERROR)
 
+dnl Enable test cases if cppunit is present.
+PKG_CHECK_MODULES(CPPUNIT, cppunit,
+		   [HAVE_CPPUNIT=1
+		    AC_SUBST(CPPUNIT_CFLAGS)
+		    AC_SUBST(CPPUNIT_LIBS)],
+		  [true])
+
 # END LIBRARY CONFIGURATION
 fi
 
-
+AM_CONDITIONAL([HAVE_CPPUNIT], [test x$HAVE_CPPUNIT = x1])
 
 AC_CONFIG_FILES([
 	Doxyfile
@@ -199,6 +234,7 @@ AC_CONFIG_FILES([
 	src/cwidget/generic/Makefile
 	src/cwidget/generic/threads/Makefile
 	src/cwidget/generic/util/Makefile
+	tests/Makefile
 ])
 
 AC_OUTPUT

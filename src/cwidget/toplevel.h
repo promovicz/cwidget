@@ -104,6 +104,25 @@ namespace cwidget
 
     //   Main loop handlers:
 
+    /** \brief Start the main event loop.
+     *
+     *  This routine repeatedly removes events from the global queue
+     *  and invokes event::dispatch() on them.  It terminates when
+     *  exitmain() is invoked or when an exception is thrown.  In
+     *  particular, callers should be prepared to catch
+     *  cwidget::util::Exception instances:
+     *
+     *     catch(cwidget::util::Exception &e)
+     *     {
+     *     }
+     *
+     *  If an exception is thrown, the caller is responsible for
+     *  invoking cwidget::toplevel::shutdown() to restore the terminal
+     *  state.  A simple way of testing that your code catches
+     *  exceptions correctly is to redirect stdin from /dev/null; this
+     *  will throw an exception stating that the program cannot read
+     *  from stdin.
+     */
     void mainloop(int synch=0);
     // Enters a loop, calling getch() over and over and over again..
     // A valid cwidget must be currently displayed.

@@ -2,6 +2,8 @@
 //
 //  Not pretty code, but it tests some of the facilities of cwidget.
 
+#include <cwidget/generic/util/exception.h>
+
 #include <cwidget/dialogs.h>
 #include <cwidget/fragment.h>
 #include <cwidget/generic/util/transcode.h>
@@ -30,6 +32,7 @@
 
 #include <config/colors.h>
 
+#include <iostream>
 #include <string>
 
 #include <sigc++/adaptors/bind.h>
@@ -519,7 +522,28 @@ int main(int argc, char *argv[])
 
   toplevel::settoplevel(menubar);
 
-  toplevel::mainloop();
+  try
+    {
+      toplevel::mainloop();
+    }
+  catch(const std::exception &e)
+    {
+      toplevel::shutdown();
+      std::cerr << "Caught exception: " << e.what() << std::endl;
+      return 0;
+    }
+  catch(const util::Exception &e)
+    {
+      toplevel::shutdown();
+      std::cerr << "Caught exception: " << e.errmsg() << std::endl;
+      return 0;
+    }
+  catch(...)
+    {
+      toplevel::shutdown();
+      std::cerr << "Uncaught exception." << std::endl;
+      return 0;
+    }
 
   toplevel::shutdown();
 

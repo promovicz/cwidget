@@ -1,6 +1,6 @@
 // text_layout.cc
 //
-//   Copyright (C) 2004-2006 Daniel Burrows
+//   Copyright (C) 2004-2007 Daniel Burrows
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -70,6 +70,33 @@ namespace cwidget
 	return widget::handle_key(k);
 
       return true;
+    }
+
+    void text_layout::dispatch_mouse(short id, int x, int y, int z, mmask_t bstate)
+    {
+      // Only do something if this system's ncurses has both button 4
+      // and button 5 (older ones didn't).
+#if defined(BUTTON4_PRESSED) && defined(BUTTON5_PRESSED)
+      const int mouse_wheel_scroll_lines =
+	std::max(1, std::min(getmaxy() - 1, 3));
+
+      if((bstate & BUTTON4_PRESSED) != 0)
+	{
+	  if((bstate & BUTTON5_PRESSED) == 0)
+	    {
+	      freshen_contents(lastst);
+	      if(start > 0)
+		set_start(std::max(0, start - mouse_wheel_scroll_lines));
+	    }
+	}
+      else if((bstate & BUTTON5_PRESSED) != 0)
+	{
+	  freshen_contents(lastst);
+	  if(start + getmaxy() < contents.size())
+	    set_start(std::min(contents.size() - getmaxy(),
+			       start + mouse_wheel_scroll_lines));
+	}
+#endif
     }
 
     int text_layout::width_request()
