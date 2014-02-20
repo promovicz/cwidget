@@ -1,3 +1,24 @@
+[0.5.7]
+
+  * ABI change due to changes in the code of some inline functions:
+    the SONAME is now libcwidget.so.2.
+
+  * All wrappers around pthread_cond_wait now release the mutex if the
+    thread is cancelled while waiting.  This is arguably a somewhat
+    awkward solution to the problem, and further improvements are
+    likely.
+
+  * Fix several threading bugs in the input handlers.  The input
+    handler will no longer read from or write to freed memory, and it
+    will no longer get confused and blow up the program after a
+    toplevel::suspend()/toplevel::resume() pair.
+
+    Closes: #461342 and possibly also #431054, #431688, #432323,
+    #434861.
+
+  * Handle invalid byte sequences encountered by wget_wch better: just
+    beep instead of throwing a fatal exception.  (Closes: #460722)
+
 [0.5.6.1]
 
   * Actually distribute the ikiwiki input files in "make dist".

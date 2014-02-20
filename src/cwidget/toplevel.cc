@@ -1,6 +1,6 @@
 // toplevel.cc
 //
-//  Copyright 1999-2005, 2007 Daniel Burrows
+//  Copyright 1999-2005, 2007-2008 Daniel Burrows
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -55,6 +55,9 @@
 
 #include <map>
 
+#include <fcntl.h>
+#include <sys/types.h>
+
 namespace cwidget
 {
   std::string version()
@@ -73,6 +76,23 @@ namespace cwidget
     threads::mutex &get_mutex()
     {
       return cwidget_mutex;
+    }
+
+    static int suspend_count;
+    static threads::mutex suspend_count_mutex;
+
+    inline
+    int get_suspend_count()
+    {
+      threads::mutex::lock l(suspend_count_mutex);
+      return suspend_count;
+    }
+
+    inline
+    void inc_suspend_count()
+    {
+      threads::mutex::lock l(suspend_count_mutex);
+      ++suspend_count;
     }
 
     sigc::signal0<void> main_hook;
@@ -210,6 +230,11 @@ namespace cwidget
       eventq.put(ev);
     }
 
+    int write(int fd, const char *s)
+    {
+      return ::write(fd, s, strlen(s));
+    }
+
     //////////////////////////////////////////////////////////////////////
     // Event management threads
 
@@ -269,9 +294,18 @@ namespace cwidget
 	// A reference to the parent's condition variable.
 	threads::condition &c;
 
+	/** \brief The suspend count when this thread was created.
+	 *
+	 *  If this has changed, it means that curses was shut down
+	 *  and the input thread has been restarted, so we should
+	 *  abort rather than doing Bad Things such as fighting with
+	 *  the input thread for access to stdin.
+	 */
+	int my_suspend_count;
+
       public:
 	get_input_event(threads::mutex &_m, bool &_b, threads::condition &_c)
-	  : m(_m), b(_b), c(_c)
+	  : m(_m), b(_b), c(_c), my_suspend_count(get_suspend_count())
 	{
 	}
 
@@ -303,6 +337,14 @@ namespace cwidget
 	  int last_read_error = 0;
 	  while(!done)
 	    {
+	      // Abort if the world went away underneath us.
+	      //
+	      // We need to check up here since we might have just
+	      // finished invoking a key handler, which could have
+	      // suspended cwidget.
+	      if(get_suspend_count() != my_suspend_count)
+		return;
+
 	      // I assume here that init() set nodelay.
 	      do
 		{
@@ -317,8 +359,16 @@ namespace cwidget
 
 	      if(status == ERR) // No more to read.
 		{
+		  // Ignore signals caught during read() (EINTR) and
+		  // beep at the user if there's a problem decoding a
+		  // multibyte character.
 		  if(last_read_error == EINTR)
 		    read_anything = true;
+		  else if(last_read_error == EILSEQ)
+		    {
+		      read_anything = true;
+		      beep();
+		    }
 
 		  threads::mutex::lock l(m);
 		  b = true;
@@ -359,10 +409,13 @@ namespace cwidget
 	}
       };
 
-      threads::mutex input_event_mutex;
+      static threads::mutex input_event_mutex;
       // Used to block this thread until an event to read input fires.
-      bool input_event_fired;
-      threads::condition input_event_condition;
+
+      // These variables must be static so that they survive if the
+      // thread is cancelled.
+      static bool input_event_fired;
+      static threads::condition input_event_condition;
 
       static input_thread instance;
 
@@ -439,6 +492,9 @@ namespace cwidget
       }
     };
 
+    threads::condition input_thread::input_event_condition;
+    threads::mutex input_thread::input_event_mutex;
+    bool input_thread::input_event_fired = false;
     threads::mutex input_thread::instance_mutex;
     threads::thread *input_thread::instancet = NULL;
     input_thread input_thread::instance;
@@ -1094,6 +1150,8 @@ namespace cwidget
       input_thread::stop();
       signal_thread::stop();
       timeout_thread::stop();
+
+      inc_suspend_count();
 
       if(toplevel.valid())
 	toplevel->set_owner_window(NULL, 0, 0, 0, 0);
