@@ -1,3 +1,8 @@
+[0.5.5]
+
+  * Fix several include paths that were relative to the source
+    directory, not relative to cwidget.
+
 [0.5.4]
 
   * Fix the include path declared by the .pc file; it should point at
