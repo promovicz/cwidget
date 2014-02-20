@@ -22,6 +22,7 @@
 #include <cwidget/generic/util/ssprintf.h>
 
 #include <errno.h>
+#include <string.h>
 
 using cwidget::util::ssprintf;
 
