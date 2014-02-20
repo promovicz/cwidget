@@ -1,3 +1,10 @@
+[0.5.12]
+2008-06-28
+
+  * Don't insert "error decoding multibyte string" into text fragments
+    on top of interpolating question marks.  Thanks to Nelson de Oliveria
+    for pointing out that this is unhelpful.
+
 [0.5.11]
 2008-04-12
 
