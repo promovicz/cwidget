@@ -1,5 +1,6 @@
 debian/tmp/usr/include/cwidget
 debian/tmp/usr/lib/libcwidget.so
 debian/tmp/usr/lib/libcwidget.a
+debian/tmp/usr/lib/libcwidget.la
 debian/tmp/usr/lib/pkgconfig
 debian/tmp/usr/lib/cwidget
