@@ -5,14 +5,14 @@
 # it.
 
 ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
-  DEB_CXXFLAGS_MAINT_APPEND=-fno-inline -fno-strict-aliasing
+  export CXXFLAGS=-g -O0 -fno-inline -fno-strict-aliasing
 else
-  DEB_CXXFLAGS_MAINT_APPEND=-fno-strict-aliasing
+  export CXXFLAGS=-g -O2 -fno-strict-aliasing
 endif
 
 configure: configure-stamp
 configure-stamp:
-	./configure --prefix=/usr $(shell dpkg-buildflags --export=configure)
+	./configure --prefix=/usr
 
 	touch configure-stamp
 

@@ -49,7 +49,6 @@
 
 #include <limits.h>
 #include <signal.h>
-#include <unistd.h>
 
 #include <cwidget/generic/util/eassert.h>
 #include <sys/time.h>
