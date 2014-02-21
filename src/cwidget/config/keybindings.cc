@@ -86,6 +86,7 @@ namespace cwidget
 
 	keys.clear();
 	keys.push_back(key(KEY_BACKSPACE, true));
+	keys.push_back(key(KEY_DC, true));
 	keys.push_back(key(KEY_SDC, true));
 	keys.push_back(key(127, false)); // Empirically determined to
 					 // be generated for backspace

@@ -1,6 +1,6 @@
 // globals.h                -*-c++-*-
 //
-//   Copyright (C) 2007, 2011 Daniel Burrows
+//   Copyright (C) 2007 Daniel Burrows
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -24,8 +24,6 @@
 
 // i18n definitions
 
-#define CWIDGET_DOMAIN "libcwidget3"
-
 
 #ifdef HAVE_LOCALE_H
 # include <locale.h>
@@ -39,8 +37,8 @@ inline void setlocale(int, const char *)
 #if ENABLE_NLS
 # include <libintl.h>
 # include <string.h>
-# define _(Text) dgettext (CWIDGET_DOMAIN, Text)
-# define W_(Text) transcode ( _(Text) )
+# define _(Text) gettext (Text)
+# define W_(Text) transcode (gettext (Text) )
 # define N_(Text) Text
 
 /** Strips everything up to and including the first pipe character
@@ -51,7 +49,7 @@ __attribute__ ((format_arg(1)))
 #endif
 inline const char *P_(const char *Text)
 {
-  const char * const translation = dgettext(CWIDGET_DOMAIN, Text);
+  const char * const translation = gettext(Text);
   const char * const stripto = strchr(translation, '|');
 
   if(stripto == NULL)
