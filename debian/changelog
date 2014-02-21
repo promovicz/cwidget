@@ -16,6 +16,7 @@ cwidget (0.5.16-5) unstable; urgency=medium
     - vcs-field-not-canonical
     - no-upstream-changelog: upstream's NEWS is the changelog
   * In -doc package, downgrade browser from Recommends to Suggests
+  * VCS changed from 'cwidget/debian/.git' to 'cwidget/cwidget-debian.git'
 
  -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Fri, 21 Feb 2014 18:02:04 +0000
 
