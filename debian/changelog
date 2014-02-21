@@ -1,12 +1,3 @@
-cwidget (0.5.16-3.5) unstable; urgency=low
-
-  * Non-maintainer upload.
-  * Support cross-building (thanks, Eleanor Chen; closes: #721357).
-  * Use the autotools-dev dh addon to update config.guess/config.sub for
-    arm64 (closes: #725913).
-
- -- Colin Watson <cjwatson@debian.org>  Thu, 14 Nov 2013 10:02:05 +0000
-
 cwidget (0.5.16-3.4) unstable; urgency=low
 
   * Non-maintainer upload.
