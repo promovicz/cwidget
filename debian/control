@@ -2,8 +2,8 @@ Source: cwidget
 Priority: extra
 Section: libs
 Homepage: http://cwidget.alioth.debian.org
-Vcs-Git: git://anonscm.debian.org/cwidget/debian/.git
-Vcs-Browser: http://anonscm.debian.org/gitweb/?p=cwidget/debian/.git
+Vcs-Git: git://anonscm.debian.org/cwidget/cwidget.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=cwidget/cwidget.git
 Maintainer: Manuel A. Fernandez Montecelo <mafm@debian.org>
 Build-Depends: debhelper (>= 5.0.0), libsigc++-2.0-dev,
  libncursesw5-dev, gettext, g++ (>= 4:3.2.2-0), libcppunit-dev, dh-autoreconf
