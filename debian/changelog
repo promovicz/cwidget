@@ -1,3 +1,12 @@
+cwidget (0.5.17-1) UNRELEASED; urgency=medium
+
+  * New upstream release
+    - Incorporated changes of last NMUs
+    - Remove -1.9 from some of the autotools commands, run instead the
+      latest/default versions of the system (1.9 is quite old by now)
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sat, 22 Feb 2014 00:21:23 +0000
+
 cwidget (0.5.16-5) unstable; urgency=medium
 
   * Bump Standards-Version to 3.9.5 (no changes needed)
