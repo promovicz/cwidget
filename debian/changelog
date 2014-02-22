@@ -6,6 +6,7 @@ cwidget (0.5.17-1) UNRELEASED; urgency=medium
       latest/default versions of the system (1.9 is quite old by now)
   * debian/source/format: move from "1.0" to "3.0 (quilt)"
   * debian/compat: level 9
+    - Multi-Arch enabled now
 
  -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sat, 22 Feb 2014 00:21:23 +0000
 

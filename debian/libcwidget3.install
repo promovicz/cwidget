@@ -1,2 +1,2 @@
-usr/lib/libcwidget.so.*
+usr/lib/*/libcwidget.so.*
 usr/share/locale

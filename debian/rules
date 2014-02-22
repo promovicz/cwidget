@@ -1,105 +1,50 @@
 #!/usr/bin/make -f
 
+#export DH_VERBOSE=1
+
+
+DEB_CFLAGS_MAINT_APPEND  := -pipe -Wall
+DEB_LDFLAGS_MAINT_APPEND := -Wl,--as-needed
+
+DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
+
 # We need fno-strict-aliasing because otherwise g++ throws an
 # inscrutable error; I'd rather fix the root cause, but I can't find
 # it.
-
 ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
   DEB_CXXFLAGS_MAINT_APPEND=-fno-inline -fno-strict-aliasing
 else
   DEB_CXXFLAGS_MAINT_APPEND=-fno-strict-aliasing
 endif
 
-ifneq (,$(findstring nocheck,$(DEB_BUILD_OPTIONS)))
-  NOCHECK = yes
-endif
 
-ifneq ($(DEB_BUILD_GNU_TYPE),$(DEB_HOST_GNU_TYPE))
-  CROSS_CONFIGURE_OPTIONS = --build $(DEB_BUILD_GNU_TYPE) --host $(DEB_HOST_GNU_TYPE)
-  NOCHECK = yes
-endif
+%:
+	dh $@ --with autoreconf --parallel
 
-configure: configure-stamp
-configure-stamp:
-	dh_autoreconf
-	./configure --prefix=/usr $(shell dpkg-buildflags --export=configure) $(CROSS_CONFIGURE_OPTIONS)
+override_dh_auto_configure:
+	dh_auto_configure -- $(CROSS_CONFIGURE_OPTIONS)
 
-	touch configure-stamp
-
-build-arch: build-stamp-arch
-build-stamp-arch: configure-stamp
-	dh_testdir
-
-	$(MAKE)
-ifneq (yes,$(NOCHECK))
-	$(MAKE) check
-endif
-
-	touch build-stamp-arch
-
-build-indep: build-stamp-indep
-build-stamp-indep: configure-stamp
-	dh_testdir
-
-	$(MAKE) doc
-
-	touch build-stamp-indep
-
-build: build-arch build-indep
-
-
-clean:
-	dh_testdir
-	dh_testroot
-	rm -f build-stamp-indep build-stamp-arch configure-stamp
-
-	[ ! -f Makefile ] || $(MAKE) distclean
-
+override_dh_auto_clean:
 	-rm -r doc/ikiwiki/.ikiwiki
-	dh_autoreconf_clean
-	dh_clean
+	dh_auto_clean
 
+# Build indep overrides
+override_dh_auto_build-indep:
+	$(MAKE) -C doc doc
 
-install: build-arch
-	dh_testdir
-	dh_testroot
-	dh_clean -k
+override_dh_auto_test-indep:
+        # No tests needed for docs
 
-	$(MAKE) install DESTDIR=`pwd`/debian/tmp gnulocaledir=`pwd`/debian/tmp/usr/share/locale
-
-
-binary-arch: install
-	dh_testdir -a
-	dh_testroot -a
-	dh_install -a
-	dh_installdocs -a
-	dh_installexamples -plibcwidget-dev src/cwidget/testcwidget.cc
-	dh_installchangelogs -a -- NEWS
-
-	dh_strip -a --dbg-package=libcwidget3-dbg
-	dh_compress -a
-	dh_fixperms -a
-	dh_makeshlibs -a
-	dh_shlibdeps -a
-	dh_gencontrol -a
-	dh_installdeb -a
-	dh_md5sums -a
-	dh_builddeb -a
-
-binary-indep: build-indep
-	dh_testdir -i
-	dh_testroot -i
+override_dh_auto_install-indep:
+	$(MAKE) -C doc install
 	dh_install -i -Xjquery.min.js
-	dh_installdocs -i
-	dh_installchangelogs -i -- NEWS
-	dh_link -i
 
-	dh_compress -i
-	dh_fixperms -i
-	dh_shlibdeps -i
-	dh_gencontrol -i
-	dh_installdeb -i
-	dh_md5sums -i
-	dh_builddeb -i
+override_dh_installchangelogs:
+	dh_installchangelogs -- NEWS
 
-binary: binary-arch binary-indep
+override_dh_installexamples:
+	dh_installexamples -plibcwidget-dev src/cwidget/testcwidget.cc
+
+override_dh_strip:
+	dh_strip -a --dbg-package=libcwidget3-dbg
