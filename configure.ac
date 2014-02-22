@@ -1,9 +1,9 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT(cwidget, 0.5.16)
+AC_INIT(cwidget, 0.5.17)
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_SRCDIR([src/cwidget/toplevel.cc])
-AM_INIT_AUTOMAKE
 AC_CONFIG_HEADERS([config.h cwidget-config.h])
+AM_INIT_AUTOMAKE([dist-xz no-dist-gzip -Wno-portability])
 
 dnl Use C++
 AC_LANG([C++])
@@ -22,34 +22,17 @@ dnl stuff that gets disabled by --disable-library.
 ALL_LINGUAS=""
 AM_GNU_GETTEXT([external])
 
+
+dnl Find the key tools.
+AC_PROG_CXX
+AC_PROG_LIBTOOL
 dnl Try to find doxygen in the path.
 AC_MSG_CHECKING([for the Doxygen documentation generator (http://www.doxygen.org)])
-DOXYGEN=`which doxygen 2> /dev/null`
-AC_SUBST(DOXYGEN)
-
-if test x$DOXYGEN = x
-then
-  AC_MSG_RESULT([not found])
-else
-  AC_MSG_RESULT([found at $DOXYGEN])
-fi
-
+AC_PATH_PROG(DOXYGEN, doxygen)
 AM_CONDITIONAL(DOXYGEN, [test x$DOXYGEN != x])
-
-
-
 dnl Try to find doxygen in the path.
 AC_MSG_CHECKING([for the ikiwiki Web site compiler (http://ikiwiki.info)])
-IKIWIKI=`which ikiwiki 2>/dev/null`
-AC_SUBST(IKIWIKI)
-
-if test x$IKIWIKI = x
-then
-  AC_MSG_RESULT([not found])
-else
-  AC_MSG_RESULT([found at $IKIWIKI])
-fi
-
+AC_PATH_PROG(IKIWIKI, ikiwiki)
 AM_CONDITIONAL(IKIWIKI, [test x$IKIWIKI != x])
 
 RUN_TESTS=0
@@ -57,15 +40,10 @@ RUN_TESTS=0
 if test x$BUILD_LIBRARY = xyes
 then
 
-dnl Find the key tools.
-AC_PROG_CXX
-AC_PROG_LIBTOOL
 
 dnl Look for ncurses
 AC_CHECK_LIB(ncursesw, initscr, ,
 	[AC_MSG_ERROR([Can't find libncursesw -- please install libncursesw5-dev])])
-
-
 dnl We need threading.
 AC_CHECK_LIB(pthread, main,
 	HAVE_LIBPTHREAD=1

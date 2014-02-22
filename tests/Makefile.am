@@ -2,7 +2,7 @@ MAINTAINERCLEANFILES = Makefile.in
 
 if HAVE_CPPUNIT
 
-INCLUDES = -Wall @WERROR@ -I$(top_builddir) -I$(top_srcdir)/src @CPPUNIT_CFLAGS@
+AM_CPPFLAGS = -Wall @WERROR@ -I$(top_builddir) -I$(top_srcdir)/src @CPPUNIT_CFLAGS@
 LDADD = $(top_builddir)/src/cwidget/libcwidget.la @CPPUNIT_LIBS@
 
 check_PROGRAMS = test

@@ -1,5 +1,5 @@
 MAINTAINERCLEANFILES=Makefile.in
-INCLUDES = -Wall @WERROR@ -I$(top_srcdir)/src
+AM_CPPFLAGS = -Wall @WERROR@ -I$(top_srcdir)/src
 noinst_LTLIBRARIES=libwidgets.la
 
 widgetsincludedir = $(pkgincludedir)/widgets
