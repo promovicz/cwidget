@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude 0.4.11.9\n"
 "Report-Msgid-Bugs-To: dburrows@debian.org\n"
-"POT-Creation-Date: 2009-11-29 18:35-0800\n"
+"POT-Creation-Date: 2014-02-22 00:06+0000\n"
 "PO-Revision-Date: 2012-02-12 15:32+0800\n"
 "Last-Translator: Jordi Mallach <jordi@debian.org>\n"
 "Language-Team: Catalan <debian-l10n-catalan@lists.debian.org>\n"
@@ -43,31 +43,31 @@ msgstr "Cancel·la"
 msgid "Not enough resources to create thread"
 msgstr "No es disposa de suficients recursos per crear el fil"
 
-#: src/cwidget/toplevel.cc:157
+#: src/cwidget/toplevel.cc:158
 #, c-format
 msgid "Ouch!  Got SIGTERM, dying..\n"
 msgstr "Uix!  s'ha obtingut un SIGTERM, s'està morint..\n"
 
-#: src/cwidget/toplevel.cc:160
+#: src/cwidget/toplevel.cc:161
 #, c-format
 msgid "Ouch!  Got SIGSEGV, dying..\n"
 msgstr "Uix!  s'ha obtingut un SIGSEGV, s'està morint\n"
 
-#: src/cwidget/toplevel.cc:163
+#: src/cwidget/toplevel.cc:164
 #, c-format
 msgid "Ouch!  Got SIGABRT, dying..\n"
 msgstr "Uix!  s'ha obtingut un SIGABRT, s'està morint\n"
 
-#: src/cwidget/toplevel.cc:166
+#: src/cwidget/toplevel.cc:167
 #, c-format
 msgid "Ouch!  Got SIGQUIT, dying..\n"
 msgstr "Uix!  s'ha obtingut un SIGQUIT, s'està morint..\n"
 
-#: src/cwidget/toplevel.cc:954
+#: src/cwidget/toplevel.cc:957
 msgid "yes_key"
 msgstr "s"
 
-#: src/cwidget/toplevel.cc:955
+#: src/cwidget/toplevel.cc:958
 msgid "no_key"
 msgstr "n"
 

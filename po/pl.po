@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cwidget 0.5.16\n"
 "Report-Msgid-Bugs-To: dburrows@debian.org\n"
-"POT-Creation-Date: 2012-05-04 18:45-0400\n"
+"POT-Creation-Date: 2014-02-22 00:06+0000\n"
 "PO-Revision-Date: 2012-02-22 21:46+0100\n"
 "Last-Translator: Michał Kułach <michal.kulach@gmail.com>\n"
 "Language-Team: Polish <debian-l10n-polish@lists.debian.org>\n"
@@ -27,17 +27,15 @@ msgstr "Zły format parametru"
 msgid "Ok"
 msgstr "Ok"
 
-#: src/cwidget/dialogs.cc:157 src/cwidget/dialogs.cc:201
-#: src/cwidget/dialogs.cc:239
+#: src/cwidget/dialogs.cc:201 src/cwidget/dialogs.cc:239
 msgid "Yes"
 msgstr "Tak"
 
-#: src/cwidget/dialogs.cc:158 src/cwidget/dialogs.cc:202
-#: src/cwidget/dialogs.cc:240
+#: src/cwidget/dialogs.cc:202 src/cwidget/dialogs.cc:240
 msgid "No"
 msgstr "Nie"
 
-#: src/cwidget/dialogs.cc:159 src/cwidget/dialogs.cc:352
+#: src/cwidget/dialogs.cc:352
 msgid "Cancel"
 msgstr "Anuluj"
 
@@ -65,11 +63,11 @@ msgstr "Auć! Przechwycono SIGABRT, przerywanie...\n"
 msgid "Ouch!  Got SIGQUIT, dying..\n"
 msgstr "Auć! Przechwycono SIGQUIT, przerywanie...\n"
 
-#: src/cwidget/toplevel.cc:955
+#: src/cwidget/toplevel.cc:957
 msgid "yes_key"
 msgstr "t"
 
-#: src/cwidget/toplevel.cc:956
+#: src/cwidget/toplevel.cc:958
 msgid "no_key"
 msgstr "n"
 

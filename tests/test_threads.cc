@@ -87,23 +87,7 @@ public:
     try
       {
 	for(int i = 0; i<thread_count; ++i)
-	  {
-	    try
-	      {
-		writers[i] = std::auto_ptr<cw::threads::thread>(new cw::threads::thread(add_thread(thread_limit, b)));
-	      }
-	    catch(cwidget::threads::ThreadCreateException &ex)
-	      {
-		if(ex.get_errnum() == EAGAIN)
-		  {
-		    std::cerr << "Warning: ran out of thread resources after creating " << i << " out of " << thread_count << " threads." << std::endl;
-		    thread_count = i;
-		  }
-		else
-		  throw;
-	      }
-	  }
-
+	  writers[i] = std::auto_ptr<cw::threads::thread>(new cw::threads::thread(add_thread(thread_limit, b)));
 
 	int foo;
 	CPPUNIT_ASSERT(!b.try_take(foo));
@@ -217,22 +201,7 @@ public:
 	  last_thread_msg[i] = -1;
 
 	for(int i = 0; i < thread_count; ++i)
-	  {
-	    try
-	      {
-		writers[i] = std::auto_ptr<cw::threads::thread>(new cw::threads::thread(event_queue_write_thread(eq, i, thread_limit)));
-	      }
-	    catch(cwidget::threads::ThreadCreateException &ex)
-	      {
-		if(ex.get_errnum() == EAGAIN)
-		  {
-		    std::cerr << "Warning: ran out of thread resources after creating " << i << " out of " << thread_count << " threads." << std::endl;
-		    thread_count = i;
-		  }
-		else
-		  throw;
-	      }
-	  }
+	  writers[i] = std::auto_ptr<cw::threads::thread>(new cw::threads::thread(event_queue_write_thread(eq, i, thread_limit)));
 
 	for(int i = 0; i < thread_count * thread_limit; ++i)
 	  {

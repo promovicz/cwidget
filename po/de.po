@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cwidget 0.5.16\n"
 "Report-Msgid-Bugs-To: dburrows@debian.org\n"
-"POT-Creation-Date: 2012-05-04 18:45-0400\n"
+"POT-Creation-Date: 2014-02-22 00:06+0000\n"
 "PO-Revision-Date: 2009-12-08 19:05+0100\n"
 "Last-Translator: Sven Joachim <svenjoac@gmx.de>\n"
 "Language-Team: German <debian-l10n-german@lists.debian.org>\n"
@@ -27,17 +27,15 @@ msgstr "Ungültiger Format-Parameter"
 msgid "Ok"
 msgstr "OK"
 
-#: src/cwidget/dialogs.cc:157 src/cwidget/dialogs.cc:201
-#: src/cwidget/dialogs.cc:239
+#: src/cwidget/dialogs.cc:201 src/cwidget/dialogs.cc:239
 msgid "Yes"
 msgstr "Ja"
 
-#: src/cwidget/dialogs.cc:158 src/cwidget/dialogs.cc:202
-#: src/cwidget/dialogs.cc:240
+#: src/cwidget/dialogs.cc:202 src/cwidget/dialogs.cc:240
 msgid "No"
 msgstr "Nein"
 
-#: src/cwidget/dialogs.cc:159 src/cwidget/dialogs.cc:352
+#: src/cwidget/dialogs.cc:352
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -65,11 +63,11 @@ msgstr "Aua! SIGABRT erhalten, Prozess wird beendet ...\n"
 msgid "Ouch!  Got SIGQUIT, dying..\n"
 msgstr "Aua! SIGQUIT erhalten, Prozess wird beendet ...\n"
 
-#: src/cwidget/toplevel.cc:955
+#: src/cwidget/toplevel.cc:957
 msgid "yes_key"
 msgstr "j"
 
-#: src/cwidget/toplevel.cc:956
+#: src/cwidget/toplevel.cc:958
 msgid "no_key"
 msgstr "n"
 

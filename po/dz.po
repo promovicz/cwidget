@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude\n"
 "Report-Msgid-Bugs-To: dburrows@debian.org\n"
-"POT-Creation-Date: 2009-11-29 18:35-0800\n"
+"POT-Creation-Date: 2014-02-22 00:06+0000\n"
 "PO-Revision-Date: 2012-02-23 16:51+0800\n"
 "Last-Translator: Tshewang Norbu <bumthap2006@hotmail.com>\n"
 "Language-Team: Dzongkha <pgeyleg@dit.gov.bt>\n"
@@ -45,31 +45,31 @@ msgstr "ཆ་མེད།"
 msgid "Not enough resources to create thread"
 msgstr "ཐེ་རེཌི་གསར་བསྐྲུན་འམད་ནིའི་་དོན་ལུ་ ཐོན་ཁུངས་ལངམ་སྦེ་མེད།"
 
-#: src/cwidget/toplevel.cc:157
+#: src/cwidget/toplevel.cc:158
 #, c-format
 msgid "Ouch!  Got SIGTERM, dying..\n"
 msgstr "ཨའུཅི! སིག་ཊམ་ཐོབ་ཅི། ཤི་རྐྱེན་བྱུང་དོ་..\n"
 
-#: src/cwidget/toplevel.cc:160
+#: src/cwidget/toplevel.cc:161
 #, c-format
 msgid "Ouch!  Got SIGSEGV, dying..\n"
 msgstr "ཨའུཅི!སིག་སེགཝི་ཐོབ་ཅི། ཤི་རྐྱེན་བྱུང་དོ..\n"
 
-#: src/cwidget/toplevel.cc:163
+#: src/cwidget/toplevel.cc:164
 #, c-format
 msgid "Ouch!  Got SIGABRT, dying..\n"
 msgstr "ཨའུཅི! སི་བརཊི་ཐོབ་ཅི། ཤི་རྐྱེན་བྱུང་དོ..\n"
 
-#: src/cwidget/toplevel.cc:166
+#: src/cwidget/toplevel.cc:167
 #, c-format
 msgid "Ouch!  Got SIGQUIT, dying..\n"
 msgstr "ཨའུཅི! སིག་ཀེཡུཊི་ཐོབ་ཅི། ཤི་རྐྱེན་བྱུང་དོ..\n"
 
-#: src/cwidget/toplevel.cc:954
+#: src/cwidget/toplevel.cc:957
 msgid "yes_key"
 msgstr ""
 
-#: src/cwidget/toplevel.cc:955
+#: src/cwidget/toplevel.cc:958
 msgid "no_key"
 msgstr ""
 

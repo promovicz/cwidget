@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.5.16-3.3\n"
 "Report-Msgid-Bugs-To: dburrows@debian.org\n"
-"POT-Creation-Date: 2009-11-29 18:35-0800\n"
+"POT-Creation-Date: 2014-02-22 00:06+0000\n"
 "PO-Revision-Date: 2012-06-03 11:48+0900\n"
 "Last-Translator: Kenshi Muto <kmuto@debian.org>\n"
 "Language-Team: Japanese <debian-japanese@lists.debian.org>\n"
@@ -53,31 +53,31 @@ msgstr "キャンセル"
 msgid "Not enough resources to create thread"
 msgstr "スレッドを作成するのに十分なリソースがありません"
 
-#: src/cwidget/toplevel.cc:157
+#: src/cwidget/toplevel.cc:158
 #, c-format
 msgid "Ouch!  Got SIGTERM, dying..\n"
 msgstr "おっと! SIGTERM を受け付けました。終了しています..\n"
 
-#: src/cwidget/toplevel.cc:160
+#: src/cwidget/toplevel.cc:161
 #, c-format
 msgid "Ouch!  Got SIGSEGV, dying..\n"
 msgstr "おっと! SIGSERV を受け付けました。終了しています..\n"
 
-#: src/cwidget/toplevel.cc:163
+#: src/cwidget/toplevel.cc:164
 #, c-format
 msgid "Ouch!  Got SIGABRT, dying..\n"
 msgstr "おっと! SIGABRT を受け付けました。終了しています..\n"
 
-#: src/cwidget/toplevel.cc:166
+#: src/cwidget/toplevel.cc:167
 #, c-format
 msgid "Ouch!  Got SIGQUIT, dying..\n"
 msgstr "おっと! SIGQUIT を受け付けました。終了しています..\n"
 
-#: src/cwidget/toplevel.cc:954
+#: src/cwidget/toplevel.cc:957
 msgid "yes_key"
 msgstr "y"
 
-#: src/cwidget/toplevel.cc:955
+#: src/cwidget/toplevel.cc:958
 msgid "no_key"
 msgstr "n"
 

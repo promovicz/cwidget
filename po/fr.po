@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cwidget 0.5.16\n"
 "Report-Msgid-Bugs-To: dburrows@debian.org\n"
-"POT-Creation-Date: 2012-05-04 18:45-0400\n"
+"POT-Creation-Date: 2014-02-22 00:06+0000\n"
 "PO-Revision-Date: 2012-01-05 13:44+0100\n"
 "Last-Translator: Julien Patriarca <patriarcaj@gmail.com>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
@@ -25,17 +25,15 @@ msgstr "Paramètre mal formé"
 msgid "Ok"
 msgstr "Continuer"
 
-#: src/cwidget/dialogs.cc:157 src/cwidget/dialogs.cc:201
-#: src/cwidget/dialogs.cc:239
+#: src/cwidget/dialogs.cc:201 src/cwidget/dialogs.cc:239
 msgid "Yes"
 msgstr "Oui"
 
-#: src/cwidget/dialogs.cc:158 src/cwidget/dialogs.cc:202
-#: src/cwidget/dialogs.cc:240
+#: src/cwidget/dialogs.cc:202 src/cwidget/dialogs.cc:240
 msgid "No"
 msgstr "Non"
 
-#: src/cwidget/dialogs.cc:159 src/cwidget/dialogs.cc:352
+#: src/cwidget/dialogs.cc:352
 msgid "Cancel"
 msgstr "Abandonner"
 
@@ -63,11 +61,11 @@ msgstr "SIGABRT reçu, interruption…\n"
 msgid "Ouch!  Got SIGQUIT, dying..\n"
 msgstr "SIGQUIT reçu, interruption…\n"
 
-#: src/cwidget/toplevel.cc:955
+#: src/cwidget/toplevel.cc:957
 msgid "yes_key"
 msgstr "o"
 
-#: src/cwidget/toplevel.cc:956
+#: src/cwidget/toplevel.cc:958
 msgid "no_key"
 msgstr "n"
 

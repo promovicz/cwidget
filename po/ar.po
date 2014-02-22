@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude_po\n"
 "Report-Msgid-Bugs-To: dburrows@debian.org\n"
-"POT-Creation-Date: 2009-11-29 18:35-0800\n"
+"POT-Creation-Date: 2014-02-22 00:06+0000\n"
 "PO-Revision-Date: 2012-02-23 16:50+0800\n"
 "Last-Translator: Ossama M. Khayat <okhayat@yahoo.com>\n"
 "Language-Team: Arabic <support@arabeyes.org>\n"
@@ -44,31 +44,31 @@ msgstr "إلغاء"
 msgid "Not enough resources to create thread"
 msgstr "ليست هناك موارد كافية لإنشاء عملية thread"
 
-#: src/cwidget/toplevel.cc:157
+#: src/cwidget/toplevel.cc:158
 #, c-format
 msgid "Ouch!  Got SIGTERM, dying..\n"
 msgstr "أخ!  قابلت إشارة إنهاء SIGTERM، جاري التنفيذ..\n"
 
-#: src/cwidget/toplevel.cc:160
+#: src/cwidget/toplevel.cc:161
 #, c-format
 msgid "Ouch!  Got SIGSEGV, dying..\n"
 msgstr "أخ!  قابلت إشارة SIGSEGV، جاري التنفيذ..\n"
 
-#: src/cwidget/toplevel.cc:163
+#: src/cwidget/toplevel.cc:164
 #, c-format
 msgid "Ouch!  Got SIGABRT, dying..\n"
 msgstr "آخ!  قابلت إشارة إجهاض SIGABRT، جاري التنفيذ..\n"
 
-#: src/cwidget/toplevel.cc:166
+#: src/cwidget/toplevel.cc:167
 #, c-format
 msgid "Ouch!  Got SIGQUIT, dying..\n"
 msgstr "آخ!  قابلت إشارة خروج SIGQUIT، جاري التنفيذ..\n"
 
-#: src/cwidget/toplevel.cc:954
+#: src/cwidget/toplevel.cc:957
 msgid "yes_key"
 msgstr "y"
 
-#: src/cwidget/toplevel.cc:955
+#: src/cwidget/toplevel.cc:958
 msgid "no_key"
 msgstr "n"
 

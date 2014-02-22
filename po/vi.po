@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude 0.4.x\n"
 "Report-Msgid-Bugs-To: dburrows@debian.org\n"
-"POT-Creation-Date: 2009-11-29 18:35-0800\n"
+"POT-Creation-Date: 2014-02-22 00:06+0000\n"
 "PO-Revision-Date: 2008-04-22 19:08+0930\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
@@ -43,31 +43,31 @@ msgstr "Thôi"
 msgid "Not enough resources to create thread"
 msgstr "Không đủ tài nguyên để tạo mạch"
 
-#: src/cwidget/toplevel.cc:157
+#: src/cwidget/toplevel.cc:158
 #, c-format
 msgid "Ouch!  Got SIGTERM, dying..\n"
 msgstr "Ôi ! Nhận được tín hiệu SIGTERM nên chết...\n"
 
-#: src/cwidget/toplevel.cc:160
+#: src/cwidget/toplevel.cc:161
 #, c-format
 msgid "Ouch!  Got SIGSEGV, dying..\n"
 msgstr "Ôi ! Nhận được tín hiệu SIGSEGV nên chết...\n"
 
-#: src/cwidget/toplevel.cc:163
+#: src/cwidget/toplevel.cc:164
 #, c-format
 msgid "Ouch!  Got SIGABRT, dying..\n"
 msgstr "Ôi ! Nhận được tín hiệu SIGABRT nên chết...\n"
 
-#: src/cwidget/toplevel.cc:166
+#: src/cwidget/toplevel.cc:167
 #, c-format
 msgid "Ouch!  Got SIGQUIT, dying..\n"
 msgstr "Ôi ! Nhận được tín hiệu SIGQUIT nên chết...\n"
 
-#: src/cwidget/toplevel.cc:954
+#: src/cwidget/toplevel.cc:957
 msgid "yes_key"
 msgstr "c"
 
-#: src/cwidget/toplevel.cc:955
+#: src/cwidget/toplevel.cc:958
 msgid "no_key"
 msgstr "k"
 
