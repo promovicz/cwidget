@@ -1,2 +1,2 @@
-debian/tmp/usr/lib/libcwidget.so.*
-debian/tmp/usr/share/locale
+usr/lib/libcwidget.so.*
+usr/share/locale
