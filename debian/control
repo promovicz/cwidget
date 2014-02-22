@@ -5,15 +5,20 @@ Homepage: http://cwidget.alioth.debian.org
 Vcs-Git: git://anonscm.debian.org/cwidget/cwidget.git
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=cwidget/cwidget.git
 Maintainer: Manuel A. Fernandez Montecelo <mafm@debian.org>
-Build-Depends: debhelper (>= 5.0.0), libsigc++-2.0-dev,
- libncursesw5-dev, gettext, g++ (>= 4:3.2.2-0), libcppunit-dev, dh-autoreconf
+Build-Depends: debhelper (>= 9~),
+               dh-autoreconf,
+               gettext,
+               libcppunit-dev,
+               libncursesw5-dev,
+               libsigc++-2.0-dev
 Build-Depends-Indep: doxygen, ikiwiki (>= 1.34), libhtml-scrubber-perl, perlmagick
 Standards-Version: 3.9.5
 
 Package: libcwidget3
 Architecture: any
 Priority: important
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${misc:Depends},
+         ${shlibs:Depends}
 Suggests: libcwidget-dev
 Description: high-level terminal interface library for C++ (runtime files)
  libcwidget is a modern user interface library modeled on GTK+ and Qt,
@@ -26,7 +31,8 @@ Description: high-level terminal interface library for C++ (runtime files)
 Package: libcwidget3-dbg
 Architecture: any
 Section: debug
-Depends: libcwidget3 (= ${binary:Version}), ${misc:Depends}
+Depends: ${misc:Depends},
+         libcwidget3 (= ${binary:Version})
 Suggests: libcwidget-dev
 Description: high-level terminal interface library for C++ (debugging files)
  libcwidget is a modern user interface library modeled on GTK+ and Qt,
@@ -40,7 +46,11 @@ Description: high-level terminal interface library for C++ (debugging files)
 Package: libcwidget-dev
 Architecture: any
 Section: libdevel
-Depends: libcwidget3 (= ${binary:Version}), libsigc++-2.0-dev, libncursesw5-dev, pkg-config, ${misc:Depends}
+Depends: ${misc:Depends},
+         libcwidget3 (= ${binary:Version}),
+         libsigc++-2.0-dev,
+         libncursesw5-dev,
+         pkg-config
 Suggests: libcwidget-doc
 Description: high-level terminal interface library for C++ (development files)
  libcwidget is a modern user interface library modeled on GTK+ and Qt,
@@ -58,8 +68,10 @@ Description: high-level terminal interface library for C++ (development files)
 Package: libcwidget-doc
 Architecture: all
 Section: doc
-Depends: ${misc:Depends}, libjs-jquery
-Suggests: iceweasel | www-browser, libcwidget-dev
+Depends: ${misc:Depends},
+         libjs-jquery
+Suggests: libcwidget-dev,
+          iceweasel | www-browser
 Description: high-level terminal interface library for C++ (documentation)
  libcwidget is a modern user interface library modeled on GTK+ and Qt,
  but using curses as its display layer and with widgets that are
