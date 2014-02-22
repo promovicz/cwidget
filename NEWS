@@ -1,3 +1,42 @@
+[2014-02-21] Version 0.5.17
+
+  First upstream release with new maintainer:
+    Manuel A. Fernandez Montecelo <mafm@debian.org>
+
+
+  * Remove -1.9 from some of the autotools commands, run instead the
+    latest/default versions of the system (1.9 is quite old by now)
+
+  * Make .xz the default for 'make dist'
+
+  * Rename variable pkglibdir_HEADERS to config_HEADERS (inspired in bug
+    #732539, thanks Colin Watson <cjwatson@ubuntu.com>)
+
+    To avoid strictness errors with automake starting in 1.12 or so:
+    Makefile.am:30: error: 'pkglibdir' is not a legitimate directory for 'HEADERS'
+
+  * Renaming 'INCLUDES' to 'AM_CPPFLAGS' in .am files
+
+    Due to this:
+    warning: 'INCLUDES' is the old name for 'AM_CPPFLAGS' (or '*_CPPFLAGS')
+
+  * Do not distribute a changelog for m4 dir
+
+  * Add .po files from NMUs 0.5.16-3.3 and 0.5.16-3.4 (thanks David Prévot
+    <taffit@debian.org>)
+
+  * Fix for "cursor displayed in wrong place for wide-char prompt" (bug #316939,
+    thanks Daniel Hartwig <mandyke@gmail.com>)
+
+  * Fix for problem when Delete key (KEY_DC) was considered equivalent to
+    Backspace and others (bug #493320, thanks Samuel Fogh <gaffa@users.sf.net>)
+
+  * Daniel Burrows: Update the gettext infrastructure via "gettextize -f".
+
+  * Daniel Burrows: Bind a text domain and use it to get translations (instead
+    of the current system domain).
+
+
 [0.5.16]
 2009-11-29
 

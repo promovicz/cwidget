@@ -27,7 +27,8 @@ pkgconfigdir = $(libdir)/pkgconfig
 
 pkgconfig_DATA = cwidget.pc
 
-pkglib_HEADERS = cwidget-config.h
+cwidgetconfigdir = $(pkglibdir)
+cwidgetconfig_HEADERS = cwidget-config.h
 
 doc ikiwiki doxygen: Doxyfile
 	$(MAKE) -C doc $@
@@ -36,4 +37,4 @@ doc ikiwiki doxygen: Doxyfile
 
 ACLOCAL_AMFLAGS = -I m4
 
-EXTRA_DIST = config.rpath m4/ChangeLog
+EXTRA_DIST = config.rpath

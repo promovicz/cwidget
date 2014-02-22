@@ -1,20 +1,24 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Daniel Burrows <dburrows@debian.org>
+# translation of aptitude_po_eu.po to Basque
+# translation of aptitude to Euskara
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
+# Inaki Larranaga Murgotio <dooteo@euskalgnu.org>, 2005.
+# Piarres Beobide <pi@beobide.net>, 2006, 2007, 2008.
+# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: cwidget 0.5.16\n"
+"Project-Id-Version: aptitude_po_eu\n"
 "Report-Msgid-Bugs-To: dburrows@debian.org\n"
-"POT-Creation-Date: 2009-11-29 18:35-0800\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"POT-Creation-Date: 2014-02-22 00:06+0000\n"
+"PO-Revision-Date: 2012-02-12 16:16+0800\n"
+"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
+"Language-Team: Basque <itzulpena@euskalgnu.org>\n"
+"Language: eu\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: src/cwidget/config/column_definition.cc:273
 msgid "Bad format parameter"
@@ -23,51 +27,51 @@ msgstr ""
 #: src/cwidget/dialogs.cc:115 src/cwidget/dialogs.cc:128
 #: src/cwidget/dialogs.cc:311 src/cwidget/dialogs.cc:351
 msgid "Ok"
-msgstr ""
+msgstr "Ados"
 
 #: src/cwidget/dialogs.cc:201 src/cwidget/dialogs.cc:239
 msgid "Yes"
-msgstr ""
+msgstr "Bai"
 
 #: src/cwidget/dialogs.cc:202 src/cwidget/dialogs.cc:240
 msgid "No"
-msgstr ""
+msgstr "Ez"
 
 #: src/cwidget/dialogs.cc:352
 msgid "Cancel"
-msgstr ""
+msgstr "Utzi"
 
 #: src/cwidget/generic/threads/threads.cc:33
 msgid "Not enough resources to create thread"
 msgstr ""
 
-#: src/cwidget/toplevel.cc:157
+#: src/cwidget/toplevel.cc:158
 #, c-format
 msgid "Ouch!  Got SIGTERM, dying..\n"
 msgstr ""
 
-#: src/cwidget/toplevel.cc:160
+#: src/cwidget/toplevel.cc:161
 #, c-format
 msgid "Ouch!  Got SIGSEGV, dying..\n"
 msgstr ""
 
-#: src/cwidget/toplevel.cc:163
+#: src/cwidget/toplevel.cc:164
 #, c-format
 msgid "Ouch!  Got SIGABRT, dying..\n"
 msgstr ""
 
-#: src/cwidget/toplevel.cc:166
+#: src/cwidget/toplevel.cc:167
 #, c-format
 msgid "Ouch!  Got SIGQUIT, dying..\n"
 msgstr ""
 
-#: src/cwidget/toplevel.cc:954
+#: src/cwidget/toplevel.cc:957
 msgid "yes_key"
-msgstr ""
+msgstr "b"
 
-#: src/cwidget/toplevel.cc:955
+#: src/cwidget/toplevel.cc:958
 msgid "no_key"
-msgstr ""
+msgstr "e"
 
 #: src/cwidget/widgets/pager.cc:476
 #, c-format

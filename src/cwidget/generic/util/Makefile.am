@@ -1,7 +1,7 @@
 MAINTAINERCLEANFILES = Makefile.in
 
 localedir = $(datadir)/locale
-INCLUDES = -Wall @WERROR@ -I$(top_builddir) -I$(top_srcdir)/src
+AM_CPPFLAGS = -Wall @WERROR@ -I$(top_builddir) -I$(top_srcdir)/src
 DEFS = -DLOCALEDIR=\"$(localedir)\" @DEFS@
 
 noinst_LTLIBRARIES = libgeneric-util.la
