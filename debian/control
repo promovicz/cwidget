@@ -16,6 +16,7 @@ Build-Depends-Indep: doxygen,
                      libhtml-scrubber-perl,
                      perlmagick
 Standards-Version: 3.9.5
+XS-Testsuite: autopkgtest
 
 Package: libcwidget3
 Priority: important
