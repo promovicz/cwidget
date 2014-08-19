@@ -2,8 +2,8 @@
 
 # Author: Manuel A. Fernandez Montecelo <mafm@debian.org>
 #
-# autopkgtest check: Build and run a program against libcnoid, to
-# verify that the headers and pkg-config file are installed correctly
+# autopkgtest check: Build and run a program against the library, to verify that
+# the headers and pkg-config file are installed correctly
 
 
 set -e
