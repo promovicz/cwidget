@@ -1,3 +1,18 @@
+cwidget (0.5.17-2) unstable; urgency=medium
+
+  [ Jérémy Bobbio ]
+  * Add a patch to have Doxygen not write timestamps in the generated
+    documentation to allow package builds to be reproducible.  (Closes:
+    #762666)
+
+  [ Manuel A. Fernandez Montecelo ]
+  * Bump Standards-Version to 3.9.6 (no changes needed)
+  * Change priority of source package to 'optional' (from 'extra'), and
+    remove the override of priority 'important' for the binary package
+    libcwidget3
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sun, 28 Sep 2014 16:03:09 +0100
+
 cwidget (0.5.17-1) unstable; urgency=medium
 
   * New upstream release
