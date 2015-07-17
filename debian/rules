@@ -9,16 +9,6 @@ DEB_LDFLAGS_MAINT_APPEND := -Wl,--as-needed
 DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 
 
-# We need fno-strict-aliasing because otherwise g++ throws an
-# inscrutable error; I'd rather fix the root cause, but I can't find
-# it.
-ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
-  DEB_CXXFLAGS_MAINT_APPEND=-fno-inline -fno-strict-aliasing
-else
-  DEB_CXXFLAGS_MAINT_APPEND=-fno-strict-aliasing
-endif
-
-
 %:
 	dh $@ --with autoreconf --parallel
 

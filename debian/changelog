@@ -2,6 +2,10 @@ cwidget (0.5.17-3) UNRELEASED; urgency=medium
 
   * Quell lintian warning xs-testsuite-header-in-debian-control by
     removing XS- prefix in debian/control
+  * Remove ancient compiler options in debian/rules related with
+    fno-strict-aliasing that were trying to address an problem with old
+    versions of the copiler, but that were actually not enabled since long
+    ago
 
  -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Fri, 17 Jul 2015 16:00:28 +0100
 
