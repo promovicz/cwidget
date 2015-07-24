@@ -1,8 +1,16 @@
 cwidget (0.5.17-3) UNRELEASED; urgency=medium
 
+  * Changes to build with GCC-5 and in C++11 mode (Closes: #792681).
+    Thanks Matthias Klose.  Prompted by:
+    - transition to GCC-5 as default compiler in Debian unstable;
+    - failure to compile cwidget without -std=c++11 with
+      this new version;
+    - there is a change in the ABI of libstdc++ w.r.t. GCC < 5, in
+      std::string, std::list and other parts (sigc++-2.0 is a dependency of
+      cwidget and uses std::list in the API)
   * Quell lintian warning xs-testsuite-header-in-debian-control by
     removing XS- prefix in debian/control
-  * Revamp options passed to the compiler, including some obsolete
+  * Revamp options passed to the compiler, among others some obsolete
     compiler flags that tried to address a problem with old versions of
     the compiler, but that were actually not enabled since long ago
   * Update Build-Depends-Indep on perlmagick to libimage-magick-perl
