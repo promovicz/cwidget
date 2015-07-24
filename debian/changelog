@@ -5,6 +5,8 @@ cwidget (0.5.17-3) UNRELEASED; urgency=medium
   * Revamp options passed to the compiler, including some obsolete
     compiler flags that tried to address a problem with old versions of
     the compiler, but that were actually not enabled since long ago
+  * Update Build-Depends-Indep on perlmagick to libimage-magick-perl
+    (Closes: #789224).  Thanks Martin Michlmayr.
 
  -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Fri, 17 Jul 2015 16:00:28 +0100
 

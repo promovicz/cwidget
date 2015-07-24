@@ -14,7 +14,7 @@ Build-Depends: debhelper (>= 9~),
 Build-Depends-Indep: doxygen,
                      ikiwiki (>= 1.34),
                      libhtml-scrubber-perl,
-                     perlmagick
+                     libimage-magick-perl
 Standards-Version: 3.9.6
 Testsuite: autopkgtest
 
