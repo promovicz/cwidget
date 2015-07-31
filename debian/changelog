@@ -1,4 +1,4 @@
-cwidget (0.5.17-3) UNRELEASED; urgency=medium
+cwidget (0.5.17-3) unstable; urgency=low
 
   * Changes to build with GCC-5 and in C++11 mode (Closes: #792681).
     Thanks Matthias Klose.  Prompted by:
@@ -16,7 +16,7 @@ cwidget (0.5.17-3) UNRELEASED; urgency=medium
   * Update Build-Depends-Indep on perlmagick to libimage-magick-perl
     (Closes: #789224).  Thanks Martin Michlmayr.
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Fri, 17 Jul 2015 16:00:28 +0100
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Fri, 31 Jul 2015 01:10:21 +0100
 
 cwidget (0.5.17-2) unstable; urgency=medium
 
