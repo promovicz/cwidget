@@ -13,6 +13,8 @@ cwidget (0.5.17-3) unstable; urgency=low
   * Revamp options passed to the compiler, among others some obsolete
     compiler flags that tried to address a problem with old versions of
     the compiler, but that were actually not enabled since long ago
+  * Do not install jquery.js and link it from documentation directories in
+    another place where it cropped up
   * Update Build-Depends-Indep on perlmagick to libimage-magick-perl
     (Closes: #789224).  Thanks Martin Michlmayr.
 

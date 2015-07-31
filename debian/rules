@@ -26,7 +26,7 @@ override_dh_auto_test-indep:
 
 override_dh_auto_install-indep:
 	$(MAKE) -C doc install
-	dh_install -i -Xjquery.min.js
+	dh_install -i -Xjquery.min.js -Xjquery.js
 
 override_dh_installchangelogs:
 	dh_installchangelogs -- NEWS
