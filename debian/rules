@@ -35,4 +35,4 @@ override_dh_installexamples:
 	dh_installexamples -plibcwidget-dev src/cwidget/testcwidget.cc
 
 override_dh_strip:
-	dh_strip -a --dbg-package=libcwidget3-dbg
+	dh_strip -a --dbg-package=libcwidget3v5-dbg
