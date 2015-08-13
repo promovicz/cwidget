@@ -1,3 +1,11 @@
+cwidget (0.5.17-4) UNRELEASED; urgency=medium
+
+  * Acknowledge NMU.
+  * Fix failure with autopkgtest when using g++ 5 (Closes: #795177).
+    Thanks Martin Pitt.
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Thu, 13 Aug 2015 14:02:05 +0100
+
 cwidget (0.5.17-3.1) unstable; urgency=medium
 
   * Non-maintainer upload.

@@ -18,7 +18,7 @@ BINFILE=testcwidget
 
 gunzip -c /usr/share/doc/libcwidget-dev/examples/$SRCFILEGZ > $SRCFILE
 
-g++ -o $BINFILE $SRCFILE `pkg-config --cflags --libs cwidget` -I /usr/include/cwidget
+g++ -o $BINFILE $SRCFILE -std=c++11 `pkg-config --cflags --libs cwidget` -I /usr/include/cwidget
 echo "build: OK"
 
 [ -x $BINFILE ]
