@@ -1,3 +1,11 @@
+cwidget (0.5.17-4.1) UNRELEASED; urgency=medium
+
+  * Non-maintainer upload.
+  * Drop versioned g++ dependency, because the libstdc++6 transition is
+    complete and the dependency breaks cross compilation. (Closes: #-1)
+
+ -- Helmut Grohne <helmut@subdivi.de>  Tue, 09 May 2017 19:51:07 +0200
+
 cwidget (0.5.17-4) unstable; urgency=medium
 
   * Acknowledge NMU.
