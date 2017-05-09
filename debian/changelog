@@ -8,6 +8,7 @@ cwidget (0.5.17-5) UNRELEASED; urgency=medium
     - d/rules: not passing --parallel and --with autoreconf, they are the
       default now
   * Migrate to -dbgsym
+  * d/tests/compile-example-testcwidget: Remove '-std=c++11' compiler flag
 
   [ Helmut Grohne ]
   * Drop versioned g++ dependency, because the libstdc++6 transition is
