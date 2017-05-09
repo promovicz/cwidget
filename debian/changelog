@@ -3,6 +3,10 @@ cwidget (0.5.17-5) UNRELEASED; urgency=medium
   [ Manuel A. Fernandez Montecelo ]
   * d/rules: do not hardcode '-std=c++11', there are new standards now and
     we don't need to keep in sync this library and aptitude
+  * d/compat: level 10
+    - d/control: Setting Build-Depends accordingly
+    - d/rules: not passing --parallel and --with autoreconf, they are the
+      default now
 
   [ Helmut Grohne ]
   * Drop versioned g++ dependency, because the libstdc++6 transition is

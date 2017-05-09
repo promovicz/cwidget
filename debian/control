@@ -5,7 +5,7 @@ Homepage: http://cwidget.alioth.debian.org
 Vcs-Git: git://anonscm.debian.org/cwidget/cwidget.git
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=cwidget/cwidget.git
 Maintainer: Manuel A. Fernandez Montecelo <mafm@debian.org>
-Build-Depends: debhelper (>= 9~),
+Build-Depends: debhelper (>= 10~),
                dh-autoreconf,
                gettext,
                libcppunit-dev (>= 1.13.2-2.1),
