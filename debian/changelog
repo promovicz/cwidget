@@ -9,6 +9,7 @@ cwidget (0.5.17-5) UNRELEASED; urgency=medium
       default now
   * Migrate to -dbgsym
   * d/tests/compile-example-testcwidget: Remove '-std=c++11' compiler flag
+  * Bump Standards-Version to 3.9.8 (no changes needed)
 
   [ Helmut Grohne ]
   * Drop versioned g++ dependency, because the libstdc++6 transition is
