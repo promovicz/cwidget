@@ -1,4 +1,4 @@
-cwidget (0.5.17-5) UNRELEASED; urgency=medium
+cwidget (0.5.17-5) experimental; urgency=medium
 
   [ Manuel A. Fernandez Montecelo ]
   * d/rules: do not hardcode '-std=c++11', there are new standards now and
@@ -17,7 +17,7 @@ cwidget (0.5.17-5) UNRELEASED; urgency=medium
     complete and the dependency breaks cross compilation.
     (Closes: #862200)
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Tue, 09 May 2017 19:51:07 +0200
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Wed, 10 May 2017 00:10:27 +0200
 
 cwidget (0.5.17-4) unstable; urgency=medium
 
