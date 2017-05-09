@@ -1,9 +1,9 @@
 Source: cwidget
 Priority: optional
 Section: libs
-Homepage: http://cwidget.alioth.debian.org
-Vcs-Git: git://anonscm.debian.org/cwidget/cwidget.git
-Vcs-Browser: http://anonscm.debian.org/gitweb/?p=cwidget/cwidget.git
+Homepage: https://cwidget.alioth.debian.org
+Vcs-Git: https://anonscm.debian.org/git/cwidget/cwidget.git
+Vcs-Browser: https://anonscm.debian.org/git/cwidget/cwidget.git
 Maintainer: Manuel A. Fernandez Montecelo <mafm@debian.org>
 Build-Depends: debhelper (>= 10~),
                dh-autoreconf,
