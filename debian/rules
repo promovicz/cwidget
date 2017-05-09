@@ -8,7 +8,7 @@ export DEB_LDFLAGS_MAINT_APPEND  := -Wl,--as-needed
 
 
 %:
-	dh $@
+	dh $@ --dbgsym-migration='libcwidget3v5-dbg (<< 0.5.17-4~)'
 
 override_dh_auto_configure:
 	dh_auto_configure -- --disable-werror $(CROSS_CONFIGURE_OPTIONS)
@@ -33,6 +33,3 @@ override_dh_installchangelogs:
 
 override_dh_installexamples:
 	dh_installexamples -plibcwidget-dev src/cwidget/testcwidget.cc
-
-override_dh_strip:
-	dh_strip -a --dbg-package=libcwidget3v5-dbg

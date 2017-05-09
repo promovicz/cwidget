@@ -35,25 +35,6 @@ Description: high-level terminal interface library for C++ (runtime files)
  This package contains the files that are required to run programs
  compiled against libcwidget.
 
-Package: libcwidget3v5-dbg
-Section: debug
-Priority: extra
-Architecture: any
-Multi-Arch: same
-Depends: ${misc:Depends},
-         libcwidget3v5 (= ${binary:Version})
-Suggests: libcwidget-dev
-Conflicts: libcwidget3-dbg
-Replaces: libcwidget3-dbg
-Description: high-level terminal interface library for C++ (debugging files)
- libcwidget is a modern user interface library modeled on GTK+ and Qt,
- but using curses as its display layer and with widgets that are
- tailored to a terminal environment.
- .
- This package contains debugging symbols for libcwidget-dbg.  It is
- only needed if you want to generate useful backtraces for programs
- using cwidget.
-
 Package: libcwidget-dev
 Section: libdevel
 Architecture: any
