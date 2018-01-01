@@ -284,7 +284,7 @@ cwidget (0.5.11-1) unstable; urgency=low
 cwidget (0.5.10-1) unstable; urgency=low
 
   * New upstream version.
-  
+
     - Treat KEY_DC, KEY_BACKSPACE, and character 127 as equivalent in
       key_matches().  (Closes: #452651)
 
@@ -327,15 +327,15 @@ cwidget (0.5.8-1) experimental; urgency=low
 cwidget (0.5.7-1) experimental; urgency=low
 
   * New Upstream Version.
-  
+
   * ABI change again; create libcwidget2* packages.
-  
+
   * Fix several threading errors in handling input, particularly when
     cwidget was temporarily suspended and then resumed.
-  
+
     (Closes: #461342) and possibly more, but I'll have to ask the
     reporters.
-  
+
   * If a byte sequence read from stdin can't be decoded in the current
     locale, beep at the user instead of throwing a fatal
     exception. (Closes: #460722)
@@ -346,7 +346,7 @@ cwidget (0.5.6.1-3) unstable; urgency=low
 
   * Apply patch from Michael Daenzer to support building with
     dpkg-buildpackage -j (Closes: #456678).
-  
+
   * ikiwiki now depends only on what the core engine needs, and so some of
     the plugins that cwidget users are no longer available in a build
     environment without explicitly installing them.
@@ -365,12 +365,12 @@ cwidget (0.5.6.1-2) unstable; urgency=low
 cwidget (0.5.6.1-1) unstable; urgency=low
 
   * New upstream version.
-  
+
   * Rename libcwidget0 and libcwidget0-dbg to libcwidget1 and
     libcwidget1-dbg.
-  
+
   * Declare libcwidget-doc to be in section doc, to make lintian happy.
-  
+
   * No longer conflict/provide/replace libcwidget-dbg; those relationships
     were added because libcwidget0-dbg fully replaced libcwidget-dbg, but
     libcwidget1-dbg is not related to libcwidget-dbg.
@@ -388,10 +388,10 @@ cwidget (0.5.6-1) unstable; urgency=low
 
   * Add a missing #include <stdarg.h>; fixes building on stable and on
     some other platforms. (Closes: #452979)
-  
+
   * Add a build dependency on cppunit so 'make check' does something
     useful.
-  
+
   * Add a build dependency on ikiwiki so we can build all the
     documentation.
 
@@ -406,7 +406,7 @@ cwidget (0.5.5-4) unstable; urgency=low
 cwidget (0.5.5-3) unstable; urgency=low
 
   * Actually fix Makefile.in. (Closes: #451400)
-  
+
   * Add Homepage and VCS-* fields to the control file.
 
  -- Daniel Burrows <dburrows@debian.org>  Sat, 24 Nov 2007 08:21:57 -0800
@@ -415,7 +415,7 @@ cwidget (0.5.5-2) unstable; urgency=low
 
   * Do a quick fix for a Makefile bug (a better fix is already present in
     the upstream repository). (Closes: #451400)
-  
+
   * Rename the debug package from libcwidget-dbg to libcwidget0-dbg, since
     obviously once the soname changes we'll need a separate debug package.
 
