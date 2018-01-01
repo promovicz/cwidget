@@ -1,4 +1,4 @@
-cwidget (0.5.17-7) UNRELEASED; urgency=medium
+cwidget (0.5.17-7) unstable; urgency=medium
 
   * Bump debhelper compatibility level to 11
     - d/compat: level 11
@@ -13,7 +13,7 @@ cwidget (0.5.17-7) UNRELEASED; urgency=medium
     - lintian warning: unnecessary-testsuite-autopkgtest-header
   * Convert debian/copyright to machine-readable DEP5 format
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Mon, 01 Jan 2018 17:49:14 +0100
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Mon, 01 Jan 2018 22:33:31 +0100
 
 cwidget (0.5.17-6) unstable; urgency=medium
 
