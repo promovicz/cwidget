@@ -8,6 +8,7 @@ cwidget (0.5.17-7) UNRELEASED; urgency=medium
   * Bump Standards-Version to 4.1.3 (no changes needed)
   * Remove "Testsuite: autopkgtest" from d/control, unnecessary
     - lintian warning: unnecessary-testsuite-autopkgtest-header
+  * Convert debian/copyright to machine-readable DEP5 format
 
  -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Mon, 01 Jan 2018 17:49:14 +0100
 
