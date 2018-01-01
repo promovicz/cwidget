@@ -5,6 +5,8 @@ cwidget (0.5.17-7) UNRELEASED; urgency=medium
     - d/control: Setting Build-Depends of debhelper accordingly, and
       remove explicit dependency on dh-autoreconf (included by debhelper
       already since level 10)
+    - API documentation moved under /usr/share/doc/libcwidget-dev as
+      recommended by policy 12.3
   * Bump Standards-Version to 4.1.3 (no changes needed)
   * Set "Rules-Requires-Root: no" in d/control
   * Remove "Testsuite: autopkgtest" from d/control, unnecessary
