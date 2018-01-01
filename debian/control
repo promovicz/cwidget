@@ -15,7 +15,7 @@ Build-Depends-Indep: doxygen,
                      libhtml-scrubber-perl,
                      libimage-magick-perl
 Standards-Version: 4.1.3
-Testsuite: autopkgtest
+
 
 Package: libcwidget3v5
 Architecture: any
