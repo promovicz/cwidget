@@ -1,3 +1,9 @@
+cwidget (0.5.17-8) UNRELEASED; urgency=medium
+
+  * Update Vcs-* fields for "salsa" hosting
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Thu, 26 Apr 2018 01:15:58 +0200
+
 cwidget (0.5.17-7) unstable; urgency=medium
 
   * Bump debhelper compatibility level to 11
