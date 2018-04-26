@@ -1,3 +1,9 @@
+cwidget (0.5.17-10) unstable; urgency=medium
+
+  * Release to unstable for ncurses transition to libncursesw6
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Fri, 27 Apr 2018 00:30:10 +0200
+
 cwidget (0.5.17-9) experimental; urgency=medium
 
   * Changes from Sven Joachim discussed in #891161 (thanks!) to deal with
