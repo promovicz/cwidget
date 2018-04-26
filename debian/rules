@@ -33,3 +33,6 @@ override_dh_installchangelogs:
 
 override_dh_installexamples:
 	dh_installexamples -plibcwidget-dev src/cwidget/testcwidget.cc
+
+override_dh_makeshlibs:
+	dh_makeshlibs -V "libcwidget3v5 (>= 0.5.17-8)"

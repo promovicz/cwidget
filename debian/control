@@ -27,6 +27,7 @@ Depends: ${misc:Depends},
 Suggests: libcwidget-dev
 Conflicts: libcwidget3
 Replaces: libcwidget3
+Breaks: aptitude (<< 0.8.10-7)
 Description: high-level terminal interface library for C++ (runtime files)
  libcwidget is a modern user interface library modeled on GTK+ and Qt,
  but using curses as its display layer and with widgets that are
