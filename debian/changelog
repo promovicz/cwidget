@@ -1,4 +1,4 @@
-cwidget (0.5.17-8) UNRELEASED; urgency=medium
+cwidget (0.5.17-8) experimental; urgency=medium
 
   * Bump Standards-Version to 4.1.4 (no changes needed)
   * Update Vcs-* fields for "salsa" hosting
@@ -10,7 +10,7 @@ cwidget (0.5.17-8) UNRELEASED; urgency=medium
       for many years, if ever) to not cause problems for aptitude until the
       ABI of cwidget is bumped (Closes: #891161)
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Thu, 26 Apr 2018 01:15:58 +0200
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Thu, 26 Apr 2018 15:25:51 +0200
 
 cwidget (0.5.17-7) unstable; urgency=medium
 
