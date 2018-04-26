@@ -4,6 +4,7 @@ cwidget (0.5.17-9) UNRELEASED; urgency=medium
     the new ABI of ncurses and libncursesw6:
     - Bump shlibs to (>= 0.5.17-8)
     - Declare Breaks against aptitude built with previous cwidget versions
+  * Update Vcs-* fields with repository in its own group
 
  -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Thu, 26 Apr 2018 16:25:55 +0200
 

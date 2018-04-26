@@ -2,8 +2,8 @@ Source: cwidget
 Priority: optional
 Section: libs
 Homepage: https://cwidget.alioth.debian.org
-Vcs-Git: https://salsa.debian.org/mafm/cwidget
-Vcs-Browser: https://salsa.debian.org/mafm/cwidget
+Vcs-Git: https://salsa.debian.org/cwidget-team/cwidget
+Vcs-Browser: https://salsa.debian.org/cwidget-team/cwidget
 Maintainer: Manuel A. Fernandez Montecelo <mafm@debian.org>
 Build-Depends: debhelper (>= 11~),
                gettext,
