@@ -2,6 +2,8 @@ cwidget (0.5.17-8) UNRELEASED; urgency=medium
 
   * Bump Standards-Version to 4.1.4 (no changes needed)
   * Update Vcs-* fields for "salsa" hosting
+  * Bump build-dependency of ncurses to the newest ABI of libncursesw6:
+    libncurses-dev (>= 6.0+20180210)
 
  -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Thu, 26 Apr 2018 01:15:58 +0200
 

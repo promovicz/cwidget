@@ -8,7 +8,7 @@ Maintainer: Manuel A. Fernandez Montecelo <mafm@debian.org>
 Build-Depends: debhelper (>= 11~),
                gettext,
                libcppunit-dev (>= 1.13.2-2.1),
-               libncursesw5-dev,
+               libncurses-dev (>= 6.0+20180210),
                libsigc++-2.0-dev
 Build-Depends-Indep: doxygen,
                      ikiwiki (>= 1.34),
