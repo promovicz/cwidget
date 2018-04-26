@@ -4,6 +4,11 @@ cwidget (0.5.17-8) UNRELEASED; urgency=medium
   * Update Vcs-* fields for "salsa" hosting
   * Bump build-dependency of ncurses to the newest ABI of libncursesw6:
     libncurses-dev (>= 6.0+20180210)
+  * d/patches:
+    - add fix-FTBFS-with-libncursesw6.patch to fix problem compiling
+      against this version, by disabling code (that was de facto not used
+      for many years, if ever) to not cause problems for aptitude until the
+      ABI of cwidget is bumped (Closes: #891161)
 
  -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Thu, 26 Apr 2018 01:15:58 +0200
 

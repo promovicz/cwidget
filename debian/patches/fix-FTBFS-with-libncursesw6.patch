@@ -1,0 +1,24 @@
+--- a/src/cwidget/widgets/text_layout.cc
++++ b/src/cwidget/widgets/text_layout.cc
+@@ -74,6 +74,13 @@
+ 
+     void text_layout::dispatch_mouse(short id, int x, int y, int z, mmask_t bstate)
+     {
++// disabled for bug #891161, the code bitrotted.
++//
++// contrary to the comment below, the versions of ncurses (in Debian, at least)
++// for the last few years didn't have support for the 5th button, so this code
++// was not being compiled at all.  so it's safer just to ignore it until a good
++// solution is found, and perhaps we bump ABI.
++#if 0
+       // Only do something if this system's ncurses has both button 4
+       // and button 5 (older ones didn't).
+ #if defined(BUTTON4_PRESSED) && defined(BUTTON5_PRESSED)
+@@ -97,6 +104,7 @@
+ 			       start + mouse_wheel_scroll_lines));
+ 	}
+ #endif
++#endif
+     }
+ 
+     int text_layout::width_request()
