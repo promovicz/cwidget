@@ -1,10 +1,10 @@
-cwidget (0.5.17-11) UNRELEASED; urgency=medium
+cwidget (0.5.17-11) unstable; urgency=medium
 
   * Fix Vcs-Git field
   * d/patches:
     - Add bug-897733-fix-ftbfs-gcc-8.patch (Closes: #897733)
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Thu, 19 Jul 2018 22:20:50 +0200
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Thu, 19 Jul 2018 22:21:50 +0200
 
 cwidget (0.5.17-10) unstable; urgency=medium
 
