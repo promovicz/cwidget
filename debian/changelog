@@ -1,5 +1,6 @@
 cwidget (0.5.17-11) UNRELEASED; urgency=medium
 
+  * Fix Vcs-Git field
   * d/patches:
     - Add bug-897733-fix-ftbfs-gcc-8.patch (Closes: #897733)
 
