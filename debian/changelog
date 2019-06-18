@@ -1,6 +1,7 @@
 cwidget (0.5.18-1) UNRELEASED; urgency=medium
 
   * New upstream release
+  * Rename libcwidget3v5 to libcwidget4 (new SOVERSION)
   * d/patches: drop all, patches not needed with new upstream release
     - bug-897733-fix-ftbfs-gcc-8.patch
     - do-not-write-timestamps-in-documentation

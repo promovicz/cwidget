@@ -18,16 +18,16 @@ Rules-Requires-Root: no
 Standards-Version: 4.3.0
 
 
-Package: libcwidget3v5
+Package: libcwidget4
 Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${misc:Depends},
          ${shlibs:Depends}
 Suggests: libcwidget-dev
-Conflicts: libcwidget3
-Replaces: libcwidget3
-Breaks: aptitude (<< 0.8.10-7)
+Conflicts: libcwidget3v5
+Replaces: libcwidget3v5
+Breaks: libcwidget3v5, aptitude (<< 0.8.10-7)
 Description: high-level terminal interface library for C++ (runtime files)
  libcwidget is a modern user interface library modeled on GTK+ and Qt,
  but using curses as its display layer and with widgets that are
@@ -41,7 +41,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libcwidget3v5 (= ${binary:Version}),
+         libcwidget4 (= ${binary:Version}),
          libsigc++-2.0-dev,
          libncursesw5-dev,
          pkg-config
