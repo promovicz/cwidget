@@ -5,6 +5,7 @@ cwidget (0.5.18-1) UNRELEASED; urgency=medium
     - bug-897733-fix-ftbfs-gcc-8.patch
     - do-not-write-timestamps-in-documentation
     - fix-FTBFS-with-libncursesw6.patch
+  * Bump Standards-Version to 4.3.0 (no changes needed)
 
  -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Wed, 19 Jun 2019 00:56:08 +0200
 
