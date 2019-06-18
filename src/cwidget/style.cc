@@ -19,7 +19,6 @@
 
 #include "style.h"
 
-// Be lazy, use the standard map.
 #include <map>
 
 using namespace std;

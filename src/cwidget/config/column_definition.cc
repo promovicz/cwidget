@@ -21,9 +21,9 @@
 
 #include <cwidget/generic/util/i18n.h>
 
-#include <wctype.h>
+#include <cwctype>
 
-#include <stdlib.h>
+#include <cstdlib>
 
 using namespace std;
 
@@ -110,7 +110,7 @@ namespace cwidget
 		      //
 		      //_error->Error(_("Formatting marker with missing format code"));
 		      delete rval;
-		      return NULL;
+		      return nullptr;
 		    }
 
 		  if(iswdigit(config[firstbreak]))
@@ -129,7 +129,7 @@ namespace cwidget
 			  // TODO: throw exception
 			  //_error->Error(_("Formatting marker with missing format code"));
 			  delete rval;
-			  return NULL;
+			  return nullptr;
 			}
 
 		      wchar_t *endptr;
@@ -139,7 +139,7 @@ namespace cwidget
 			  // TODO: throw exception
 			  //_error->Error(_("Bad number in format string: '%ls'"), tocvt.c_str());
 			  delete rval;
-			  return NULL;
+			  return nullptr;
 			}
 
 		      width=val;
@@ -168,7 +168,7 @@ namespace cwidget
 			  // TODO: throw exception
 			  //_error->Error(_("Missing parameter number in format string"));
 			  delete rval;
-			  return NULL;
+			  return nullptr;
 			}
 
 		      unsigned long val;
@@ -187,7 +187,7 @@ namespace cwidget
 			  // TODO: throw exception
 			  //_error->Error(_("Bad number in format string: '%ls'"), tocvt.c_str());
 			  delete rval;
-			  return NULL;
+			  return nullptr;
 			}
 
 		      if(val<1)
@@ -195,7 +195,7 @@ namespace cwidget
 			  // TODO: throw exception
 			  //_error->Error(_("Parameter numbers must be 1 or greater, not %ld"), val);
 			  delete rval;
-			  return NULL;
+			  return nullptr;
 			}
 
 		      // Default for parameters is to be dynamic.
@@ -223,7 +223,7 @@ namespace cwidget
 			  //_error->Error(_("Unknown formatting code '%lc'"),
 			  //              config[firstbreak]);
 			  delete rval;
-			  return NULL;
+			  return nullptr;
 			}
 
 		      if(width==-1)

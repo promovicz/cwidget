@@ -1,6 +1,7 @@
 // columnify.cc
 //
 //  Copyright 2000, 2005 Daniel Burrows
+//  Copyright (C) 2019 Manuel A. Fernandez Montecelo
 //  
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -28,7 +29,7 @@ namespace cwidget
   column_disposition::column_disposition(const std::string &_text,
 					 int _minx,
 					 const char *encoding)
-    :text(util::transcode(_text, encoding)), minx(_minx)
+    : text(util::transcode(_text, encoding)), minx(_minx)
   {
   }
 
@@ -38,10 +39,8 @@ namespace cwidget
 
     layout final_info;
 
-    unsigned int colnum=0;
-    for(layout::const_iterator i=format.begin();
-	i!=format.end();
-	++i, ++colnum)
+    size_t colnum = 0;
+    for (auto i = format.begin(); i != format.end(); ++i, ++colnum)
       {
 	eassert(colnum<format.size());
 
@@ -49,12 +48,11 @@ namespace cwidget
       }
 
     // Reconcile the widths.
-    int totalwidth=0;
-    for(layout::iterator i=final_info.begin();
-	i!=final_info.end(); ++i)
-      totalwidth+=i->width;
+    int totalwidth = 0;
+    for (const auto& i : final_info)
+      totalwidth += i.width;
 
-    if(totalwidth<width)
+    if (totalwidth < width)
       // Yaaay, we had too much space :)
       // Divvy it up.
       {
@@ -63,16 +61,14 @@ namespace cwidget
 	int startloc=0;
 
 	// Figure out how to divide the wealth:
-	for(layout::iterator i=final_info.begin();
-	    i!=final_info.end(); ++i)
-	  if(i->expand)
+	for (const auto& i : final_info)
+	  if (i.expand)
 	    ++nexpandable;
 
 	// Now expand the columns
-	for(layout::iterator i=final_info.begin();
-	    i!=final_info.end() && nexpandable>0; ++i)
+	for (layout::iterator i = final_info.begin(); i != final_info.end() && nexpandable > 0; ++i)
 	  {
-	    if(i->expand)
+	    if (i->expand)
 	      {
 		int amt=excess/nexpandable;
 
@@ -83,11 +79,11 @@ namespace cwidget
 
 	    startloc+=i->width;
 
-	    layout::iterator j=i;
+	    layout::iterator j = i;
 	    ++j;
 
 	    // FIXME: HACK.
-	    if(j!=final_info.end() && startloc<j->info.minx)
+	    if (j != final_info.end() && startloc < j->info.minx)
 	      {
 		int amt2=j->info.minx-startloc;
 		if(amt2>excess)
@@ -105,32 +101,30 @@ namespace cwidget
 	int shortfall=totalwidth-width;
 	int startloc=0;
 
-	for(layout::iterator i=final_info.begin();
-	    i!=final_info.end(); ++i)
-	  if(i->shrink)
+	for (const auto &i : final_info)
+	  if (i.shrink)
 	    ++nshrinkable;
 
 	// Shrink the columns
-	for(layout::iterator i=final_info.begin();
-	    i!=final_info.end() && nshrinkable>0; ++i)
+	for (layout::iterator i = final_info.begin(); i != final_info.end() && nshrinkable > 0; ++i)
 	  {
-	    if(i->shrink)
+	    if (i->shrink)
 	      {
-		int amt=shortfall/nshrinkable;
-		if(amt>i->width)
-		  amt=i->width;
+		int amt = shortfall/nshrinkable;
+		if (amt>i->width)
+		  amt = i->width;
 
-		i->width-=amt;
-		shortfall-=amt;
+		i->width -= amt;
+		shortfall -= amt;
 		--nshrinkable;
 	      }
 
-	    startloc+=i->width;
+	    startloc += i->width;
 	  }
 
-	if(shortfall>0) // Egad!  Truncate things at random, R->L..
-	  for(layout::reverse_iterator i=final_info.rbegin();
-	      i!=final_info.rend() && shortfall>0; i++)
+	if (shortfall>0) { // Egad!  Truncate things at random, R->L..
+	  for (layout::reverse_iterator i=final_info.rbegin();
+	       i!=final_info.rend() && shortfall>0; i++) {
 	    if(i->width<=shortfall)
 	      {
 		shortfall-=i->width;
@@ -141,6 +135,8 @@ namespace cwidget
 		i->width-=shortfall;
 		shortfall=0;
 	      }
+	  }
+	}
       }
 
     int curwidth=0, nextwidth=0;

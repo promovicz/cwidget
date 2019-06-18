@@ -12,7 +12,7 @@ programming model popularized by toolkits such as [GTK+][] and [Qt][],
 using [SigC++][] to provide signals and slots.
 
 [GTK+]:    <http://www.gtk.org>
-[Qt]:      <http://www.trolltech.com/qt>
+[Qt]:      <https://qt-project.org/>
 [SigC++]:  <http://libsigc.sourceforge.net>
 [ncurses]: <http://www.gnu.org/software/ncurses/>
 

@@ -1,6 +1,7 @@
 // curses++.h  (this is -*-c++-*-)
 //
 //  Copyright 1999-2005, 2007 Daniel Burrows
+//  Copyright 2019 Manuel A. Fernandez Montecelo
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -58,9 +59,7 @@ namespace cwidget
      */
     attr_t attrs;
 
-    wchtype()
-    {
-    }
+    wchtype() = default;
 
     wchtype(const wchar_t &_ch, const attr_t &_attrs)
       :ch(_ch), attrs(_attrs)

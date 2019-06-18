@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT(cwidget, 0.5.17)
+AC_INIT(cwidget, 0.5.18)
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_SRCDIR([src/cwidget/toplevel.cc])
 AC_CONFIG_HEADERS([config.h cwidget-config.h])
@@ -114,7 +114,7 @@ fi
 
 
 dnl Default to -Werror, but add an easy flag to disable it.
-WERROR="-Werror"
+WERROR="-Werror -Wno-terminate"
 
 AC_ARG_ENABLE(dynamic-backtrace,
 	AS_HELP_STRING([--enable-dynamic-backtrace], [Modify the executable so that it can generate a backtrace for uncaught exceptions.  Will double the size of the stripped binary.]),

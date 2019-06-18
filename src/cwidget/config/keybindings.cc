@@ -28,11 +28,11 @@
 // For _()
 #include <cwidget/generic/util/i18n.h>
 
-#include <ctype.h>
-#include <wctype.h>
+#include <cctype>
+#include <cwctype>
 
 #include <algorithm>
-#include <map>
+
 
 using namespace std;
 
@@ -322,19 +322,20 @@ namespace cwidget
       keymap[tag]=strokes;
     }
 
-    bool keybindings::key_matches(const key &k, string tag)
+    bool keybindings::key_matches(const key &k, string tag) const
     {
       init_equivalence_classes();
       transform(tag.begin(), tag.end(),
 		tag.begin(), toupper_struct());
 
-      map<string, keybinding>::iterator found=keymap.find(tag);
-      std::map<key, int>::const_iterator k_eq_class = key_equivalence_classes.find(k);
-      if(found==keymap.end())
-	return parent?parent->key_matches(k, tag):false;
+      auto it = keymap.find(tag);
+      if(it == keymap.end())
+	return parent ? parent->key_matches(k, tag) : false;
       else
 	{
-	  for(keybinding::iterator i=found->second.begin(); i!=found->second.end(); i++)
+	  auto k_eq_class = key_equivalence_classes.find(k);
+
+	  for(keybinding::const_iterator i = it->second.begin(); i != it->second.end(); i++)
 	    {
 	      if(k_eq_class != key_equivalence_classes.end())
 		{
@@ -353,7 +354,7 @@ namespace cwidget
 	}
     }
 
-    key parse_key(wstring keystr)
+    key parse_key(const wstring &keystr)
     {
       bool sfound=false,cfound=false,afound=false;
       wstring tmpstr=keystr;
@@ -461,30 +462,30 @@ namespace cwidget
     }
 
     // Doesn't return all available bindings as that gets way too long.
-    wstring keybindings::keyname(const string &tag)
+    wstring keybindings::keyname(const string &tag) const
     {
       string realtag(tag);
       transform(realtag.begin(), realtag.end(),
 		realtag.begin(), toupper_struct());
 
-      map<string, keybinding>::iterator found=keymap.find(realtag);
+      auto it = keymap.find(realtag);
 
-      if(found!=keymap.end())
-	return config::keyname(found->second.front());
+      if (it != keymap.end())
+	return config::keyname(it->second.front());
       else
 	return L"";
     }
 
-    wstring keybindings::readable_keyname(const string &tag)
+    wstring keybindings::readable_keyname(const string &tag) const
     {
       string realtag(tag);
       transform(realtag.begin(), realtag.end(),
 		realtag.begin(), toupper_struct());
 
-      map<string, keybinding>::iterator found=keymap.find(realtag);
+      auto it = keymap.find(realtag);
 
-      if(found != keymap.end())
-	return config::readable_keyname(found->second.front());
+      if (it != keymap.end())
+	return config::readable_keyname(it->second.front());
       else
 	return L"";
     }

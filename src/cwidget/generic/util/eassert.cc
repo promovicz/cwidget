@@ -36,13 +36,13 @@ namespace cwidget
 
     std::string AssertionFailure::errmsg() const
     {
-      if(msg.empty())
-	return ssprintf("%s:%d: %s: Assertion \"%s\" failed.",
-			file.c_str(), static_cast<unsigned int>(line),
+      if (msg.empty())
+	return ssprintf("%s:%zu: %s: Assertion \"%s\" failed.",
+			file.c_str(), line,
 			func.c_str(), exp.c_str());
       else
-	return ssprintf("%s:%d: %s: %s: Assertion \"%s\" failed.",
-			file.c_str(), static_cast<unsigned int>(line),
+	return ssprintf("%s:%zu: %s: %s: Assertion \"%s\" failed.",
+			file.c_str(), line,
 			func.c_str(), msg.c_str(), exp.c_str());
     }
   }

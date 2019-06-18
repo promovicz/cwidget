@@ -89,7 +89,7 @@ namespace cwidget
     {
       bool rval=true;
 
-      if(outbufsize == 0 || outbuf == NULL)
+      if(outbufsize == 0 || outbuf == nullptr)
 	{
 	  free(outbuf);
 	  // arbitrary initial starting size; expected to be large enough
@@ -97,7 +97,7 @@ namespace cwidget
 	  if(outbufsize == 0)
 	    outbufsize = 1024;
 	  outbuf = (char *) malloc(outbufsize);
-	  if(outbuf == NULL)
+	  if(outbuf == nullptr)
 	    {
 	      errno = ENOMEM;
 	      decoded=0;
@@ -134,7 +134,7 @@ namespace cwidget
 		{
 		  rval=false;
 		  // Reset the output to initial state.
-		  size_t result = iconv(state, NULL, NULL, &outbufcur, &outremaining);
+		  size_t result = iconv(state, nullptr, nullptr, &outbufcur, &outremaining);
 
 		  while(result == (size_t)(-1))
 		    {
@@ -146,7 +146,7 @@ namespace cwidget
 		      outbuf = (char *) realloc(outbuf,outbufsize);
 		      outbufcur = outbuf+idx;
 
-		      result = iconv(state, NULL, NULL, &outbufcur, &outremaining);
+		      result = iconv(state, nullptr, nullptr, &outbufcur, &outremaining);
 		    }
 
 		  // Open a *new* iconv to spit a '?' onto the decoded
@@ -188,7 +188,7 @@ namespace cwidget
 		  eassert(errbufsize == 0);
 
 		  // Return again to initial shift state
-		  result = iconv(state2, NULL, NULL, &outbufcur, &outremaining);
+		  result = iconv(state2, nullptr, nullptr, &outbufcur, &outremaining);
 		  while(result == (size_t)(-1))
 		    {
 		      eassert(errno == E2BIG);
@@ -199,7 +199,7 @@ namespace cwidget
 		      outbuf = (char *) realloc(outbuf, outbufsize);
 		      outbufcur = outbuf+idx;
 
-		      result = iconv(state2, NULL, NULL, &outbufcur, &outremaining);
+		      result = iconv(state2, nullptr, nullptr, &outbufcur, &outremaining);
 		    }
 
 		  iconv_close(state2);
@@ -233,7 +233,7 @@ namespace cwidget
 		   wstring &out,
 		   const char *encoding)
     {
-      if(encoding == NULL)
+      if(encoding == nullptr)
 	encoding = nl_langinfo(CODESET);
 
       iconv_t converter=iconv_open("WCHAR_T", encoding);
@@ -241,14 +241,14 @@ namespace cwidget
       if(converter == ((iconv_t)-1))
 	return false;
 
-      char *outbuf = NULL;
+      char *outbuf = nullptr;
       size_t outbufsize = 0;
       size_t result_size = 0;
 
       bool rval = transcode_buffer(converter, outbuf, outbufsize,
 				   s, strlen(s), result_size, "WCHAR_T");
 
-      if(outbuf != NULL)
+      if(outbuf != nullptr)
 	{
 	  out = wstring((wchar_t *) outbuf, result_size/sizeof(wchar_t));
 	  free(outbuf);
@@ -271,7 +271,7 @@ namespace cwidget
 	return rval;
       else
 	{
-	  if(errf == NULL)
+	  if(errf == nullptr)
 	    errf=transcode_mbtow_err;
 	  return errf(errno, rval, s);
 	}
@@ -288,7 +288,7 @@ namespace cwidget
 	return rval;
       else
 	{
-	  if(errf == NULL)
+	  if(errf == nullptr)
 	    errf=transcode_mbtow_err;
 	  return errf(errno, rval, s);
 	}
@@ -298,7 +298,7 @@ namespace cwidget
 		   string &out,
 		   const char *encoding)
     {
-      if(encoding == NULL)
+      if(encoding == nullptr)
 	encoding = nl_langinfo(CODESET);
 
       iconv_t converter = iconv_open(encoding, "WCHAR_T");
@@ -306,7 +306,7 @@ namespace cwidget
       if(converter == ((iconv_t)-1))
 	return false;
 
-      char *outbuf = NULL;
+      char *outbuf = nullptr;
       size_t outbufsize = 0;
       size_t result_size = 0;
 
@@ -315,7 +315,7 @@ namespace cwidget
 				   wcslen(s)*sizeof(wchar_t),
 				   result_size, encoding);
 
-      if(outbuf != NULL)
+      if(outbuf != nullptr)
 	{
 	  out = string(outbuf, result_size);
 	  free(outbuf);
@@ -338,7 +338,7 @@ namespace cwidget
 	return rval;
       else
 	{
-	  if(errf == NULL)
+	  if(errf == nullptr)
 	    errf=transcode_wtomb_err;
 	  return errf(errno, rval, s);
 	}
@@ -355,7 +355,7 @@ namespace cwidget
 	return rval;
       else
 	{
-	  if(errf == NULL)
+	  if(errf == nullptr)
 	    errf=transcode_wtomb_err;
 	  return errf(errno, rval, s);
 	}

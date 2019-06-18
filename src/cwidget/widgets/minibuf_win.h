@@ -32,8 +32,6 @@
 #include "passthrough.h"
 #include "widget.h"
 
-#include <list>
-
 #include <sigc++/connection.h>
 
 namespace cwidget

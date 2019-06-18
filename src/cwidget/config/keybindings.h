@@ -20,9 +20,9 @@
 #ifndef KEYBINDINGS_H
 #define KEYBINDINGS_H
 
-#include <list>
 #include <map>
 #include <string>
+#include <vector>
 
 #include <cwidget/curses++.h>
 
@@ -98,14 +98,14 @@ namespace cwidget
        *
        *  \param _parent   The parent of this scope, if any, or NULL for no parent.
        */
-      keybindings(keybindings *_parent=NULL):parent(_parent) {}
+      keybindings(keybindings *_parent = nullptr) : parent(_parent) {}
 
       /** \return the first binding of the given function, in a format
        *  that can be passed to parse_key().
        *
        *  \param tag The function whose keystroke is to be returned.
        */
-      std::wstring keyname(const std::string &tag);
+      std::wstring keyname(const std::string &tag) const;
 
 
       /** \return a human-readable string describing the keystroke
@@ -114,17 +114,17 @@ namespace cwidget
        *  \param tag The name of the function whose keystroke is to be
        *  returned.
        */
-      std::wstring readable_keyname(const std::string &tag);
+      std::wstring readable_keyname(const std::string &tag) const;
 
       /** \brief Retrieve the binding of the given function. */
-      keybinding get(std::string tag)
+      keybinding get(const std::string &tag) const
       {
-	std::map<std::string, keybinding>::iterator found=keymap.find(tag);
+	auto it = keymap.find(tag);
 
-	if(found==keymap.end())
+	if (it == keymap.end())
 	  return keybinding();
 	else
-	  return found->second;
+	  return it->second;
       }
 
       /** \brief Modify a binding in this scope.
@@ -160,7 +160,7 @@ namespace cwidget
        *
        *  \return \b true if k is bound to tag in this scope.
        */
-      bool key_matches(const key &k, std::string tag);
+      bool key_matches(const key &k, std::string tag) const;
     };
 
     /** \brief Parse a keystroke definition.
@@ -169,7 +169,7 @@ namespace cwidget
      *
      *  \return the corresponding key, or ERR if the parse fails.
      */
-    key parse_key(std::wstring keystr);
+    key parse_key(const std::wstring &keystr);
 
     /** \brief Convert a keystroke to its string definition.
      *

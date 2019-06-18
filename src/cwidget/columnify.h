@@ -1,6 +1,7 @@
 // columnify.h    -*-c++-*-
 //
 //  Copyright 2000, 2005 Daniel Burrows
+//  Copyright (C) 2019 Manuel A. Fernandez Montecelo
 //  
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -41,15 +42,17 @@ namespace cwidget
 {
   struct column_disposition
   {
-    std::wstring text;  // The contents of the columns
-    int minx;          // The minimum x value to start this column at (useful for
-    // indenting stuff in trees)
+    /// The contents of the columns
+    std::wstring text;
+    /// The minimum x value to start this column at (useful for indenting stuff
+    /// in trees)
+    int minx;
 
-    column_disposition(const std::wstring &_text, int _minx):text(_text), minx(_minx) {}
+    column_disposition(const std::wstring &_text, int _minx) : text(_text), minx(_minx) {}
 
     /** Generate a column from the multibyte string _text. */
     column_disposition(const std::string &_text, int _minx,
-		       const char *encoding=NULL);
+		       const char *encoding = nullptr);
   };
 
   struct column
@@ -59,13 +62,11 @@ namespace cwidget
     bool expand, shrink;
 
     column(const column_disposition &_info, int _width, bool _expand, bool _shrink)
-      :info(_info), width(_width), expand(_expand), shrink(_shrink)
+      : info(_info), width(_width), expand(_expand), shrink(_shrink)
     {
       eassert(_width>=0);
     }
   };
-
-  typedef std::list<column> column_list;
 
   typedef std::list<column> layout;
 

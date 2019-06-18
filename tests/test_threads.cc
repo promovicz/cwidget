@@ -81,13 +81,13 @@ public:
 
     CPPUNIT_ASSERT_EQUAL(100, b.take());
 
-    std::auto_ptr<cw::threads::thread> *writers =
-      new std::auto_ptr<cw::threads::thread>[thread_count];
+    std::unique_ptr<cw::threads::thread> *writers =
+      new std::unique_ptr<cw::threads::thread>[thread_count];
 
     try
       {
 	for(int i = 0; i<thread_count; ++i)
-	  writers[i] = std::auto_ptr<cw::threads::thread>(new cw::threads::thread(add_thread(thread_limit, b)));
+	  writers[i] = std::unique_ptr<cw::threads::thread>(new cw::threads::thread(add_thread(thread_limit, b)));
 
 	int foo;
 	CPPUNIT_ASSERT(!b.try_take(foo));
@@ -190,8 +190,8 @@ public:
 
     cw::threads::event_queue<std::pair<int, int> > eq;
 
-    std::auto_ptr<cw::threads::thread> *writers =
-      new std::auto_ptr<cw::threads::thread>[thread_count];
+    std::unique_ptr<cw::threads::thread> *writers =
+      new std::unique_ptr<cw::threads::thread>[thread_count];
     int *last_thread_msg =
       new int[thread_count];
 
@@ -201,7 +201,7 @@ public:
 	  last_thread_msg[i] = -1;
 
 	for(int i = 0; i < thread_count; ++i)
-	  writers[i] = std::auto_ptr<cw::threads::thread>(new cw::threads::thread(event_queue_write_thread(eq, i, thread_limit)));
+	  writers[i] = std::unique_ptr<cw::threads::thread>(new cw::threads::thread(event_queue_write_thread(eq, i, thread_limit)));
 
 	for(int i = 0; i < thread_count * thread_limit; ++i)
 	  {

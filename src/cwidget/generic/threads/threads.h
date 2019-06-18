@@ -139,57 +139,6 @@ namespace cwidget
 	  pthread_attr_init(&attrs);
 	}
 
-	// All attributes except detach state can be manipulated (detach
-	// state is left at PTHREAD_CREATE_JOINABLE).
-
-	void set_inherit_sched(int i)
-	{
-	  pthread_attr_setinheritsched(&attrs, i);
-	}
-
-	int get_inherit_sched() const
-	{
-	  int rval;
-	  pthread_attr_getinheritsched(&attrs, &rval);
-	  return rval;
-	}
-
-	void set_sched_param(const sched_param &sp)
-	{
-	  pthread_attr_setschedparam(&attrs, &sp);
-	}
-
-	sched_param get_sched_param() const
-	{
-	  sched_param rval;
-	  pthread_attr_getschedparam(&attrs, &rval);
-	  return rval;
-	}
-
-	void set_sched_policy(int p)
-	{
-	  pthread_attr_setschedpolicy(&attrs, p);
-	}
-
-	int get_sched_policy() const
-	{
-	  int rval;
-	  pthread_attr_getschedpolicy(&attrs, &rval);
-	  return rval;
-	}
-
-	void set_scope(int p)
-	{
-	  pthread_attr_setscope(&attrs, p);
-	}
-
-	int get_scope() const
-	{
-	  int rval;
-	  pthread_attr_getscope(&attrs, &rval);
-	  return rval;
-	}
-
 	~attr()
 	{
 	  pthread_attr_destroy(&attrs);
@@ -932,62 +881,6 @@ namespace cwidget
       val = new_val;
       cond.wake_one();
     }
-
-    // A ptr_box is like a box, but it wraps a pointer to its internal
-    // object.  When a filled ptr_box is destroyed, it deletes the
-    // pointer that it contains.
-    template<typename T>
-    class ptr_box
-    {
-      box<T *> b;
-    public:
-      ptr_box()
-      {
-      }
-
-      ptr_box(const T *val)
-	:b(val)
-      {
-      }
-
-      ~ptr_box()
-      {
-	T *x;
-
-	if(b.try_get(x))
-	  delete x;
-      }
-
-      T *take()
-      {
-	return b.take();
-      }
-
-      bool try_take(const T * &out)
-      {
-	return b.try_take(out);
-      }
-
-      bool timed_take(const T * &out, const timespec &until)
-      {
-	return b.timed_take(out);
-      }
-
-      void put(const T *in)
-      {
-	b.put(in);
-      }
-
-      bool try_put(const T *in)
-      {
-	return b.try_put(in);
-      }
-
-      bool timed_put(const T *in, const timespec &until)
-      {
-	return b.timed_put(in, until);
-      }
-    };
 
     // A utility that proxies for noncopyable thread bootstrap
     // objects.  The only requirement is that the pointer passed

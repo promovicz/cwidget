@@ -23,11 +23,11 @@
 
 #include "config/colors.h"
 
-#include <stdarg.h>
+#include <cstdarg>
 
 #include <algorithm>
 
-#include <wctype.h>
+#include <cwctype>
 
 using namespace std;
 
@@ -400,7 +400,7 @@ namespace cwidget
   {
     vector<fragment*> fragments;
 
-    if(f==NULL)
+    if(f== nullptr)
       return new _sequence_fragment(fragments);
 
     fragments.push_back(f);
@@ -411,9 +411,9 @@ namespace cwidget
     do
       {
 	f=va_arg(lst, fragment*);
-	if(f!=NULL)
+	if(f!= nullptr)
 	  fragments.push_back(f);
-      } while(f!=NULL);
+      } while(f!= nullptr);
 
     va_end(lst);
 
@@ -1365,7 +1365,7 @@ namespace cwidget
     const char *nextpercent=strchr(start, '%');
 
     // loop 1: count the arguments.
-    while(nextpercent!=NULL)
+    while(nextpercent!= nullptr)
       {
 	if(*(nextpercent+1)=='l')
 	  ++nextpercent;
@@ -1436,7 +1436,7 @@ namespace cwidget
     // loop 2: read the list of arguments and parse their type.
     start=format;
     nextpercent=strchr(start, '%');
-    while(nextpercent!=NULL)
+    while(nextpercent!= nullptr)
       {
 	bool islong=false;
 	if(*(nextpercent+1)=='l')
@@ -1549,7 +1549,7 @@ namespace cwidget
 
     // Loop 3: execute the program
 
-    while(nextpercent!=NULL)
+    while(nextpercent!= nullptr)
       {
 	bool islong=false;
 

@@ -121,14 +121,14 @@ namespace cwidget
    *  \return the new fragment
    */
   fragment *text_fragment(const std::string &s,
-			  const char *encoding=NULL);
+			  const char *encoding = nullptr);
 
   /** Create a fragment from a string of multibyte-encoded text,
    *  wrapping an implicit style_fragment around it.
    */
   fragment *text_fragment(const std::string &s,
 			  const style &st,
-			  const char *encoding=NULL);
+			  const char *encoding = nullptr);
 
   /** Create a fragment from a string of text.  The text will simply be
    *  formatted as a single line without clipping.

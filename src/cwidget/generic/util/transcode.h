@@ -39,11 +39,11 @@ namespace cwidget
      */
     bool transcode(const char *s,
 		   std::wstring &out,
-		   const char *encoding=NULL);
+		   const char *encoding = nullptr);
 
     inline bool transcode(const std::string &s,
 			  std::wstring &out,
-			  const char *encoding=NULL)
+			  const char *encoding = nullptr)
     {
       return transcode(s.c_str(), out, encoding);
     }
@@ -73,7 +73,7 @@ namespace cwidget
 			   const char *encoding=NULL,
 			   std::wstring (*errf)(int error,
 						const std::wstring &partial,
-						const std::string &input)=NULL);
+						const std::string &input) = nullptr);
 
     /** Convenience function to convert a multibyte encoding to wide
      *  characters, where the caller doesn't need to directly handle
@@ -88,10 +88,10 @@ namespace cwidget
      *  handler (transcode_mbtow_err).
      */
     std::wstring transcode(const char *s,
-			   const char *encoding=NULL,
+			   const char *encoding = nullptr,
 			   std::wstring (*errf)(int error,
 						const std::wstring &partial,
-						const std::string &input)=NULL);
+						const std::string &input) = nullptr);
 
     // Note: would it be saner to express errors via exceptions?
 
@@ -108,12 +108,12 @@ namespace cwidget
      */
     bool transcode(const wchar_t *s,
 		   std::string &out,
-		   const char *encoding=NULL);
+		   const char *encoding = nullptr);
 
 
     inline bool transcode(const std::wstring &s,
 			  std::string &out,
-			  const char *encoding=NULL)
+			  const char *encoding = nullptr)
     {
       return transcode(s.c_str(), out, encoding);
     }
@@ -141,10 +141,10 @@ namespace cwidget
      *  handler (transcode_mbtow_err).
      */
     std::string transcode(const std::wstring &s,
-			  const char *encoding=NULL,
+			  const char *encoding = nullptr,
 			  std::string (*errf)(int error,
 					      const std::string &partial,
-					      const std::wstring &input)=NULL);
+					      const std::wstring &input) = nullptr);
 
     /** Convenience function to convert a multibyte encoding to wide
      *  characters, where the caller doesn't need to directly handle
@@ -159,10 +159,10 @@ namespace cwidget
      *  handler (transcode_mbtow_err).
      */
     std::string transcode(const wchar_t *s,
-			  const char *encoding=NULL,
+			  const char *encoding = nullptr,
 			  std::string (*errf)(int error,
 					      const std::string &partial,
-					      const std::wstring &input)=NULL);
+					      const std::wstring &input) = nullptr);
   }
 }
 
