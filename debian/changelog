@@ -1,3 +1,13 @@
+cwidget (0.5.18-1) UNRELEASED; urgency=medium
+
+  * New upstream release
+  * d/patches: drop all, patches not needed with new upstream release
+    - bug-897733-fix-ftbfs-gcc-8.patch
+    - do-not-write-timestamps-in-documentation
+    - fix-FTBFS-with-libncursesw6.patch
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Wed, 19 Jun 2019 00:56:08 +0200
+
 cwidget (0.5.17-11) unstable; urgency=medium
 
   * Fix Vcs-Git field
