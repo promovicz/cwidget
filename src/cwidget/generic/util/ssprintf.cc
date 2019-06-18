@@ -63,7 +63,10 @@ namespace cwidget
 
 	  const int amt2 = vsnprintf(buf2, buf2size, format, ap2);
 
-	  eassert(amt2 < buf2size);
+	  if (amt2 >= buf2size) {
+	    delete[] buf2;
+	    eassert(amt2 < buf2size);
+	  }
 
 	  string rval(buf2, amt2);
 

@@ -21,7 +21,7 @@
 
 #include <cwidget/curses++.h>
 
-#include <math.h>
+#include <cmath>
 
 namespace cwidget
 {

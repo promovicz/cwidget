@@ -39,7 +39,7 @@ This section describes how to acquire the prerequisites of cwidget on
 various operating systems.
 
 If your operating system is not listed here, please email
-<alioth-devel@lists.alioth.debian.org> with instructions on how to
+<cwidget-devel@lists.alioth.debian.org> with instructions on how to
 install the prerequisites on your operating system.
 
 #### Debian unstable

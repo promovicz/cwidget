@@ -27,6 +27,7 @@
 #include "container.h"
 #include <cwidget/config/keybindings.h>
 
+#include <list>
 #include <string>
 #include <vector>
 

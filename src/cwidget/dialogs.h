@@ -65,12 +65,12 @@ namespace cwidget
 			   util::slot0arg okslot, const std::wstring &label,
 			   const style &st);
 
-    widgets::widget_ref ok(fragment *msg, util::slot0arg okslot=NULL, bool scrollbar=false);
+    widgets::widget_ref ok(fragment *msg, util::slot0arg okslot = nullptr, bool scrollbar=false);
     widgets::widget_ref ok(fragment *msg, util::slot0arg okslot, const style &st, bool scrollbar=false);
     widgets::widget_ref ok(fragment *msg, util::slot0arg okslot, const std::wstring &label,
 			   const style &st, bool scrollbar=false);
 
-    widgets::widget_ref ok(const std::wstring &msg, util::slot0arg okslot=NULL);
+    widgets::widget_ref ok(const std::wstring &msg, util::slot0arg okslot = nullptr);
     widgets::widget_ref ok(const std::wstring &msg, util::slot0arg okslot,
 			   const style &st);
     widgets::widget_ref ok(const std::wstring &msg, util::slot0arg okslot, const std::wstring &label,
@@ -140,18 +140,18 @@ namespace cwidget
 			      bool deflt=true);
 
     widgets::widget_ref fileview(const std::string &fn,
-				 util::slot0arg okslot=NULL,
-				 util::slotarg<sigc::slot1<void, widgets::pager &> > search_slot=NULL,
-				 util::slotarg<sigc::slot1<void, widgets::pager &> > repeat_search_slot=NULL,
-				 util::slotarg<sigc::slot1<void, widgets::pager &> > repeat_search_back_slot=NULL,
-				 const char *encoding=NULL);
+				 util::slot0arg okslot = nullptr,
+				 util::slotarg<sigc::slot1<void, widgets::pager &> > search_slot = nullptr,
+				 util::slotarg<sigc::slot1<void, widgets::pager &> > repeat_search_slot = nullptr,
+				 util::slotarg<sigc::slot1<void, widgets::pager &> > repeat_search_back_slot = nullptr,
+				 const char *encoding = nullptr);
     widgets::widget_ref fileview(const std::string &fn,
 				 util::slot0arg okslot,
 				 util::slotarg<sigc::slot1<void, widgets::pager &> > search_slot,
 				 util::slotarg<sigc::slot1<void, widgets::pager &> > repeat_search_slot,
 				 util::slotarg<sigc::slot1<void, widgets::pager &> > repeat_search_back_slot,
 				 const style &st,
-				 const char *encoding=NULL);
+				 const char *encoding = nullptr);
 
     widgets::widget_ref string(fragment *msg,
 			       const std::wstring &deflt,

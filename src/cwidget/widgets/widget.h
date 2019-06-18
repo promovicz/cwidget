@@ -40,7 +40,6 @@
 #define WIDGET_H
 
 #include <list>
-#include <vector>
 
 #include <sigc++/signal.h>
 #include <sigc++/trackable.h>

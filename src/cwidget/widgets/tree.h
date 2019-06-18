@@ -25,7 +25,6 @@
 #include "treeitem.h"
 #include "widget.h"
 
-#include <list>
 #include <cwidget/generic/util/eassert.h>
 
 namespace cwidget

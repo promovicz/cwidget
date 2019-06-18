@@ -1056,7 +1056,7 @@ namespace cwidget
 
     void updatecursornow()
     {
-      threads::mutex::lock(get_mutex());
+      threads::mutex::lock l(get_mutex());
 
       if(toplevel->get_cursorvisible())
 	{
@@ -1152,7 +1152,7 @@ namespace cwidget
       return rval;
     }
 
-    void mainloop(int synch)
+    void mainloop()
     {
       static int main_level=0;
 

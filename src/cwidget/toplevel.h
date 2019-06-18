@@ -143,11 +143,8 @@ namespace cwidget
      *  exceptions correctly is to redirect stdin from /dev/null; this
      *  will throw an exception stating that the program cannot read
      *  from stdin.
-     *
-     *  \param synch Ignored; it is present for historical reasons and
-     *  will be removed in a future release of cwidget.
      */
-    void mainloop(int synch=0);
+    void mainloop();
 
     /** Post the given event to the main event queue.  When the event
      *  comes off the queue, its dispatch method will be invoked and it
@@ -166,11 +163,13 @@ namespace cwidget
      */
     bool poll();
 
+    /** Exits the main loop.
+     */
     void exitmain();
-    // Exits the main loop.
 
+    /** Redraws the screen completely from scratch
+     */
     void redraw();
-    // Redraws the screen completely from scratch
 
     /** Posts a request to redraw the screen; may be called from any thread. */
     void update();

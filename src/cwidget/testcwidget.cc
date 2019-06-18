@@ -2,11 +2,11 @@
 //
 //  Not pretty code, but it tests some of the facilities of cwidget.
 
-#include <cwidget/generic/util/exception.h>
-
 #include <cwidget/dialogs.h>
 #include <cwidget/fragment.h>
+#include <cwidget/config/colors.h>
 #include <cwidget/generic/util/transcode.h>
+#include <cwidget/generic/util/exception.h>
 #include <cwidget/toplevel.h>
 #include <cwidget/widgets/button.h>
 #include <cwidget/widgets/center.h>
@@ -30,14 +30,13 @@
 #include <cwidget/widgets/tree.h>
 #include <cwidget/widgets/widget.h>
 
-#include <config/colors.h>
+#include <sigc++/adaptors/bind.h>
+#include <sigc++/functors/mem_fun.h>
+#include <sigc++/functors/ptr_fun.h>
 
 #include <iostream>
 #include <string>
 
-#include <sigc++/adaptors/bind.h>
-#include <sigc++/functors/mem_fun.h>
-#include <sigc++/functors/ptr_fun.h>
 
 using namespace std;
 
@@ -55,9 +54,9 @@ public:
     set_bg_style(get_style("EditLine"));
   }
 
-  size size_request()
+  widgets::size size_request()
   {
-    return size(10, 0);
+    return widgets::size(10, 0);
   }
 
   bool focus_me() {return true;}
@@ -77,9 +76,9 @@ public:
     set_bg_style(st);
   }
 
-  size size_request()
+  widgets::size size_request()
   {
-    return size(0,0);
+    return widgets::size(0,0);
   }
 
   void paint()
@@ -474,7 +473,7 @@ int main(int argc, char *argv[])
   switcher->add_visible_widget(pager_test(), true);
   switcher->add_visible_widget(button_mania(), true);
 
-  switcher->add_visible_widget(center::create(size_box::create(size(20, 8), frame::create(center::create(label::create(flowbox(fragf("This is another screen.%nNotice that this label is properly word-wrapped."))))))), true);
+  switcher->add_visible_widget(center::create(size_box::create(widgets::size(20, 8), frame::create(center::create(label::create(flowbox(fragf("This is another screen.%nNotice that this label is properly word-wrapped."))))))), true);
   switcher->add_visible_widget(label::create("This is one screen."), true);
   switcher->add_visible_widget(dialogs::ok(util::transcode("Press any key to hide this widget")), true);
   switcher->add_visible_widget(make_test_treewidget(), true);

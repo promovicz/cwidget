@@ -1,6 +1,7 @@
 // text_layout.cc
 //
 //   Copyright (C) 2004-2007 Daniel Burrows
+//   Copyright (C) 2019 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -86,7 +87,7 @@ namespace cwidget
 	    {
 	      freshen_contents(lastst);
 	      if(start > 0)
-		set_start(std::max(0, start - mouse_wheel_scroll_lines));
+		set_start(std::max(0, static_cast<int>(start - mouse_wheel_scroll_lines)));
 	    }
 	}
       else if((bstate & BUTTON5_PRESSED) != 0)

@@ -18,7 +18,7 @@ If you do not want to compile from source, you will have to find
 pre-compiled packages for your operating system.
 
 If your operating system is not listed here and binary packages exist
-for it, please email <alioth-devel@lists.alioth.debian.org> with
+for it, please email <cwidget-devel@lists.alioth.debian.org> with
 information on where the binary packages are.
 
 ### Debian unstable
