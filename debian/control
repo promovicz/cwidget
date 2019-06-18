@@ -5,7 +5,7 @@ Homepage: https://cwidget.alioth.debian.org
 Vcs-Git: https://salsa.debian.org/cwidget-team/cwidget.git
 Vcs-Browser: https://salsa.debian.org/cwidget-team/cwidget
 Maintainer: Manuel A. Fernandez Montecelo <mafm@debian.org>
-Build-Depends: debhelper (>= 11~),
+Build-Depends: debhelper (>= 12~),
                gettext,
                libcppunit-dev (>= 1.13.2-2.1),
                libncurses-dev (>= 6.0+20180210),
