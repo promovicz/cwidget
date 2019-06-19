@@ -1,4 +1,4 @@
-cwidget (0.5.18-1) UNRELEASED; urgency=medium
+cwidget (0.5.18-1) experimental; urgency=medium
 
   * New upstream release
   * Rename libcwidget3v5 to libcwidget4 (new SOVERSION)
@@ -12,7 +12,7 @@ cwidget (0.5.18-1) UNRELEASED; urgency=medium
     - d/control: Setting Build-Depends of debhelper accordingly
   * d/watch: add file
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Wed, 19 Jun 2019 00:56:08 +0200
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Wed, 19 Jun 2019 02:00:26 +0200
 
 cwidget (0.5.17-11) unstable; urgency=medium
 
