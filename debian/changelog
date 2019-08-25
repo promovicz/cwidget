@@ -1,6 +1,6 @@
 cwidget (0.5.18-3) UNRELEASED; urgency=medium
 
-  * 
+  * Change shlibs version to the correct 0.5.18-1
 
  -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Mon, 26 Aug 2019 01:01:03 +0200
 
