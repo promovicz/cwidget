@@ -1,3 +1,9 @@
+cwidget (0.5.18-2) unstable; urgency=medium
+
+  * Release to unstable
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sun, 25 Aug 2019 22:43:25 +0200
+
 cwidget (0.5.18-1) experimental; urgency=medium
 
   * New upstream release
