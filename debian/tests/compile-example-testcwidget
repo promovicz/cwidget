@@ -13,10 +13,9 @@ trap "rm -rf $WORKDIR" 0 INT QUIT ABRT PIPE TERM
 cd $WORKDIR
 
 SRCFILE=testcwidget.cc
-SRCFILEGZ=testcwidget.cc.gz
 BINFILE=testcwidget
 
-gunzip -c /usr/share/doc/libcwidget-dev/examples/$SRCFILEGZ > $SRCFILE
+cp /usr/share/doc/libcwidget-dev/examples/$SRCFILE .
 
 g++ -o $BINFILE $SRCFILE `pkg-config --cflags --libs cwidget` -I /usr/include/cwidget
 echo "build: OK"
