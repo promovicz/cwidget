@@ -3,6 +3,9 @@ cwidget (0.5.18-4) UNRELEASED; urgency=medium
   [ Sven Joachim ]
   * Fix the autopkgtest.  In compat level 12, dh_examples no longer
     compresses files under /usr/share/doc/examples.
+  * d/patches:
+    - add 0001-Change-gettext-domainname-to-libcwidget4-1.patch to not
+      ship files conflicting with libcwidget3v5 (Closes: #935775)
 
  -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Thu, 29 Aug 2019 10:49:23 +0200
 
