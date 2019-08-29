@@ -1,3 +1,11 @@
+cwidget (0.5.18-4) UNRELEASED; urgency=medium
+
+  [ Sven Joachim ]
+  * Fix the autopkgtest.  In compat level 12, dh_examples no longer
+    compresses files under /usr/share/doc/examples.
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Thu, 29 Aug 2019 10:49:23 +0200
+
 cwidget (0.5.18-3) unstable; urgency=medium
 
   * Change shlibs version to the correct 0.5.18-1
